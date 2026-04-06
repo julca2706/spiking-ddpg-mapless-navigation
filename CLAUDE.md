@@ -17,22 +17,89 @@ This is a ROS 2 (Jazzy) workspace for training and evaluating a **Spiking Deep D
 source /opt/ros/jazzy/setup.bash
 
 # Build workspace
-cd /home/juleczka123/sddpg_ws
+cd /home/juleczka123/spiking-ddpg-mapless-navigation
 colcon build --symlink-install
 
 # Source workspace
-source install/setup.bash
+source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+```
 
-# Launch Gazebo + ros_gz_bridge (required before training)
+### Training
+
+Requires two terminals. Terminal 1 (Gazebo + bridge):
+
+```bash
+source /opt/ros/jazzy/setup.bash
+source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
 ros2 launch sddpg_navigation training.launch.py
 
-# Run DDPG training (in a separate terminal, after sourcing)
+# Headless (no GUI, faster — useful for remote/SSH sessions)
+ros2 launch sddpg_navigation training.launch.py headless:=true
+```
+
+Terminal 2 (training script, after Gazebo is up):
+
+```bash
+source /opt/ros/jazzy/setup.bash
+source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+
+# Standard DDPG
 ros2 run sddpg_navigation train_ddpg
 
-# Run SDDPG training
+# Spiking DDPG
 ros2 run sddpg_navigation train_sddpg
+```
 
-# Run environment node (manual testing)
+### Evaluation (simulation)
+
+Terminal 1 (Gazebo + bridge):
+
+```bash
+source /opt/ros/jazzy/setup.bash
+source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+ros2 launch sddpg_navigation evaluation.launch.py
+
+# Headless (no GUI)
+ros2 launch sddpg_navigation evaluation.launch.py headless:=true
+```
+
+Terminal 2 (evaluation script):
+
+```bash
+source /opt/ros/jazzy/setup.bash
+source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+
+# Evaluate DDPG (loads from evaluation/saved_model/ by default)
+ros2 run sddpg_navigation eval_ddpg
+
+# Evaluate Spiking DDPG (loads from evaluation/saved_model/ by default)
+ros2 run sddpg_navigation eval_sddpg
+
+# Evaluate a specific SDDPG checkpoint from training
+ros2 run sddpg_navigation eval_sddpg \
+  --model_name SNN_R1 \
+  --checkpoint 0 \
+  --save_dir /home/juleczka123/spiking-ddpg-mapless-navigation/src/sddpg_navigation/sddpg_navigation/save_sddpg_weights/
+```
+
+### Real-world evaluation
+
+Run directly (no Gazebo needed):
+
+```bash
+source /opt/ros/jazzy/setup.bash
+source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+
+# DDPG on real robot
+python3 src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_ddpg_eval_rw.py
+
+# Spiking DDPG on real robot (requires Loihi hardware)
+python3 src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_sddpg_loihi_eval_rw.py
+```
+
+### Manual environment testing
+
+```bash
 ros2 run sddpg_navigation environment
 ```
 
@@ -76,19 +143,25 @@ Neural Networks (actor + critic)
 
 | File | Role |
 |------|------|
-| `sddpg_navigation/environment.py` | `GazeboEnvironment(Node)` — gym-like RL environment; provides `step()`, `reset()`, `set_new_environment()` |
-| `sddpg_navigation/utility.py` | Training environment generation (`gen_rand_list_env1/2/3/4`), action decoding, state normalization |
-| `training/train_ddpg/train_ddpg.py` | Main DDPG training loop |
-| `training/train_ddpg/ddpg_agent.py` | DDPG agent with experience replay buffer |
-| `training/train_ddpg/ddpg_networks.py` | PyTorch `ActorNet` (256×3 FC) and `CriticNet` (512×3 FC) |
-| `training/train_spiking_ddpg/train_sddpg.py` | Main SDDPG training loop |
-| `training/train_spiking_ddpg/sddpg_agent.py` | Spiking DDPG agent |
-| `training/train_spiking_ddpg/sddpg_networks.py` | `ActorNetSpiking` — LIF neurons with STBP; shares `CriticNet` |
-| `launch/training.launch.py` | Starts Gazebo + bridge |
-| `launch/bridge.yaml` | ROS↔Gazebo topic/service bridge configuration |
-| `worlds/training_worlds.world` | 4 training environments (SDF 1.9) |
-| `worlds/evaluation_world.world` | Evaluation environment |
-| `sddpg_navigation/random_positions/` | Pre-generated random init/goal positions (pickle, 5 sets × 4 envs × 100 episodes) |
+| `src/sddpg_navigation/sddpg_navigation/environment.py` | `GazeboEnvironment(Node)` — gym-like RL environment; provides `step()`, `reset()`, `set_new_environment()` |
+| `src/sddpg_navigation/sddpg_navigation/utility.py` | Training environment generation (`gen_rand_list_env1/2/3/4`), action decoding, state normalization |
+| `src/sddpg_navigation/sddpg_navigation/training/train_ddpg/train_ddpg.py` | Main DDPG training loop |
+| `src/sddpg_navigation/sddpg_navigation/training/train_ddpg/ddpg_agent.py` | DDPG agent with experience replay buffer |
+| `src/sddpg_navigation/sddpg_navigation/training/train_ddpg/ddpg_networks.py` | PyTorch `ActorNet` (256×3 FC) and `CriticNet` (512×3 FC) |
+| `src/sddpg_navigation/sddpg_navigation/training/train_spiking_ddpg/train_sddpg.py` | Main SDDPG training loop |
+| `src/sddpg_navigation/sddpg_navigation/training/train_spiking_ddpg/sddpg_agent.py` | Spiking DDPG agent |
+| `src/sddpg_navigation/sddpg_navigation/training/train_spiking_ddpg/sddpg_networks.py` | `ActorNetSpiking` — LIF neurons with STBP; shares `CriticNet` |
+| `src/sddpg_navigation/sddpg_navigation/evaluation/eval_random_simulation/run_ddpg_eval.py` | DDPG simulation evaluation |
+| `src/sddpg_navigation/sddpg_navigation/evaluation/eval_random_simulation/run_sddpg_eval.py` | SDDPG simulation evaluation |
+| `src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_ddpg_eval_rw.py` | DDPG real-robot evaluation |
+| `src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_sddpg_loihi_eval_rw.py` | SDDPG real-robot evaluation (Loihi) |
+| `src/sddpg_navigation/sddpg_navigation/evaluation/result_analyze/generate_results.py` | Result analysis and plotting |
+| `src/sddpg_navigation/launch/training.launch.py` | Starts Gazebo + bridge for training |
+| `src/sddpg_navigation/launch/evaluation.launch.py` | Starts Gazebo + bridge for evaluation |
+| `src/sddpg_navigation/launch/bridge.yaml` | ROS↔Gazebo topic/service bridge configuration |
+| `src/sddpg_navigation/worlds/training_worlds.world` | 4 training environments (SDF 1.9) |
+| `src/sddpg_navigation/worlds/evaluation_world.world` | Evaluation environment |
+| `src/sddpg_navigation/sddpg_navigation/random_positions/` | Pre-generated random init/goal positions (pickle, 5 sets × 4 envs × 100 episodes) |
 
 ### Agent Variants
 
@@ -109,20 +182,21 @@ Neural Networks (actor + critic)
 
 ## Migration Notes
 
-This project is an active ROS 1 → ROS 2 port. Key API changes from the original (`src/spiking-ddpg-mapless-navigation/`):
+This project is an active ROS 1 → ROS 2 port. Key API changes from the original:
 
 - `pause_physics` / `unpause_physics` → `/world/default/control` (WorldControl service)
 - `SetModelState` → `/world/default/set_pose` (Pose service via ros_gz_interfaces)
 - Custom `simplescan` topic → standard `/scan` (LaserScan)
 - Gazebo Classic SDF → Gazebo Harmonic SDF 1.9 (inline lights, no `model://sun`)
 
-See `src/notes.md` for detailed migration documentation (in Polish).
-
 ## Package Structure
 
 ```
 src/sddpg_navigation/          # ROS 2 package (ament_python)
 ├── launch/                    # Launch files and bridge config
+│   ├── training.launch.py
+│   ├── evaluation.launch.py
+│   └── bridge.yaml
 ├── models/turtlebot3_burger/  # Robot SDF model
 ├── worlds/                    # Gazebo world files
 ├── sddpg_navigation/          # Python package
@@ -131,12 +205,11 @@ src/sddpg_navigation/          # ROS 2 package (ament_python)
 │   ├── training/
 │   │   ├── train_ddpg/
 │   │   └── train_spiking_ddpg/
-│   ├── evaluation/            # Partially migrated evaluation scripts
-│   │   ├── eval_random_simulation/
-│   │   ├── eval_random_simulation_loihi/
-│   │   ├── eval_real_world/
-│   │   └── loihi_network/
+│   ├── evaluation/
+│   │   ├── eval_random_simulation/  # Simulation evaluation scripts
+│   │   ├── eval_real_world/         # Real-robot evaluation scripts
+│   │   ├── record_data/             # Saved model weights and recorded trajectories
+│   │   └── result_analyze/          # Result analysis and plotting
 │   └── random_positions/      # Pickle files with pre-generated positions
 └── test/                      # Linting tests only
-src/spiking-ddpg-mapless-navigation/  # Original ROS 1 project (reference only)
 ```
