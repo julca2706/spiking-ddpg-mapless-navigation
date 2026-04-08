@@ -229,7 +229,8 @@ class RandEvalGpu(Node):
             req.world_control.pause = True
             future = self.pause_gazebo.call_async(req)
             rclpy.spin_until_future_complete(self, future)
-            rclpy.spin_once(self, timeout_sec=0.02)
+            for _ in range(3):
+                rclpy.spin_once(self, timeout_sec=0.01)
 
             single_goal_run_ita += 1
         suc_num = np.sum(run_data["final_state"] == 1)

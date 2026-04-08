@@ -136,12 +136,14 @@ class GazeboEnvironment(Node):
         deadline = time.time() + self.step_time
         while time.time() < deadline:
             rclpy.spin_once(self, timeout_sec=0.01)
-        next_rob_state = self._get_next_robot_state()
         while not self.pause_gazebo.wait_for_service(timeout_sec=1.0):
             self.get_logger().warn("Waiting for pause service...")
         req.world_control.pause = True
         future = self.pause_gazebo.call_async(req)
         rclpy.spin_until_future_complete(self, future)
+        for _ in range(3):
+            rclpy.spin_once(self, timeout_sec=0.01)
+        next_rob_state = self._get_next_robot_state()
         '''
         Then stop the simulation
         1. Transform Robot State to DDPG State
