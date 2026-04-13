@@ -42,7 +42,7 @@ class RandEvalGpu(Node):
                  scan_min_dis=0.35,
                  goal_dis_min_dis=0.3,
                  goal_th=0.5,
-                 obs_near_th=0.18,
+                 obs_near_th=0.09,
                  use_cuda=True,
                  is_record=False):
         
