@@ -16,12 +16,11 @@ This is a ROS 2 (Jazzy) workspace for training and evaluating a **Spiking Deep D
 # Source ROS 2
 source /opt/ros/jazzy/setup.bash
 
-# Build workspace
-cd /home/juleczka123/spiking-ddpg-mapless-navigation
+# Build workspace (run from repo root)
 colcon build --symlink-install
 
 # Source workspace
-source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+source install/setup.bash
 ```
 
 ### Training
@@ -30,7 +29,7 @@ Requires two terminals. Terminal 1 (Gazebo + bridge):
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+source install/setup.bash
 ros2 launch sddpg_navigation training.launch.py
 
 # Headless (no GUI, faster — useful for remote/SSH sessions)
@@ -41,7 +40,7 @@ Terminal 2 (training script, after Gazebo is up):
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+source install/setup.bash
 
 # Standard DDPG
 ros2 run sddpg_navigation train_ddpg
@@ -56,7 +55,7 @@ Terminal 1 (Gazebo + bridge):
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+source install/setup.bash
 ros2 launch sddpg_navigation evaluation.launch.py
 
 # Headless (no GUI)
@@ -67,7 +66,7 @@ Terminal 2 (evaluation script):
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+source install/setup.bash
 
 # Evaluate DDPG (loads from evaluation/saved_model/ by default)
 ros2 run sddpg_navigation eval_ddpg
@@ -79,7 +78,7 @@ ros2 run sddpg_navigation eval_sddpg
 ros2 run sddpg_navigation eval_sddpg \
   --model_name SNN_R1 \
   --checkpoint 0 \
-  --save_dir /home/juleczka123/spiking-ddpg-mapless-navigation/src/sddpg_navigation/sddpg_navigation/save_sddpg_weights/
+  --save_dir src/sddpg_navigation/sddpg_navigation/save_sddpg_weights/
 ```
 
 ### Real-world evaluation
@@ -88,7 +87,7 @@ Run directly (no Gazebo needed):
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-source /home/juleczka123/spiking-ddpg-mapless-navigation/install/setup.bash
+source install/setup.bash
 
 # DDPG on real robot
 python3 src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_ddpg_eval_rw.py
