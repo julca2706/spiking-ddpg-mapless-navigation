@@ -6,7 +6,7 @@ sys.path.append('../../')
 from evaluation.result_analyze.utility import analyze_run, plot_robot_paths
 from evaluation.eval_random_simulation.utility import gen_test_env_poly_list_env
 
-MODEL_NAME = 'SNN_R1'
+MODEL_NAME = 'threshold_test'
 # MODEL_NAME = 'ddpg'
 # MODEL_NAME = 'ddpg_poisson'
 FILE_NAME = MODEL_NAME + '_0_199.p'
@@ -18,6 +18,7 @@ print("Success: ", s_list[0], " Collision: ", s_list[1], " Overtime: ", s_list[2
 print("Average Path Distance of Success Routes: ", np.mean(p_dis[p_dis > 0]), ' m')
 print("Average Path Time of Success Routes: ", np.mean(p_time[p_dis > 0]), ' s')
 # print("Average Path Speed of Success Routes: ", np.mean(p_spd[p_dis > 0]), ' m/s')
+
 
 
 start_goal_pos = pickle.load(open("../eval_random_simulation/eval_positions.p", "rb"))
