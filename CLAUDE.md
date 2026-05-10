@@ -10,17 +10,24 @@ This is a ROS 2 (Jazzy) workspace for training and evaluating a **Spiking Deep D
 **Task:** Reach goals while avoiding obstacles using LiDAR (18 beams), goal direction/distance, and odometry
 **State space:** 22 dimensions | **Action space:** 2 continuous (left/right wheel speeds)
 
+## Setup
+
+`setup.sh` in the repo root sources both ROS 2 and the workspace. Run once per terminal (or add to `~/.bashrc` for automatic sourcing):
+
+```bash
+# One-time per terminal
+source setup.sh
+
+# Or add to ~/.bashrc to avoid running it every time
+echo "source ~/spiking-ddpg-mapless-navigation/setup.sh" >> ~/.bashrc
+```
+
 ## Build & Run Commands
 
 ```bash
-# Source ROS 2
-source /opt/ros/jazzy/setup.bash
-
 # Build workspace (run from repo root)
+source setup.sh
 colcon build --symlink-install
-
-# Source workspace
-source install/setup.bash
 ```
 
 ### Training
@@ -28,8 +35,7 @@ source install/setup.bash
 Requires two terminals. Terminal 1 (Gazebo + bridge):
 
 ```bash
-source /opt/ros/jazzy/setup.bash
-source install/setup.bash
+source setup.sh
 ros2 launch sddpg_navigation training.launch.py
 
 # Headless (no GUI, faster — useful for remote/SSH sessions)
@@ -39,10 +45,9 @@ ros2 launch sddpg_navigation training.launch.py headless:=true
 Terminal 2 (training script, after Gazebo is up):
 
 ```bash
-source /opt/ros/jazzy/setup.bash
-source install/setup.bash
+source setup.sh
 
-# Standard DDPG
+# Standard DDPG (TD3 with GRU actor)
 ros2 run sddpg_navigation train_ddpg
 
 # Spiking DDPG
@@ -54,8 +59,7 @@ ros2 run sddpg_navigation train_sddpg
 Terminal 1 (Gazebo + bridge):
 
 ```bash
-source /opt/ros/jazzy/setup.bash
-source install/setup.bash
+source setup.sh
 ros2 launch sddpg_navigation evaluation.launch.py
 
 # Headless (no GUI)
@@ -65,8 +69,7 @@ ros2 launch sddpg_navigation evaluation.launch.py headless:=true
 Terminal 2 (evaluation script):
 
 ```bash
-source /opt/ros/jazzy/setup.bash
-source install/setup.bash
+source setup.sh
 
 # Evaluate DDPG (loads from evaluation/saved_model/ by default)
 ros2 run sddpg_navigation eval_ddpg
@@ -86,8 +89,7 @@ ros2 run sddpg_navigation eval_sddpg \
 Run directly (no Gazebo needed):
 
 ```bash
-source /opt/ros/jazzy/setup.bash
-source install/setup.bash
+source setup.sh
 
 # DDPG on real robot
 python3 src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_ddpg_eval_rw.py
@@ -99,6 +101,7 @@ python3 src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_sdd
 ### Manual environment testing
 
 ```bash
+source setup.sh
 ros2 run sddpg_navigation environment
 ```
 

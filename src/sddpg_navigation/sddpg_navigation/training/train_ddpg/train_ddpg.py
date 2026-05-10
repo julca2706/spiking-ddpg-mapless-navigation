@@ -134,7 +134,7 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(10, 2, 3, 4)
 
             # Add a last step negative reward
             episode_reward += reward
-            agent.remember(state, rescale_state, raw_action, reward, next_state, rescale_next_state, done)
+            agent.remember_seq(state, rescale_state, raw_action, reward, next_state, rescale_next_state, done)
             state = next_state
             rescale_state = rescale_next_state
 
@@ -146,6 +146,8 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(10, 2, 3, 4)
             ita_time_end = time.time()
             tb_writer.add_scalar('DDPG/ita_time', ita_time_end - ita_time_start, overall_steps)
             tb_writer.add_scalar('DDPG/action_epsilon', agent.epsilon, overall_steps)
+            tb_writer.add_scalar('DDPG/raw_left_wheel_output', raw_action[0], overall_steps)
+            tb_writer.add_scalar('DDPG/raw_right_wheel_output', raw_action[1], overall_steps)
 
             # Save Model
             if overall_steps % save_steps == 0:

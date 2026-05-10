@@ -42,6 +42,8 @@ class Agent:
                  epsilon_rand_decay_step=1,
                  poisson_window=50,
                  use_poisson=False,
+                 policy_delay=2,
+                 seq_len=10,
                  use_cuda=True):
         """
 
@@ -83,6 +85,8 @@ class Agent:
         self.epsilon_rand_decay_step = epsilon_rand_decay_step
         self.poisson_window = poisson_window
         self.use_poisson = use_poisson
+        self.policy_delay = policy_delay
+        self.seq_len = seq_len
         self.use_cuda = use_cuda
         '''
         Random Action
@@ -110,6 +114,10 @@ class Agent:
                                     hidden1=critic_net_dim[0],
                                     hidden2=critic_net_dim[1],
                                     hidden3=critic_net_dim[2])
+        self.critic_net2 = CriticNet(self.state_num, self.action_num,
+                                     hidden1=critic_net_dim[0],
+                                     hidden2=critic_net_dim[1],
+                                     hidden3=critic_net_dim[2])
         self.target_actor_net = ActorNet(self.rescale_state_num, self.action_num,
                                          hidden1=actor_net_dim[0],
                                          hidden2=actor_net_dim[1],
@@ -118,22 +126,33 @@ class Agent:
                                            hidden1=critic_net_dim[0],
                                            hidden2=critic_net_dim[1],
                                            hidden3=critic_net_dim[2])
+        self.target_critic_net2 = CriticNet(self.state_num, self.action_num,
+                                            hidden1=critic_net_dim[0],
+                                            hidden2=critic_net_dim[1],
+                                            hidden3=critic_net_dim[2])
         self._hard_update(self.target_actor_net, self.actor_net)
         self._hard_update(self.target_critic_net, self.critic_net)
+        self._hard_update(self.target_critic_net2, self.critic_net2)
         self.actor_net.to(self.device)
         self.critic_net.to(self.device)
+        self.critic_net2.to(self.device)
         self.target_actor_net.to(self.device)
         self.target_critic_net.to(self.device)
+        self.target_critic_net2.to(self.device)
         """
         Criterion and optimizers
         """
         self.criterion = nn.MSELoss()
         self.actor_optimizer = torch.optim.Adam(self.actor_net.parameters(), lr=self.actor_lr)
         self.critic_optimizer = torch.optim.Adam(self.critic_net.parameters(), lr=self.critic_lr)
+        self.critic_optimizer2 = torch.optim.Adam(self.critic_net2.parameters(), lr=self.critic_lr)
         """
         Step Counter
         """
         self.step_ita = 0
+        self.last_actor_loss = 0.0
+        self.current_seq = []
+        self.hidden_state = None
 
     def remember(self, state, rescale_state, action, reward, next_state, rescale_next_state, done):
         """
@@ -145,6 +164,29 @@ class Agent:
         :param done: if is done
         """
         self.memory.append((state, rescale_state, action, reward, next_state, rescale_next_state, done))
+
+    def remember_seq(self, state, rescale_state, action, reward, next_state, rescale_next_state, done):
+        """
+        Accumulate transitions and store sequences of length seq_len in memory.
+        Pads with zeros at the front for incomplete sequences at episode end.
+        """
+        self.current_seq.append((state, rescale_state, action, reward, next_state, rescale_next_state, done))
+        if len(self.current_seq) == self.seq_len or done:
+            seq = self.current_seq
+            pad_len = self.seq_len - len(seq)
+            if pad_len > 0:
+                zero_rstate = np.zeros_like(seq[0][1])
+                padding = [(np.zeros_like(seq[0][0]), zero_rstate, np.zeros_like(seq[0][2]),
+                            0, np.zeros_like(seq[0][4]), zero_rstate, False)] * pad_len
+                seq = padding + seq
+            seq_rescale_states = np.array([t[1] for t in seq])
+            seq_rescale_next_states = np.array([t[5] for t in seq])
+            last = self.current_seq[-1]
+            self.memory.append((seq_rescale_states, seq_rescale_next_states,
+                                last[0], last[2], last[3], last[4], last[6]))
+            self.current_seq = []
+        if done:
+            self.hidden_state = None
 
     def act(self, state, explore=True, train=True):
         """
@@ -158,9 +200,9 @@ class Agent:
             state = np.array(state)
             if self.use_poisson:
                 state = self._state_2_poisson_state(state, 1)
-            state = torch.Tensor(state.reshape((1, -1))).to(self.device)
-            action = self.actor_net(state).to('cpu')
-            action = action.numpy().squeeze()
+            state = torch.Tensor(state.reshape((1, 1, -1))).to(self.device)
+            action, self.hidden_state = self.actor_net(state, self.hidden_state)
+            action = action.to('cpu').numpy().squeeze()
         if train:
             if self.step_ita > self.epsilon_rand_decay_start and self.epsilon > self.epsilon_end:
                 if self.step_ita % self.epsilon_rand_decay_step == 0:
@@ -179,13 +221,17 @@ class Agent:
         Experience Replay Training
         :return: actor_loss_item, critic_loss_item
         """
-        state_batch, r_state_batch, action_batch, reward_batch, nstate_batch, r_nstate_batch, done_batch = self._random_minibatch()
+        seq_rstate_batch, seq_rnstate_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch = self._random_minibatch()
         '''
         Compuate Target Q Value
         '''
         with torch.no_grad():
-            naction_batch = self.target_actor_net(r_nstate_batch)
-            next_q = self.target_critic_net([nstate_batch, naction_batch])
+            naction_batch, _ = self.target_actor_net(seq_rnstate_batch)
+            noise = torch.clamp(torch.randn_like(naction_batch) * 0.1, -0.2, 0.2)
+            naction_batch = torch.clamp(naction_batch + noise, 0.0, 1.0)
+            next_q1 = self.target_critic_net([nstate_batch, naction_batch])
+            next_q2 = self.target_critic_net2([nstate_batch, naction_batch])
+            next_q = torch.min(next_q1, next_q2)
             target_q = reward_batch + self.reward_gamma * next_q * (1. - done_batch)
         '''
         Update Critic Network
@@ -196,24 +242,28 @@ class Agent:
         critic_loss_item = critic_loss.item()
         critic_loss.backward()
         self.critic_optimizer.step()
+        self.critic_optimizer2.zero_grad()
+        current_q2 = self.critic_net2([state_batch, action_batch])
+        critic_loss2 = self.criterion(current_q2, target_q)
+        critic_loss2.backward()
+        self.critic_optimizer2.step()
         '''
-        Update Actor Network
-        '''
-        self.actor_optimizer.zero_grad()
-        current_action = self.actor_net(r_state_batch)
-        actor_loss = -self.critic_net([state_batch, current_action])
-        actor_loss = actor_loss.mean()
-        actor_loss_item = actor_loss.item()
-        actor_loss.backward()
-        self.actor_optimizer.step()
-        '''
-        Update Target Networks
+        Update Actor Network and Target Networks (delayed)
         '''
         self.step_ita += 1
-        if self.step_ita % self.target_update_steps == 0:
-            self._soft_update(self.target_actor_net, self.actor_net)
-            self._soft_update(self.target_critic_net, self.critic_net)
-        return actor_loss_item, critic_loss_item
+        if self.step_ita % self.policy_delay == 0:
+            self.actor_optimizer.zero_grad()
+            current_action, _ = self.actor_net(seq_rstate_batch)
+            actor_loss = -self.critic_net([state_batch, current_action])
+            actor_loss = actor_loss.mean()
+            self.last_actor_loss = actor_loss.item()
+            actor_loss.backward()
+            self.actor_optimizer.step()
+            if self.step_ita % self.target_update_steps == 0:
+                self._soft_update(self.target_actor_net, self.actor_net)
+                self._soft_update(self.target_critic_net, self.critic_net)
+                self._soft_update(self.target_critic_net2, self.critic_net2)
+        return self.last_actor_loss, critic_loss_item
 
     def reset_epsilon(self, new_epsilon, new_decay):
         """
@@ -266,35 +316,32 @@ class Agent:
     def _random_minibatch(self):
         """
         Random select mini-batch from memory
-        :return: state_batch, action_batch, reward_batch, nstate_batch, done_batch
+        :return: seq_rstate_batch, seq_rnstate_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch
         """
         minibatch = random.sample(self.memory, self.batch_size)
+        seq_rstate_batch = np.zeros((self.batch_size, self.seq_len, self.rescale_state_num))
+        seq_rnstate_batch = np.zeros((self.batch_size, self.seq_len, self.rescale_state_num))
         state_batch = np.zeros((self.batch_size, self.state_num))
-        rescale_state_batch = np.zeros((self.batch_size, self.rescale_state_num))
         action_batch = np.zeros((self.batch_size, self.action_num))
         reward_batch = np.zeros((self.batch_size, 1))
         nstate_batch = np.zeros((self.batch_size, self.state_num))
-        rescale_nstate_batch = np.zeros((self.batch_size, self.rescale_state_num))
         done_batch = np.zeros((self.batch_size, 1))
         for num in range(self.batch_size):
-            state_batch[num, :] = np.array(minibatch[num][0])
-            rescale_state_batch[num, :] = np.array(minibatch[num][1])
-            action_batch[num, :] = np.array(minibatch[num][2])
-            reward_batch[num, 0] = minibatch[num][3]
-            nstate_batch[num, :] = np.array(minibatch[num][4])
-            rescale_nstate_batch[num, :] = np.array(minibatch[num][5])
+            seq_rstate_batch[num] = minibatch[num][0]
+            seq_rnstate_batch[num] = minibatch[num][1]
+            state_batch[num, :] = np.array(minibatch[num][2])
+            action_batch[num, :] = np.array(minibatch[num][3])
+            reward_batch[num, 0] = minibatch[num][4]
+            nstate_batch[num, :] = np.array(minibatch[num][5])
             done_batch[num, 0] = minibatch[num][6]
-        if self.use_poisson:
-            rescale_state_batch = self._state_2_poisson_state(rescale_state_batch, self.batch_size)
-            rescale_nstate_batch = self._state_2_poisson_state(rescale_nstate_batch, self.batch_size)
+        seq_rstate_batch = torch.Tensor(seq_rstate_batch).to(self.device)
+        seq_rnstate_batch = torch.Tensor(seq_rnstate_batch).to(self.device)
         state_batch = torch.Tensor(state_batch).to(self.device)
-        rescale_state_batch = torch.Tensor(rescale_state_batch).to(self.device)
         action_batch = torch.Tensor(action_batch).to(self.device)
         reward_batch = torch.Tensor(reward_batch).to(self.device)
         nstate_batch = torch.Tensor(nstate_batch).to(self.device)
-        rescale_nstate_batch = torch.Tensor(rescale_nstate_batch).to(self.device)
         done_batch = torch.Tensor(done_batch).to(self.device)
-        return state_batch, rescale_state_batch, action_batch, reward_batch, nstate_batch, rescale_nstate_batch, done_batch
+        return seq_rstate_batch, seq_rnstate_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch
 
     def _hard_update(self, target, source):
         """
