@@ -12,22 +12,19 @@ This is a ROS 2 (Jazzy) workspace for training and evaluating a **Spiking Deep D
 
 ## Setup
 
-`setup.sh` in the repo root sources both ROS 2 and the workspace. Run once per terminal (or add to `~/.bashrc` for automatic sourcing):
+Source these two lines at the start of every terminal session (or add to `~/.bashrc`):
 
 ```bash
-# One-time per terminal
-source setup.sh
-
-# Or add to ~/.bashrc to avoid running it every time
-echo "source ~/spiking-ddpg-mapless-navigation/setup.sh" >> ~/.bashrc
+source /opt/ros/jazzy/setup.bash
+source install/setup.bash
 ```
 
 ## Build & Run Commands
 
 ```bash
-# Build workspace (run from repo root)
-source setup.sh
+source /opt/ros/jazzy/setup.bash
 colcon build --symlink-install
+source install/setup.bash
 ```
 
 ### Training
@@ -35,7 +32,7 @@ colcon build --symlink-install
 Requires two terminals. Terminal 1 (Gazebo + bridge):
 
 ```bash
-source setup.sh
+source /opt/ros/jazzy/setup.bash && source install/setup.bash
 ros2 launch sddpg_navigation training.launch.py
 
 # Headless (no GUI, faster — useful for remote/SSH sessions)
@@ -45,7 +42,7 @@ ros2 launch sddpg_navigation training.launch.py headless:=true
 Terminal 2 (training script, after Gazebo is up):
 
 ```bash
-source setup.sh
+source /opt/ros/jazzy/setup.bash && source install/setup.bash
 
 # Standard DDPG (TD3 with GRU actor)
 ros2 run sddpg_navigation train_ddpg
@@ -59,7 +56,7 @@ ros2 run sddpg_navigation train_sddpg
 Terminal 1 (Gazebo + bridge):
 
 ```bash
-source setup.sh
+source /opt/ros/jazzy/setup.bash && source install/setup.bash
 ros2 launch sddpg_navigation evaluation.launch.py
 
 # Headless (no GUI)
@@ -69,7 +66,7 @@ ros2 launch sddpg_navigation evaluation.launch.py headless:=true
 Terminal 2 (evaluation script):
 
 ```bash
-source setup.sh
+source /opt/ros/jazzy/setup.bash && source install/setup.bash
 
 # Evaluate DDPG (loads from evaluation/saved_model/ by default)
 ros2 run sddpg_navigation eval_ddpg
@@ -89,7 +86,7 @@ ros2 run sddpg_navigation eval_sddpg \
 Run directly (no Gazebo needed):
 
 ```bash
-source setup.sh
+source /opt/ros/jazzy/setup.bash && source install/setup.bash
 
 # DDPG on real robot
 python3 src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_ddpg_eval_rw.py
@@ -101,7 +98,7 @@ python3 src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_sdd
 ### Manual environment testing
 
 ```bash
-source setup.sh
+source /opt/ros/jazzy/setup.bash && source install/setup.bash
 ros2 run sddpg_navigation environment
 ```
 
