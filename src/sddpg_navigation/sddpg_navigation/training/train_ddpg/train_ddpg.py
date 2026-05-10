@@ -11,7 +11,7 @@ from sddpg_navigation.environment import *
 from sddpg_navigation.utility import *
 
 
-def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(10, 2, 3, 4),
+def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 300, 400),
                iteration_num_start=(200, 300, 400, 500), iteration_num_step=(1, 2, 3, 4),
                iteration_num_max=(1000, 1000, 1000, 1000),
                linear_spd_max=0.5, linear_spd_min=0.05, save_steps=10000,
