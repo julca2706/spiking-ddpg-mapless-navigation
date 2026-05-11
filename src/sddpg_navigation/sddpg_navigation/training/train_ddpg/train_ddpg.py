@@ -6,6 +6,9 @@ from torch.utils.tensorboard import SummaryWriter
 import sys
 import argparse
 import pickle
+import random
+import numpy as np
+import torch
 from sddpg_navigation.training.train_ddpg.ddpg_agent import Agent
 from sddpg_navigation.environment import *
 from sddpg_navigation.utility import *
@@ -20,7 +23,7 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
                obs_reward=-20, goal_reward=30, goal_dis_amp=15, goal_th=0.5, obs_th=0.35,
                state_num=22, action_num=2, is_pos_neg=False, is_poisson=False, poisson_win=50,
                memory_size=100000, batch_size=256, epsilon_end=0.1, rand_start=10000, rand_decay=0.999,
-               rand_step=2, target_tau=0.01, target_step=1, use_cuda=True):
+               rand_step=2, target_tau=0.01, target_step=1, start_env=0, use_cuda=True):
     """
     Training DDPG for Mapless Navigation
 
@@ -102,7 +105,7 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
     overall_steps = 0
     overall_episode = 0
     env_episode = 0
-    env_ita = 0
+    env_ita = start_env
     ita_per_episode = iteration_num_start[env_ita]
     env.set_new_environment(overall_init_list[env_ita],
                             overall_goal_list[env_ita],
@@ -186,6 +189,7 @@ def main(args=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('--cuda', type=int, default=1)
     parser.add_argument('--poisson', type=int, default=0)
+    parser.add_argument('--start_env', type=int, default=0)
     args = parser.parse_args()
 
     USE_CUDA = True
@@ -194,7 +198,8 @@ def main(args=None):
     IS_POS_NEG, IS_POISSON = False, False
     if args.poisson == 1:
         IS_POS_NEG, IS_POISSON = True, True
-    train_ddpg(use_cuda=USE_CUDA, is_pos_neg=IS_POS_NEG, is_poisson=IS_POISSON)
+    train_ddpg(use_cuda=USE_CUDA, is_pos_neg=IS_POS_NEG, is_poisson=IS_POISSON,
+               start_env=args.start_env)
     rclpy.shutdown()
 
 if __name__ == '__main__':

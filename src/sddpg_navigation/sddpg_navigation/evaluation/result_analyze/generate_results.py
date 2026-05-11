@@ -6,7 +6,7 @@ sys.path.append('../../')
 from evaluation.result_analyze.utility import analyze_run, plot_robot_paths
 from evaluation.eval_random_simulation.utility import gen_test_env_poly_list_env
 
-MODEL_NAME = 'threshold_test'
+MODEL_NAME = 'Latency_R0'
 # MODEL_NAME = 'ddpg'
 # MODEL_NAME = 'ddpg_poisson'
 FILE_NAME = MODEL_NAME + '_0_199.p'

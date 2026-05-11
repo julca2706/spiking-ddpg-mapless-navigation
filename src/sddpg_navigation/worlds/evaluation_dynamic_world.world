@@ -1,0 +1,1367 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="default">
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+
+    <!-- A global light source -->
+    <light name='directional_light' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+
+    <!-- A ground plane -->
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <!-- Own physics settings to speed up simulation -->
+    <gravity>0 0 -9.8</gravity>
+    <physics type='ode'>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+    </physics>
+    <model name="target">
+      <link name="link">
+	<collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>0.2 0.2</point>
+              <point>0.2 -0.2</point>
+              <point>-0.2 -0.2</point>
+              <point>-0.2 0.2</point>
+              <height>0.001</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="target">
+          <geometry>
+            <polyline>
+              <point>0.2 0.2</point>
+              <point>0.2 -0.2</point>
+              <point>-0.2 -0.2</point>
+              <point>-0.2 0.2</point>
+              <height>0.001</height>
+            </polyline>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Outer boundary walls (box visuals for PBR texture support) -->
+    <model name="wall1">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>10 10</point>
+              <point>11 10</point>
+              <point>11 -11</point>
+              <point>10 -11</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="wall1">
+          <pose>10.5 -0.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>1 21 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="wall2">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>10 -10</point>
+              <point>10 -11</point>
+              <point>-11 -11</point>
+              <point>-11 -10</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="wall2">
+          <pose>-0.5 -10.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>21 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="wall3">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-10 11</point>
+              <point>-10 -10</point>
+              <point>-11 -10</point>
+              <point>-11 11</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="wall3">
+          <pose>-10.5 0.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>1 21 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="wall4">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>11 11</point>
+              <point>11 10</point>
+              <point>-10 10</point>
+              <point>-10 11</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="wall4">
+          <pose>0.5 10.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>21 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Obstacles: axis-aligned rectangles use box visual; non-rectangular keep polyline visual -->
+    <model name="obs1">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-10 -5</point>
+              <point>-6 -5</point>
+              <point>-6 -5.5</point>
+              <point>-10 -5.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs1">
+          <pose>-8 -5.25 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>4 0.5 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs2">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-5.5 -6</point>
+              <point>-5 -6</point>
+              <point>-5 -10</point>
+              <point>-5.5 -10</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs2">
+          <pose>-5.25 -8 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>0.5 4 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs3">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-3 -5</point>
+              <point>4 -5</point>
+              <point>4 -6</point>
+              <point>-3 -6</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs3">
+          <pose>0.5 -5.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>7 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs4">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>6 -6</point>
+              <point>10 -6</point>
+              <point>10 -7</point>
+              <point>6 -7</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs4">
+          <pose>8 -6.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>4 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs5">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-6 -2</point>
+              <point>-5 -2</point>
+              <point>-5 -3</point>
+              <point>-6 -3</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs5">
+          <pose>-5.5 -2.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>1 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs6">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-9.25 1</point>
+              <point>-4 1</point>
+              <point>-4 0</point>
+              <point>-9.25 0</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs6">
+          <pose>-6.625 0.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>5.25 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs7">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-7 5</point>
+              <point>-5 5</point>
+              <point>-5 3</point>
+              <point>-7 3</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs7">
+          <pose>-6 4 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>2 2 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs8">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-7 7</point>
+              <point>-3 7</point>
+              <point>-3 5</point>
+              <point>-7 5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs8">
+          <pose>-5 6 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>4 2 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs9">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>0 7</point>
+              <point>1 5</point>
+              <point>-1 5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs9">
+          <geometry>
+            <polyline>
+              <point>0 7</point>
+              <point>1 5</point>
+              <point>-1 5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs10">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>4 6</point>
+              <point>5 7</point>
+              <point>6 6</point>
+              <point>5 5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs10">
+          <geometry>
+            <polyline>
+              <point>4 6</point>
+              <point>5 7</point>
+              <point>6 6</point>
+              <point>5 5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs11">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>4.5 7.5</point>
+              <point>5.5 8.5</point>
+              <point>6.5 7.5</point>
+              <point>5.5 6.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs11">
+          <geometry>
+            <polyline>
+              <point>4.5 7.5</point>
+              <point>5.5 8.5</point>
+              <point>6.5 7.5</point>
+              <point>5.5 6.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs12">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>6.5 8</point>
+              <point>8 8</point>
+              <point>8 6.5</point>
+              <point>6.5 6.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs12">
+          <pose>7.25 7.25 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>1.5 1.5 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs13">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>6 6</point>
+              <point>7 6</point>
+              <point>7 5</point>
+              <point>6 5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs13">
+          <pose>6.5 5.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>1 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs14">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>5 4</point>
+              <point>5.5 4</point>
+              <point>5.5 2.75</point>
+              <point>5 2.75</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs14">
+          <pose>5.25 3.375 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>0.5 1.25 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs15">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>5.5 4</point>
+              <point>9 4</point>
+              <point>9 3.5</point>
+              <point>5.5 3.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs15">
+          <pose>7.25 3.75 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>3.5 0.5 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs16">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>5 1.5</point>
+              <point>5.5 1.5</point>
+              <point>5.5 -1.5</point>
+              <point>5 -1.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs16">
+          <pose>5.25 0 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>0.5 3 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs17">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>5.5 0.5</point>
+              <point>8 0.5</point>
+              <point>8 -0.5</point>
+              <point>5.5 -0.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs17">
+          <pose>6.75 0 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>2.5 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs18">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>5 -2.75</point>
+              <point>5.5 -2.75</point>
+              <point>5.5 -4</point>
+              <point>5 -4</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs18">
+          <pose>5.25 -3.375 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>0.5 1.25 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs19">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>5.5 -3.5</point>
+              <point>9 -3.5</point>
+              <point>9 -4</point>
+              <point>5.5 -4</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs19">
+          <pose>7.25 -3.75 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>3.5 0.5 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs20">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-3 3</point>
+              <point>1.5 3</point>
+              <point>0 1</point>
+              <point>-3 1</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs20">
+          <geometry>
+            <polyline>
+              <point>-3 3</point>
+              <point>1.5 3</point>
+              <point>0 1</point>
+              <point>-3 1</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs21">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>1 0</point>
+              <point>3 2</point>
+              <point>3 -2</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs21">
+          <geometry>
+            <polyline>
+              <point>1 0</point>
+              <point>3 2</point>
+              <point>3 -2</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs22">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-3 -3</point>
+              <point>1.5 -3</point>
+              <point>0 -1</point>
+              <point>-3 -1</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs22">
+          <geometry>
+            <polyline>
+              <point>-3 -3</point>
+              <point>1.5 -3</point>
+              <point>0 -1</point>
+              <point>-3 -1</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs23">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-1 -8</point>
+              <point>1 -8</point>
+              <point>0 -10</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs23">
+          <geometry>
+            <polyline>
+              <point>-1 -8</point>
+              <point>1 -8</point>
+              <point>0 -10</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs24">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-8 -7</point>
+              <point>-7 -7</point>
+              <point>-7 -8</point>
+              <point>-8 -8</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs24">
+          <pose>-7.5 -7.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>1 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs25">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-8 -1.75</point>
+              <point>-6 -1.75</point>
+              <point>-6 -2.75</point>
+              <point>-8 -2.75</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs25">
+          <pose>-7 -2.25 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>2 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs26">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>3 -8</point>
+              <point>4 -7</point>
+              <point>4.5 -7.5</point>
+              <point>3.5 -8.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs26">
+          <geometry>
+            <polyline>
+              <point>3 -8</point>
+              <point>4 -7</point>
+              <point>4.5 -7.5</point>
+              <point>3.5 -8.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs27">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-5 -4</point>
+              <point>-4 -4</point>
+              <point>-4 -5</point>
+              <point>-5 -5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs27">
+          <pose>-4.5 -4.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>1 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs28">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-2 9.5</point>
+              <point>-1.5 10</point>
+              <point>-0.5 9</point>
+              <point>-1 8.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs28">
+          <geometry>
+            <polyline>
+              <point>-2 9.5</point>
+              <point>-1.5 10</point>
+              <point>-0.5 9</point>
+              <point>-1 8.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs29">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-10 8</point>
+              <point>-9 8</point>
+              <point>-9 6</point>
+              <point>-10 6</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs29">
+          <pose>-9.5 7 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>1 2 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs30">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>-6 10</point>
+              <point>-4 10</point>
+              <point>-4 9</point>
+              <point>-6 9</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs30">
+          <pose>-5 9.5 0.5 0 0 0</pose>
+          <geometry>
+            <box><size>2 1 1</size></box>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs31">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>1 9</point>
+              <point>3 9</point>
+              <point>2 7</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs31">
+          <geometry>
+            <polyline>
+              <point>1 9</point>
+              <point>3 9</point>
+              <point>2 7</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs32">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>3.5 4</point>
+              <point>4 3.5</point>
+              <point>3.5 3</point>
+              <point>3 3.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs32">
+          <geometry>
+            <polyline>
+              <point>3.5 4</point>
+              <point>4 3.5</point>
+              <point>3.5 3</point>
+              <point>3 3.5</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="obs33">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision1">
+          <geometry>
+            <polyline>
+              <point>3.2 -3</point>
+              <point>4 -3.2</point>
+              <point>3.8 -4</point>
+              <point>3 -3.8</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+        </collision>
+        <visual name="obs33">
+          <geometry>
+            <polyline>
+              <point>3.2 -3</point>
+              <point>4 -3.2</point>
+              <point>3.8 -4</point>
+              <point>3 -3.8</point>
+              <height>1</height>
+            </polyline>
+          </geometry>
+          <material>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <include>
+      <uri>model://turtlebot3_burger</uri>
+      <name>turtlebot3_burger</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <model name="eval_dyn1">
+      <pose>-7 7 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="eval_dyn2">
+      <pose>7 7 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="eval_dyn3">
+      <pose>-3 0 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="eval_dyn4">
+      <pose>3 0 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="eval_dyn5">
+      <pose>-7 -7 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="eval_dyn6">
+      <pose>7 -7 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+          <material><ambient>1 0 0 1</ambient><diffuse>1 0 0 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+</world>
+</sdf>

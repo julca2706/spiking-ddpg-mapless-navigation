@@ -13,13 +13,20 @@ setup(
         ('share/' + package_name + '/launch', [
             'launch/training.launch.py',
             'launch/evaluation.launch.py',
+            'launch/training_dynamic.launch.py',
+            'launch/evaluation_dynamic.launch.py',
             'launch/bridge.yaml']),
         ('share/' + package_name + '/worlds', [
             'worlds/training_worlds.world',
-            'worlds/evaluation_world.world']),
+            'worlds/evaluation_world.world',
+            'worlds/training_dynamic_world.world',
+            'worlds/evaluation_dynamic_world.world']),
         ('share/' + package_name + '/models/turtlebot3_burger', [
             'models/turtlebot3_burger/model.sdf',
-            'models/turtlebot3_burger/model.config'])],
+            'models/turtlebot3_burger/model.config']),
+        ('share/' + package_name + '/models/textures', [
+            'models/textures/model.config',
+            'models/textures/vertical_stripes.png'])],
     package_data={
         'sddpg_navigation': ['random_positions/*.p'],
     },
@@ -41,6 +48,9 @@ setup(
             'train_ddpg = sddpg_navigation.training.train_ddpg.train_ddpg:main',
             'eval_sddpg = sddpg_navigation.evaluation.eval_random_simulation.run_sddpg_eval:main',
             'eval_ddpg = sddpg_navigation.evaluation.eval_random_simulation.run_ddpg_eval:main',
+            'obstacle_mover_node = sddpg_navigation.dynamic_obstacles:main',
+            'event_camera = sddpg_navigation.event_camera:main',
+            'train_dvs_ddpg = sddpg_navigation.training.train_DVS_ddpg.train_DVS_ddpg:main',
         ],
     },
 )
