@@ -130,7 +130,7 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
             if is_pos_neg:
                 rescale_next_state = ddpg_state_2_spike_value_state(next_state, rescale_state_num)
             else:
-                rescale_next_state = ddpg_state_rescale(state, rescale_state_num)
+                rescale_next_state = ddpg_state_rescale(next_state, rescale_state_num)
 
             # Add a last step negative reward
             episode_reward += reward
