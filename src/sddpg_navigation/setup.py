@@ -51,6 +51,7 @@ setup(
             'obstacle_mover_node = sddpg_navigation.dynamic_obstacles:main',
             'event_camera = sddpg_navigation.event_camera:main',
             'train_dvs_ddpg = sddpg_navigation.training.train_DVS_ddpg.train_DVS_ddpg:main',
+            'train_pure_ddpg = sddpg_navigation.training.train_pure_ddpg.train_ddpg:main',
         ],
     },
 )

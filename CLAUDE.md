@@ -35,6 +35,20 @@ source install/setup.bash
 
 **Note:** After any code change, `colcon build --symlink-install` is required because Python files in `build/` are copies (not symlinks for this package type). Without rebuild, old code runs.
 
+## Training — Pure DDPG (baseline)
+
+Simple DDPG without TD3 improvements — FC actor (no GRU), single critic, standard replay buffer.
+
+```bash
+# Terminal 1
+ros2 launch sddpg_navigation training.launch.py headless:=true
+
+# Terminal 2
+ros2 run sddpg_navigation train_pure_ddpg
+```
+
+Weights saved to `save_pure_ddpg_weights/`.
+
 ## Training — TD3 LiDAR
 
 Terminal 1 (Gazebo + bridge):
@@ -205,6 +219,9 @@ Goal for DVS actor: `state[:2]` (NOT `state[-2:]`).
 |------|------|
 | `environment.py` | `GazeboEnvironment(Node)` — `step()`, `reset()`, `set_new_environment()` |
 | `utility.py` | Env generation, action decoding, state normalization |
+| `training/train_pure_ddpg/train_ddpg.py` | Pure DDPG training loop (baseline) |
+| `training/train_pure_ddpg/ddpg_agent.py` | Pure DDPG agent — standard replay buffer |
+| `training/train_pure_ddpg/ddpg_networks.py` | `ActorNet` (4×FC) + `CriticNet` |
 | `training/train_ddpg/train_ddpg.py` | TD3 LiDAR training loop |
 | `training/train_ddpg/ddpg_agent.py` | TD3 agent — sequential buffer, hidden state, last_action |
 | `training/train_ddpg/ddpg_networks.py` | `ActorNet` (FC+GRU) + `CriticNet` |
@@ -250,7 +267,8 @@ src/sddpg_navigation/
     ├── event_camera.py
     ├── dynamic_obstacles.py
     ├── training/
-    │   ├── train_ddpg/                 ← TD3 LiDAR
+    │   ├── train_pure_ddpg/            ← Pure DDPG baseline
+    │   ├── train_ddpg/                 ← TD3 LiDAR (GRU)
     │   ├── train_DVS_ddpg/             ← TD3 DVS
     │   └── train_spiking_ddpg/         ← SDDPG (legacy)
     ├── evaluation/
