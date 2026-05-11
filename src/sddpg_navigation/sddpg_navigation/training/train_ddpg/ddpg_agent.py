@@ -109,7 +109,8 @@ class Agent:
         self.actor_net = ActorNet(self.rescale_state_num, self.action_num,
                                   hidden1=actor_net_dim[0],
                                   hidden2=actor_net_dim[1],
-                                  hidden3=actor_net_dim[2])
+                                  hidden3=actor_net_dim[2],
+                                  last_action_num=self.action_num)
         self.critic_net = CriticNet(self.state_num, self.action_num,
                                     hidden1=critic_net_dim[0],
                                     hidden2=critic_net_dim[1],
@@ -121,7 +122,8 @@ class Agent:
         self.target_actor_net = ActorNet(self.rescale_state_num, self.action_num,
                                          hidden1=actor_net_dim[0],
                                          hidden2=actor_net_dim[1],
-                                         hidden3=actor_net_dim[2])
+                                         hidden3=actor_net_dim[2],
+                                         last_action_num=self.action_num)
         self.target_critic_net = CriticNet(self.state_num, self.action_num,
                                            hidden1=critic_net_dim[0],
                                            hidden2=critic_net_dim[1],
@@ -153,6 +155,9 @@ class Agent:
         self.last_actor_loss = 0.0
         self.current_seq = []
         self.hidden_state = None
+        self.last_action = np.zeros(self.action_num)
+        self.seq_start_hidden = None
+        self.seq_start_last_action = np.zeros(self.action_num)
 
     def remember(self, state, rescale_state, action, reward, next_state, rescale_next_state, done):
         """
@@ -169,24 +174,40 @@ class Agent:
         """
         Accumulate transitions and store sequences of length seq_len in memory.
         Pads with zeros at the front for incomplete sequences at episode end.
+        Stores initial hidden state and last_action sequence for GRU replay.
         """
+        if len(self.current_seq) == 0:
+            self.seq_start_hidden = self.hidden_state
+            self.seq_start_last_action = self.last_action.copy()
         self.current_seq.append((state, rescale_state, action, reward, next_state, rescale_next_state, done))
         if len(self.current_seq) == self.seq_len or done:
             seq = self.current_seq
             pad_len = self.seq_len - len(seq)
+            actions_in_seq = [t[2] for t in seq]
+            seq_last_actions_real = [self.seq_start_last_action] + actions_in_seq[:-1]
             if pad_len > 0:
                 zero_rstate = np.zeros_like(seq[0][1])
                 padding = [(np.zeros_like(seq[0][0]), zero_rstate, np.zeros_like(seq[0][2]),
                             0, np.zeros_like(seq[0][4]), zero_rstate, False)] * pad_len
                 seq = padding + seq
+                seq_last_actions = [np.zeros(self.action_num)] * pad_len + seq_last_actions_real
+            else:
+                seq_last_actions = seq_last_actions_real
             seq_rescale_states = np.array([t[1] for t in seq])
             seq_rescale_next_states = np.array([t[5] for t in seq])
+            seq_last_actions = np.array(seq_last_actions)
+            hidden_size = self.actor_net.gru.hidden_size
+            if self.seq_start_hidden is not None:
+                init_hidden = self.seq_start_hidden.detach().cpu().numpy()
+            else:
+                init_hidden = np.zeros((1, 1, hidden_size))
             last = self.current_seq[-1]
-            self.memory.append((seq_rescale_states, seq_rescale_next_states,
-                                last[0], last[2], last[3], last[4], last[6]))
+            self.memory.append((seq_rescale_states, seq_rescale_next_states, seq_last_actions,
+                                last[0], last[2], last[3], last[4], last[6], init_hidden))
             self.current_seq = []
         if done:
             self.hidden_state = None
+            self.last_action = np.zeros(self.action_num)
 
     def act(self, state, explore=True, train=True):
         """
@@ -201,7 +222,8 @@ class Agent:
             if self.use_poisson:
                 state = self._state_2_poisson_state(state, 1)
             state = torch.Tensor(state.reshape((1, 1, -1))).to(self.device)
-            action, self.hidden_state = self.actor_net(state, self.hidden_state)
+            last_action = torch.Tensor(self.last_action.reshape((1, 1, -1))).to(self.device)
+            action, self.hidden_state = self.actor_net(state, last_action=last_action, hidden=self.hidden_state)
             action = action.to('cpu').numpy().squeeze()
         if train:
             if self.step_ita > self.epsilon_rand_decay_start and self.epsilon > self.epsilon_end:
@@ -214,6 +236,7 @@ class Agent:
             noise = np.random.randn(self.action_num) * self.epsilon_end
             action = noise + (1 - self.epsilon_end) * action
             action = np.clip(action, [0., 0.], [1., 1.])
+        self.last_action = np.array(action)
         return action.tolist()
 
     def replay(self):
@@ -221,12 +244,12 @@ class Agent:
         Experience Replay Training
         :return: actor_loss_item, critic_loss_item
         """
-        seq_rstate_batch, seq_rnstate_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch = self._random_minibatch()
+        seq_rstate_batch, seq_rnstate_batch, seq_last_action_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch, hidden_batch = self._random_minibatch()
         '''
         Compuate Target Q Value
         '''
         with torch.no_grad():
-            naction_batch, _ = self.target_actor_net(seq_rnstate_batch)
+            naction_batch, _ = self.target_actor_net(seq_rnstate_batch, last_action=seq_last_action_batch)
             noise = torch.clamp(torch.randn_like(naction_batch) * 0.1, -0.2, 0.2)
             naction_batch = torch.clamp(naction_batch + noise, 0.0, 1.0)
             next_q1 = self.target_critic_net([nstate_batch, naction_batch])
@@ -255,7 +278,7 @@ class Agent:
         self.step_ita += 1
         if self.step_ita % self.policy_delay == 0:
             self.actor_optimizer.zero_grad()
-            current_action, _ = self.actor_net(seq_rstate_batch)
+            current_action, _ = self.actor_net(seq_rstate_batch, last_action=seq_last_action_batch, hidden=hidden_batch)
             actor_loss = -self.critic_net([state_batch, current_action])
             actor_loss = actor_loss.mean()
             self.last_actor_loss = actor_loss.item()
@@ -319,32 +342,39 @@ class Agent:
     def _random_minibatch(self):
         """
         Random select mini-batch from memory
-        :return: seq_rstate_batch, seq_rnstate_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch
+        :return: seq_rstate_batch, seq_rnstate_batch, seq_last_action_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch, hidden_batch
         """
         minibatch = random.sample(self.memory, self.batch_size)
+        hidden_size = self.actor_net.gru.hidden_size
         seq_rstate_batch = np.zeros((self.batch_size, self.seq_len, self.rescale_state_num))
         seq_rnstate_batch = np.zeros((self.batch_size, self.seq_len, self.rescale_state_num))
+        seq_last_action_batch = np.zeros((self.batch_size, self.seq_len, self.action_num))
         state_batch = np.zeros((self.batch_size, self.state_num))
         action_batch = np.zeros((self.batch_size, self.action_num))
         reward_batch = np.zeros((self.batch_size, 1))
         nstate_batch = np.zeros((self.batch_size, self.state_num))
         done_batch = np.zeros((self.batch_size, 1))
+        hidden_batch = np.zeros((1, self.batch_size, hidden_size))
         for num in range(self.batch_size):
             seq_rstate_batch[num] = minibatch[num][0]
             seq_rnstate_batch[num] = minibatch[num][1]
-            state_batch[num, :] = np.array(minibatch[num][2])
-            action_batch[num, :] = np.array(minibatch[num][3])
-            reward_batch[num, 0] = minibatch[num][4]
-            nstate_batch[num, :] = np.array(minibatch[num][5])
-            done_batch[num, 0] = minibatch[num][6]
+            seq_last_action_batch[num] = minibatch[num][2]
+            state_batch[num, :] = np.array(minibatch[num][3])
+            action_batch[num, :] = np.array(minibatch[num][4])
+            reward_batch[num, 0] = minibatch[num][5]
+            nstate_batch[num, :] = np.array(minibatch[num][6])
+            done_batch[num, 0] = minibatch[num][7]
+            hidden_batch[:, num, :] = minibatch[num][8][:, 0, :]
         seq_rstate_batch = torch.Tensor(seq_rstate_batch).to(self.device)
         seq_rnstate_batch = torch.Tensor(seq_rnstate_batch).to(self.device)
+        seq_last_action_batch = torch.Tensor(seq_last_action_batch).to(self.device)
         state_batch = torch.Tensor(state_batch).to(self.device)
         action_batch = torch.Tensor(action_batch).to(self.device)
         reward_batch = torch.Tensor(reward_batch).to(self.device)
         nstate_batch = torch.Tensor(nstate_batch).to(self.device)
         done_batch = torch.Tensor(done_batch).to(self.device)
-        return seq_rstate_batch, seq_rnstate_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch
+        hidden_batch = torch.Tensor(hidden_batch).to(self.device)
+        return seq_rstate_batch, seq_rnstate_batch, seq_last_action_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch, hidden_batch
 
     def _hard_update(self, target, source):
         """
