@@ -123,7 +123,16 @@ Terminal 2:
 
 ```bash
 source /opt/ros/jazzy/setup.bash && source install/setup.bash
+
+# TD3 LiDAR (GRU actor)
 ros2 run sddpg_navigation eval_ddpg
+
+# Pure DDPG baseline (FC actor)
+ros2 run sddpg_navigation eval_pure_ddpg \
+  --model_name DDPG_R1_actor_network_s1 \
+  --save_dir src/sddpg_navigation/sddpg_navigation/save_pure_ddpg_weights/
+
+# Spiking DDPG
 ros2 run sddpg_navigation eval_sddpg
 ```
 
@@ -222,6 +231,7 @@ Goal for DVS actor: `state[:2]` (NOT `state[-2:]`).
 | `training/train_pure_ddpg/train_ddpg.py` | Pure DDPG training loop (baseline) |
 | `training/train_pure_ddpg/ddpg_agent.py` | Pure DDPG agent — standard replay buffer |
 | `training/train_pure_ddpg/ddpg_networks.py` | `ActorNet` (4×FC) + `CriticNet` |
+| `evaluation/eval_random_simulation/run_pure_ddpg_eval.py` | Pure DDPG evaluation |
 | `training/train_ddpg/train_ddpg.py` | TD3 LiDAR training loop |
 | `training/train_ddpg/ddpg_agent.py` | TD3 agent — sequential buffer, hidden state, last_action |
 | `training/train_ddpg/ddpg_networks.py` | `ActorNet` (FC+GRU) + `CriticNet` |
