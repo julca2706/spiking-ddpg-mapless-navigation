@@ -28,7 +28,6 @@ class EventCameraNode(Node):
     def _camera_cb(self, msg):
         frame = self.bridge.imgmsg_to_cv2(msg, 'mono8')
         frame = frame.astype(float) / 255.0
-        frame = cv2.resize(frame, (64, 64))
         frame = cv2.medianBlur(frame.astype(np.float32), 3)
 
         if self.prev_frame is None:
