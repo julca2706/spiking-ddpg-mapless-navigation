@@ -34,7 +34,7 @@ class Agent:
                  target_update_steps=5,
                  reward_gamma=0.99,
                  critic_lr = 1e-4,
-                 actor_lr = 1e-4,
+                 actor_lr = 5e-5,
                  epsilon_start=0.9,
                  epsilon_end=0.01,
                  epsilon_decay=0.999,
@@ -264,13 +264,13 @@ class Agent:
         critic_loss = self.criterion(current_q, target_q)
         critic_loss_item = critic_loss.item()
         critic_loss.backward()
-        nn.utils.clip_grad_norm_(self.critic_net.parameters(), max_norm=1.0)
+        nn.utils.clip_grad_norm_(self.critic_net.parameters(), max_norm=0.5)
         self.critic_optimizer.step()
         self.critic_optimizer2.zero_grad()
         current_q2 = self.critic_net2([state_batch, action_batch])
         critic_loss2 = self.criterion(current_q2, target_q)
         critic_loss2.backward()
-        nn.utils.clip_grad_norm_(self.critic_net2.parameters(), max_norm=1.0)
+        nn.utils.clip_grad_norm_(self.critic_net2.parameters(), max_norm=0.5)
         self.critic_optimizer2.step()
         '''
         Update Actor Network and Target Networks (delayed)
@@ -283,7 +283,7 @@ class Agent:
             actor_loss = actor_loss.mean()
             self.last_actor_loss = actor_loss.item()
             actor_loss.backward()
-            nn.utils.clip_grad_norm_(self.actor_net.parameters(), max_norm=1.0)
+            nn.utils.clip_grad_norm_(self.actor_net.parameters(), max_norm=0.5)
             self.actor_optimizer.step()
             if self.step_ita % self.target_update_steps == 0:
                 self._soft_update(self.target_actor_net, self.actor_net)
