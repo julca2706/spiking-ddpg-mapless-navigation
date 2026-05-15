@@ -23,7 +23,7 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
                obs_reward=-20, goal_reward=30, goal_dis_amp=15, goal_th=0.5, obs_th=0.35,
                state_num=22, action_num=2, is_pos_neg=False, is_poisson=False, poisson_win=50,
                memory_size=100000, batch_size=256, epsilon_end=0.1, rand_start=10000, rand_decay=0.999,
-               rand_step=2, target_tau=0.01, target_step=1, start_env=0, use_cuda=True):
+               rand_step=2, target_tau=0.005, target_step=1, start_env=0, use_cuda=True):
     """
     Training DDPG for Mapless Navigation
 
