@@ -33,7 +33,7 @@ class Agent:
                  target_tau=0.005,
                  target_update_steps=5,
                  reward_gamma=0.99,
-                 critic_lr = 1e-3,
+                 critic_lr = 1e-4,
                  actor_lr = 1e-4,
                  epsilon_start=0.9,
                  epsilon_end=0.01,
