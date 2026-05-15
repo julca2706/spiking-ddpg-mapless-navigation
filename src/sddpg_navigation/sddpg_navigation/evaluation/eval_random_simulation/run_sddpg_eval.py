@@ -44,7 +44,7 @@ def evaluate_sddpg(pos_start=0, pos_end=199, model_name='sddpg_bw_5',
         device = torch.device("cpu")
     actor_net = load_test_actor_snn_network(w_dir, b_dir, device, batch_window=batch_window)
     eval = RandEvalGpu(actor_net, robot_init_list, goal_list, poly_list,
-                       max_steps=1000, action_rand=0.01, goal_dis_min_dis=0.3,
+                       max_steps=2500, action_rand=0.01, goal_dis_min_dis=0.3,
                        is_spike=True, use_cuda=use_cuda, batch_window=batch_window)
     data = eval.run_ros()
     if is_save_result:
