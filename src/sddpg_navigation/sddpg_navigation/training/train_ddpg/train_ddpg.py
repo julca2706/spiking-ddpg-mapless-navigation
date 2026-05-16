@@ -14,7 +14,7 @@ from sddpg_navigation.environment import *
 from sddpg_navigation.utility import *
 
 
-def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 300, 400),
+def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(1, 2, 300, 4),
                iteration_num_start=(200, 300, 400, 500), iteration_num_step=(1, 2, 3, 4),
                iteration_num_max=(2000, 2000, 2000, 2000),
                linear_spd_max=0.25, linear_spd_min=0.05, save_steps=10000,
@@ -23,7 +23,8 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
                obs_reward=-20, goal_reward=30, goal_dis_amp=15, goal_th=0.5, obs_th=0.35,
                state_num=22, action_num=2, is_pos_neg=False, is_poisson=False, poisson_win=50,
                memory_size=100000, batch_size=256, epsilon_end=0.1, rand_start=10000, rand_decay=0.999,
-               rand_step=2, target_tau=0.005, target_step=1, start_env=0, use_cuda=True):
+               rand_step=2, target_tau=0.005, target_step=1, start_env=0,
+               env_order=(0, 1, 3), use_cuda=True):
     """
     Training DDPG for Mapless Navigation
 
@@ -105,7 +106,9 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
     overall_steps = 0
     overall_episode = 0
     env_episode = 0
-    env_ita = start_env
+    env_order = list(env_order)
+    env_order_pos = env_order.index(start_env) if start_env in env_order else 0
+    env_ita = env_order[env_order_pos]
     ita_per_episode = iteration_num_start[env_ita]
     env.set_new_environment(overall_init_list[env_ita],
                             overall_goal_list[env_ita],
@@ -170,9 +173,10 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
         env_episode += 1
         if env_episode == episode_num[env_ita]:
             print("Environment ", env_ita, " Training Finished ...")
-            if env_ita == 3:
+            if env_order_pos == len(env_order) - 1:
                 break
-            env_ita += 1
+            env_order_pos += 1
+            env_ita = env_order[env_order_pos]
             env.set_new_environment(overall_init_list[env_ita],
                                     overall_goal_list[env_ita],
                                     overall_poly_list[env_ita])
