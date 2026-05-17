@@ -13,8 +13,8 @@ from sddpg_navigation.utility import *
 
 def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 300, 400),
                iteration_num_start=(200, 300, 400, 500), iteration_num_step=(1, 2, 3, 4),
-               iteration_num_max=(1000, 1000, 1000, 1000),
-               linear_spd_max=0.5, linear_spd_min=0.05, save_steps=10000,
+               iteration_num_max=(2000, 2000, 2000, 2000),
+               linear_spd_max=0.25, linear_spd_min=0.05, save_steps=10000,
                env_epsilon=(0.9, 0.6, 0.6, 0.6), env_epsilon_decay=(0.999, 0.9999, 0.9999, 0.9999),
                laser_half_num=9, laser_min_dis=0.35, scan_overall_num=36, goal_dis_min_dis=0.3,
                obs_reward=-20, goal_reward=30, goal_dis_amp=15, goal_th=0.5, obs_th=0.35,
