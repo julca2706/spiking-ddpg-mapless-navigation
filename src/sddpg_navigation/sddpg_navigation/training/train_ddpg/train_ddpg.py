@@ -22,9 +22,11 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
                laser_half_num=9, laser_min_dis=0.35, scan_overall_num=36, goal_dis_min_dis=0.3,
                obs_reward=-20, goal_reward=30, goal_dis_amp=15, goal_th=0.5, obs_th=0.35,
                state_num=22, action_num=2, is_pos_neg=False, is_poisson=False, poisson_win=50,
-               memory_size=100000, batch_size=256, epsilon_end=0.1, rand_start=10000, rand_decay=0.999,
+               memory_size=10000, batch_size=256, epsilon_end=0.1, rand_start=10000, rand_decay=0.999,
                rand_step=2, target_tau=0.005, target_step=1, start_env=0,
-               env_order=(0, 1, 3), use_cuda=True):
+               env_order=(0, 1, 2, 3),
+               mix_epsilon=0.6, mix_epsilon_decay=0.99995, mix_epsilon_warmup=20000,
+               use_cuda=True):
     """
     Training DDPG for Mapless Navigation
 
@@ -110,6 +112,11 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
     env_order_pos = env_order.index(start_env) if start_env in env_order else 0
     env_ita = env_order[env_order_pos]
     ita_per_episode = iteration_num_start[env_ita]
+    mix_phase = False
+    mix_envs = env_order[1:]
+    mix_env_counters = {i: 0 for i in mix_envs}
+    mix_total_episodes = sum(episode_num[i] for i in mix_envs)
+    mix_episode = 0
     env.set_new_environment(overall_init_list[env_ita],
                             overall_goal_list[env_ita],
                             overall_poly_list[env_ita])
@@ -119,7 +126,15 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
     # Start Training
     start_time = time.time()
     while True:
-        state = env.reset(env_episode)
+        if mix_phase:
+            env_ita = random.choice(mix_envs)
+            ep_idx = mix_env_counters[env_ita] % episode_num[env_ita]
+            env.set_new_environment(overall_init_list[env_ita],
+                                    overall_goal_list[env_ita],
+                                    overall_poly_list[env_ita])
+            state = env.reset(ep_idx)
+        else:
+            state = env.reset(env_episode)
         if is_pos_neg:
             rescale_state = ddpg_state_2_spike_value_state(state, rescale_state_num)
         else:
@@ -170,20 +185,19 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
         if overall_episode == 999:
             agent.save(os.path.join(base_dir, weights_dir), 0, run_name)
         overall_episode += 1
-        env_episode += 1
-        if env_episode == episode_num[env_ita]:
-            print("Environment ", env_ita, " Training Finished ...")
-            if env_order_pos == len(env_order) - 1:
+        if mix_phase:
+            mix_env_counters[env_ita] += 1
+            mix_episode += 1
+            if mix_episode >= mix_total_episodes:
                 break
-            env_order_pos += 1
-            env_ita = env_order[env_order_pos]
-            env.set_new_environment(overall_init_list[env_ita],
-                                    overall_goal_list[env_ita],
-                                    overall_poly_list[env_ita])
-            agent.reset_epsilon(env_epsilon[env_ita],
-                                env_epsilon_decay[env_ita])
-            ita_per_episode = iteration_num_start[env_ita]
-            env_episode = 0
+        else:
+            env_episode += 1
+            if env_episode == episode_num[env_ita]:
+                print("Environment ", env_ita, " (warmup) Training Finished ...")
+                mix_phase = True
+                ita_per_episode = iteration_num_start[mix_envs[0]]
+                agent.reset_epsilon(mix_epsilon, mix_epsilon_decay)
+                agent.epsilon_rand_decay_start = agent.step_ita + mix_epsilon_warmup
     end_time = time.time()
     print("Finish Training with time: ", (end_time - start_time) / 60, " Min")
 
