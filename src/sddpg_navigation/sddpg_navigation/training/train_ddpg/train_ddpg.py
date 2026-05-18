@@ -24,7 +24,7 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
                state_num=22, action_num=2, is_pos_neg=False, is_poisson=False, poisson_win=50,
                memory_size=10000, batch_size=256, epsilon_end=0.1, rand_start=10000, rand_decay=0.999,
                rand_step=2, target_tau=0.005, target_step=1, start_env=0,
-               env_order=(0, 1, 2, 3),
+               env_order=(0, 1, 3),
                mix_epsilon=0.6, mix_epsilon_decay=0.99995, mix_epsilon_warmup=20000,
                use_cuda=True):
     """
