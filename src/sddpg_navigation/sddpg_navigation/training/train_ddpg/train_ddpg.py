@@ -141,6 +141,7 @@ def train_ddpg(run_name="DDPG_R1", exp_name="Rand_R1", episode_num=(100, 200, 30
             rescale_state = ddpg_state_rescale(state, rescale_state_num)
         agent.current_seq = []
         agent.hidden_state = None
+        agent.prev_hidden_state = None
         agent.last_action = np.zeros(action_num)
         agent.prev_last_action = np.zeros(action_num)
         episode_reward = 0

@@ -157,6 +157,7 @@ class Agent:
         self.hidden_state = None
         self.last_action = np.zeros(self.action_num)
         self.prev_last_action = np.zeros(self.action_num)
+        self.prev_hidden_state = None
         self.seq_start_hidden = None
         self.seq_start_last_action = np.zeros(self.action_num)
 
@@ -178,7 +179,7 @@ class Agent:
         Stores initial hidden state and last_action sequence for GRU replay.
         """
         if len(self.current_seq) == 0:
-            self.seq_start_hidden = self.hidden_state
+            self.seq_start_hidden = self.prev_hidden_state
             self.seq_start_last_action = self.prev_last_action.copy()
         self.current_seq.append((state, rescale_state, action, reward, next_state, rescale_next_state, done))
         if len(self.current_seq) == self.seq_len or done:
@@ -224,6 +225,7 @@ class Agent:
                 state = self._state_2_poisson_state(state, 1)
             state = torch.Tensor(state.reshape((1, 1, -1))).to(self.device)
             last_action = torch.Tensor(self.last_action.reshape((1, 1, -1))).to(self.device)
+            self.prev_hidden_state = self.hidden_state
             action, self.hidden_state = self.actor_net(state, last_action=last_action, hidden=self.hidden_state)
             action = action.to('cpu').numpy().squeeze()
         if train:
