@@ -249,7 +249,12 @@ class Agent:
         Compuate Target Q Value
         '''
         with torch.no_grad():
-            naction_batch, _ = self.target_actor_net(seq_rnstate_batch, last_action=seq_last_action_batch, hidden=hidden_batch)
+            next_seq_last_actions = torch.cat([
+                seq_last_action_batch[:, 1:, :],
+                action_batch.unsqueeze(1)
+            ], dim=1)
+            _, hidden_out_batch = self.target_actor_net(seq_rstate_batch, last_action=seq_last_action_batch, hidden=hidden_batch)
+            naction_batch, _ = self.target_actor_net(seq_rnstate_batch, last_action=next_seq_last_actions, hidden=hidden_out_batch)
             noise = torch.clamp(torch.randn_like(naction_batch) * 0.1, -0.2, 0.2)
             naction_batch = torch.clamp(naction_batch + noise, 0.0, 1.0)
             next_q1 = self.target_critic_net([nstate_batch, naction_batch])
