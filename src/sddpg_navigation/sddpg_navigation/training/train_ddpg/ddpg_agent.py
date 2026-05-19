@@ -156,6 +156,7 @@ class Agent:
         self.current_seq = []
         self.hidden_state = None
         self.last_action = np.zeros(self.action_num)
+        self.prev_last_action = np.zeros(self.action_num)
         self.seq_start_hidden = None
         self.seq_start_last_action = np.zeros(self.action_num)
 
@@ -178,7 +179,7 @@ class Agent:
         """
         if len(self.current_seq) == 0:
             self.seq_start_hidden = self.hidden_state
-            self.seq_start_last_action = self.last_action.copy()
+            self.seq_start_last_action = self.prev_last_action.copy()
         self.current_seq.append((state, rescale_state, action, reward, next_state, rescale_next_state, done))
         if len(self.current_seq) == self.seq_len or done:
             seq = self.current_seq
@@ -236,6 +237,7 @@ class Agent:
             noise = np.random.randn(self.action_num) * self.epsilon_end
             action = noise + (1 - self.epsilon_end) * action
             action = np.clip(action, [0., 0.], [1., 1.])
+        self.prev_last_action = self.last_action.copy()
         self.last_action = np.array(action)
         return action.tolist()
 
