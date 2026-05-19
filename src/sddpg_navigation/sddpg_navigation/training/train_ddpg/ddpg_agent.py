@@ -198,6 +198,10 @@ class Agent:
             seq_rescale_states = np.array([t[1] for t in seq])
             seq_rescale_next_states = np.array([t[5] for t in seq])
             seq_last_actions = np.array(seq_last_actions)
+            seq_states = np.array([t[0] for t in seq])
+            seq_nstates = np.array([t[4] for t in seq])
+            seq_rewards = np.array([t[3] for t in seq], dtype=np.float32)
+            seq_dones = np.array([t[6] for t in seq], dtype=np.float32)
             hidden_size = self.actor_net.gru.hidden_size
             if self.seq_start_hidden is not None:
                 init_hidden = self.seq_start_hidden.detach().cpu().numpy()
@@ -205,7 +209,8 @@ class Agent:
                 init_hidden = np.zeros((1, 1, hidden_size))
             last = self.current_seq[-1]
             self.memory.append((seq_rescale_states, seq_rescale_next_states, seq_last_actions,
-                                last[0], last[2], last[3], last[4], last[6], init_hidden))
+                                last[0], last[2], last[3], last[4], last[6], init_hidden,
+                                seq_states, seq_nstates, seq_rewards, seq_dones))
             self.current_seq = []
         if done:
             self.hidden_state = None
@@ -248,36 +253,48 @@ class Agent:
         Experience Replay Training
         :return: actor_loss_item, critic_loss_item
         """
-        seq_rstate_batch, seq_rnstate_batch, seq_last_action_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch, hidden_batch = self._random_minibatch()
+        (seq_rstate_batch, seq_rnstate_batch, seq_last_action_batch,
+         state_batch, action_batch, reward_batch, nstate_batch, done_batch, hidden_batch,
+         seq_states_batch, seq_nstates_batch, seq_rewards_batch, seq_dones_batch) = self._random_minibatch()
+        B, T = self.batch_size, self.seq_len
         '''
-        Compuate Target Q Value
+        Compute Target Q Value (last step — proper TD3 with target actor)
         '''
         with torch.no_grad():
             next_seq_last_actions = torch.cat([
                 seq_last_action_batch[:, 1:, :],
                 action_batch.unsqueeze(1)
             ], dim=1)
+            # Get hidden_out after processing current states
             _, hidden_out_batch = self.target_actor_net(seq_rstate_batch, last_action=seq_last_action_batch, hidden=hidden_batch)
-            naction_batch, _ = self.target_actor_net(seq_rnstate_batch, last_action=next_seq_last_actions, hidden=hidden_out_batch)
-            noise = torch.clamp(torch.randn_like(naction_batch) * 0.1, -0.2, 0.2)
-            naction_batch = torch.clamp(naction_batch + noise, 0.0, 1.0)
-            next_q1 = self.target_critic_net([nstate_batch, naction_batch])
-            next_q2 = self.target_critic_net2([nstate_batch, naction_batch])
-            next_q = torch.min(next_q1, next_q2)
-            target_q = reward_batch + self.reward_gamma * next_q * (1. - done_batch)
+            # Target actor produces actions for ALL T next states
+            all_nactions, _ = self.target_actor_net(seq_rnstate_batch, last_action=next_seq_last_actions,
+                                                     hidden=hidden_out_batch, return_seq=True)  # (B, T, action_num)
+            noise = torch.clamp(torch.randn_like(all_nactions) * 0.1, -0.2, 0.2)
+            all_nactions = torch.clamp(all_nactions + noise, 0.0, 1.0)
+            # Target Q for all T steps
+            all_nstates_flat = seq_nstates_batch.view(B * T, -1)
+            all_nactions_flat = all_nactions.view(B * T, -1)
+            tq1_all = self.target_critic_net([all_nstates_flat, all_nactions_flat])
+            tq2_all = self.target_critic_net2([all_nstates_flat, all_nactions_flat])
+            all_target_q = (seq_rewards_batch.view(B * T, 1) +
+                            self.reward_gamma * torch.min(tq1_all, tq2_all) *
+                            (1. - seq_dones_batch.view(B * T, 1)))
         '''
-        Update Critic Network
+        Update Critic Network (all 10 steps)
         '''
+        all_states_flat = seq_states_batch.view(B * T, -1)
+        all_actions_flat = next_seq_last_actions.view(B * T, -1)
         self.critic_optimizer.zero_grad()
-        current_q = self.critic_net([state_batch, action_batch])
-        critic_loss = self.criterion(current_q, target_q)
+        current_q_all = self.critic_net([all_states_flat, all_actions_flat])
+        critic_loss = self.criterion(current_q_all, all_target_q)
         critic_loss_item = critic_loss.item()
         critic_loss.backward()
         nn.utils.clip_grad_norm_(self.critic_net.parameters(), max_norm=0.5)
         self.critic_optimizer.step()
         self.critic_optimizer2.zero_grad()
-        current_q2 = self.critic_net2([state_batch, action_batch])
-        critic_loss2 = self.criterion(current_q2, target_q)
+        current_q2_all = self.critic_net2([all_states_flat, all_actions_flat])
+        critic_loss2 = self.criterion(current_q2_all, all_target_q)
         critic_loss2.backward()
         nn.utils.clip_grad_norm_(self.critic_net2.parameters(), max_norm=0.5)
         self.critic_optimizer2.step()
@@ -287,8 +304,9 @@ class Agent:
         self.step_ita += 1
         if self.step_ita % self.policy_delay == 0:
             self.actor_optimizer.zero_grad()
-            current_action, _ = self.actor_net(seq_rstate_batch, last_action=seq_last_action_batch, hidden=hidden_batch)
-            actor_loss = -self.critic_net([state_batch, current_action])
+            current_actions, _ = self.actor_net(seq_rstate_batch, last_action=seq_last_action_batch,
+                                                 hidden=hidden_batch, return_seq=True)  # (B, T, action_num)
+            actor_loss = -self.critic_net([all_states_flat, current_actions.view(B * T, -1)])
             actor_loss = actor_loss.mean()
             self.last_actor_loss = actor_loss.item()
             actor_loss.backward()
@@ -364,6 +382,10 @@ class Agent:
         nstate_batch = np.zeros((self.batch_size, self.state_num))
         done_batch = np.zeros((self.batch_size, 1))
         hidden_batch = np.zeros((1, self.batch_size, hidden_size))
+        seq_states_batch = np.zeros((self.batch_size, self.seq_len, self.state_num))
+        seq_nstates_batch = np.zeros((self.batch_size, self.seq_len, self.state_num))
+        seq_rewards_batch = np.zeros((self.batch_size, self.seq_len, 1))
+        seq_dones_batch = np.zeros((self.batch_size, self.seq_len, 1))
         for num in range(self.batch_size):
             seq_rstate_batch[num] = minibatch[num][0]
             seq_rnstate_batch[num] = minibatch[num][1]
@@ -374,6 +396,10 @@ class Agent:
             nstate_batch[num, :] = np.array(minibatch[num][6])
             done_batch[num, 0] = minibatch[num][7]
             hidden_batch[:, num, :] = minibatch[num][8][:, 0, :]
+            seq_states_batch[num] = minibatch[num][9]
+            seq_nstates_batch[num] = minibatch[num][10]
+            seq_rewards_batch[num, :, 0] = minibatch[num][11]
+            seq_dones_batch[num, :, 0] = minibatch[num][12]
         seq_rstate_batch = torch.Tensor(seq_rstate_batch).to(self.device)
         seq_rnstate_batch = torch.Tensor(seq_rnstate_batch).to(self.device)
         seq_last_action_batch = torch.Tensor(seq_last_action_batch).to(self.device)
@@ -383,7 +409,13 @@ class Agent:
         nstate_batch = torch.Tensor(nstate_batch).to(self.device)
         done_batch = torch.Tensor(done_batch).to(self.device)
         hidden_batch = torch.Tensor(hidden_batch).to(self.device)
-        return seq_rstate_batch, seq_rnstate_batch, seq_last_action_batch, state_batch, action_batch, reward_batch, nstate_batch, done_batch, hidden_batch
+        seq_states_batch = torch.Tensor(seq_states_batch).to(self.device)
+        seq_nstates_batch = torch.Tensor(seq_nstates_batch).to(self.device)
+        seq_rewards_batch = torch.Tensor(seq_rewards_batch).to(self.device)
+        seq_dones_batch = torch.Tensor(seq_dones_batch).to(self.device)
+        return (seq_rstate_batch, seq_rnstate_batch, seq_last_action_batch,
+                state_batch, action_batch, reward_batch, nstate_batch, done_batch, hidden_batch,
+                seq_states_batch, seq_nstates_batch, seq_rewards_batch, seq_dones_batch)
 
     def _hard_update(self, target, source):
         """

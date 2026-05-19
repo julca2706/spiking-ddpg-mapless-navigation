@@ -22,13 +22,16 @@ class ActorNet(nn.Module):
         self.relu = nn.ReLU()
         self.sigmoid = nn.Sigmoid()
 
-    def forward(self, x, last_action=None, hidden=None):
+    def forward(self, x, last_action=None, hidden=None, return_seq=False):
         if last_action is not None:
             x = torch.cat([x, last_action], dim=-1)
         x = self.relu(self.fc1(x))
         x = self.relu(self.fc2(x))
         x, hidden = self.gru(x, hidden)
-        out = self.sigmoid(self.fc3(x[:, -1, :]))
+        if return_seq:
+            out = self.sigmoid(self.fc3(x))          # (B, T, action_num)
+        else:
+            out = self.sigmoid(self.fc3(x[:, -1, :]))  # (B, action_num)
         return out, hidden
 
 
