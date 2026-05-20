@@ -9,7 +9,7 @@ from nav_msgs.msg import Odometry
 from simple_laserscan.msg import SimpleScan
 import sys
 sys.path.append('../../')
-from training.train_ddpg.ddpg_agent import Agent
+from training.train_td3.td3_agent import Agent
 from training.utility import *
 
 

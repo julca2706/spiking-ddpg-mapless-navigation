@@ -30,7 +30,7 @@ def evaluate_pure_ddpg(pos_start=0, pos_end=199, model_name='pure_ddpg',
     net_dir = save_dir + model_name + '.pt'
     actor_net = load_pure_ddpg_actor(net_dir, state_num=state_num, use_cuda=use_cuda)
     eval = RandEvalGpu(actor_net, robot_init_list, goal_list, poly_list,
-                       max_steps=1000, action_rand=0.01, goal_dis_min_dis=0.3,
+                       max_steps=2500, action_rand=0.01, goal_dis_min_dis=0.3,
                        is_scale=is_scale, is_poisson=False, use_cuda=use_cuda)
     data = eval.run_ros()
     if is_save_result:

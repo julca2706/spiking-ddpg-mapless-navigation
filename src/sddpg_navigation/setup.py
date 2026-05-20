@@ -46,6 +46,7 @@ setup(
             'environment = sddpg_navigation.environment:main',
             'train_sddpg = sddpg_navigation.training.train_spiking_ddpg.train_sddpg:main',
             'train_ddpg = sddpg_navigation.training.train_ddpg.train_ddpg:main',
+            'train_td3 = sddpg_navigation.training.train_td3.train_td3:main',
             'eval_sddpg = sddpg_navigation.evaluation.eval_random_simulation.run_sddpg_eval:main',
             'eval_ddpg = sddpg_navigation.evaluation.eval_random_simulation.run_ddpg_eval:main',
             'obstacle_mover_node = sddpg_navigation.dynamic_obstacles:main',
@@ -53,6 +54,7 @@ setup(
             'train_dvs_ddpg = sddpg_navigation.training.train_DVS_ddpg.train_DVS_ddpg:main',
             'train_pure_ddpg = sddpg_navigation.training.train_pure_ddpg.train_ddpg:main',
             'eval_pure_ddpg = sddpg_navigation.evaluation.eval_random_simulation.run_pure_ddpg_eval:main',
+            'eval_gru_ddpg = sddpg_navigation.evaluation.eval_random_simulation.run_gru_ddpg_eval:main',
         ],
     },
 )

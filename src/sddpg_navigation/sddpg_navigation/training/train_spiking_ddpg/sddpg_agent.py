@@ -7,7 +7,7 @@ import math
 import numpy as np
 import torch
 import torch.nn as nn
-from sddpg_navigation.training.train_ddpg.ddpg_networks import CriticNet
+from sddpg_navigation.training.train_td3.td3_networks import CriticNet
 from sddpg_navigation.training.train_spiking_ddpg.sddpg_networks import ActorNetSpiking
 
 
