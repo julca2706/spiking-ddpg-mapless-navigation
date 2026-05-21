@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  ros_kinetic:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ros-kinetic-turtlebot:latest
+    container_name: turtlebot_simulation
+  
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - TURTLEBOT_3D_SENSOR=hokuyo
+      - TURTLEBOT_GAZEBO_WORLD_FILE=/root/project/ros/worlds/training_worlds.world
+      - LIBGL_ALWAYS_SOFTWARE=1
+      - MESA_GL_VERSION_OVERRIDE=3.3
+      - MESA_GLSL_VERSION_OVERRIDE=330
+      - GAZEBO_MODEL_PATH=/usr/share/gazebo-7/models
+      - GAZEBO_RESOURCE_PATH=/usr/share/gazebo-7
+
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ./project_files:/root/project:rw
+      - ./ros_logs:/root/.ros:rw
+    
+    network_mode: host
+    stdin_open: true
+    tty: true
+    privileged: true
+    
+    devices:
+      - /dev/dri:/dev/dri
+    
+    command: /bin/bash
