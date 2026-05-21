@@ -19,7 +19,7 @@ class EventCameraNode(Node):
     def __init__(self):
         super().__init__('event_camera_node')
         self.bridge = CvBridge()
-        self.threshold = 0.003
+        self.threshold = 0.005
         self.prev_frame = None
 
         self.create_subscription(Image, '/camera/image_raw', self._camera_cb, _SENSOR_QOS)

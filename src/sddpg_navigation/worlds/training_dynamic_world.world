@@ -105,21 +105,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall1">
-          <geometry>
-            <polyline>
-              <point>-2 -2</point>
-              <point>-1 -2</point>
-              <point>-1 -15</point>
-              <point>-2 -15</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-1.5 -2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-1.5 -2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-1.5 -3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-1.5 -3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-1.5 -4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-1.5 -4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-1.5 -5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-1.5 -5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-1.5 -6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-1.5 -6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-1.5 -7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-1.5 -7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-1.5 -8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-1.5 -8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-1.5 -9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-1.5 -9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-1.5 -10.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-1.5 -10.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-1.5 -11.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-1.5 -11.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>-1.5 -12.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>-1.5 -12.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>-1.5 -13.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>-1.5 -13.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>-1.5 -14.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>-1.5 -14.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env1wall2">
@@ -136,21 +147,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall2">
-          <geometry>
-            <polyline>
-              <point>-2 -14</point>
-              <point>-2 -15</point>
-              <point>-15 -15</point>
-              <point>-15 -14</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-2.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-2.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-3.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-3.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-4.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-4.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-5.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-5.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-6.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-6.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-7.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-7.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-8.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-8.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-9.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-9.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-10.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-10.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-11.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-11.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>-12.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>-12.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>-13.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>-13.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>-14.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>-14.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env1wall3">
@@ -167,21 +189,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall3">
-          <geometry>
-            <polyline>
-              <point>-14 -1</point>
-              <point>-14 -14</point>
-              <point>-15 -14</point>
-              <point>-15 -1</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-14.5 -1.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-14.5 -1.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-14.5 -2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-14.5 -2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-14.5 -3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-14.5 -3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-14.5 -4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-14.5 -4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-14.5 -5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-14.5 -5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-14.5 -6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-14.5 -6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-14.5 -7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-14.5 -7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-14.5 -8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-14.5 -8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-14.5 -9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-14.5 -9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-14.5 -10.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-14.5 -10.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>-14.5 -11.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>-14.5 -11.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>-14.5 -12.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>-14.5 -12.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>-14.5 -13.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>-14.5 -13.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env1wall4">
@@ -198,21 +231,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall4">
-          <geometry>
-            <polyline>
-              <point>-1 -1</point>
-              <point>-1 -2</point>
-              <point>-14 -2</point>
-              <point>-14 -1</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-1.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-1.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-2.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-2.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-3.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-3.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-4.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-4.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-5.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-5.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-6.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-6.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-7.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-7.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-8.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-8.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-9.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-9.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-10.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-10.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>-11.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>-11.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>-12.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>-12.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>-13.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>-13.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env1obs1">
@@ -229,21 +273,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs1">
-          <geometry>
-            <polyline>
-              <point>-6.5 -6.5</point>
-              <point>-6.5 -6</point>
-              <point>-9.5 -6</point>
-              <point>-9.5 -6.5</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-9.25 -6.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-8.75 -6.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-8.25 -6.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-7.75 -6.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-7.25 -6.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-6.75 -6.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env1obs2">
@@ -260,21 +295,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs2">
-          <geometry>
-            <polyline>
-              <point>-6.5 -9.5</point>
-              <point>-6.5 -10</point>
-              <point>-9.5 -10</point>
-              <point>-9.5 -9.5</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-9.25 -9.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-8.75 -9.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-8.25 -9.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-7.75 -9.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-7.25 -9.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-6.75 -9.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env1obs3">
@@ -291,21 +317,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs3">
-          <geometry>
-            <polyline>
-              <point>-5.25 -6.5</point>
-              <point>-4.75 -6.5</point>
-              <point>-4.75 -9.5</point>
-              <point>-5.25 -9.5</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-5 -9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-5 -8.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-5 -8.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-5 -7.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-5 -7.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-5 -6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env1obs4">
@@ -322,21 +339,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs4">
-          <geometry>
-            <polyline>
-              <point>-10.75 -6.5</point>
-              <point>-11.25 -6.5</point>
-              <point>-11.25 -9.5</point>
-              <point>-10.75 -9.5</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-11 -9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-11 -8.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-11 -8.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-11 -7.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-11 -7.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-11 -6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
 
@@ -417,21 +425,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall1">
-          <geometry>
-            <polyline>
-              <point>2 -2</point>
-              <point>1 -2</point>
-              <point>1 -15</point>
-              <point>2 -15</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>1.5 -2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>1.5 -2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>1.5 -3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>1.5 -3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>1.5 -4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>1.5 -4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>1.5 -5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>1.5 -5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>1.5 -6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>1.5 -6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>1.5 -7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>1.5 -7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>1.5 -8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>1.5 -8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>1.5 -9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>1.5 -9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>1.5 -10.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>1.5 -10.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>1.5 -11.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>1.5 -11.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>1.5 -12.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>1.5 -12.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>1.5 -13.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>1.5 -13.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>1.5 -14.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>1.5 -14.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env2wall2">
@@ -448,21 +467,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall2">
-          <geometry>
-            <polyline>
-              <point>2 -14</point>
-              <point>2 -15</point>
-              <point>15 -15</point>
-              <point>15 -14</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>2.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>2.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>3.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>3.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>4.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>4.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>5.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>5.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>6.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>6.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>7.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>7.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>8.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>8.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>9.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>9.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>10.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>10.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>11.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>11.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>12.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>12.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>13.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>13.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>14.25 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>14.75 -14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env2wall3">
@@ -479,21 +509,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall3">
-          <geometry>
-            <polyline>
-              <point>14 -1</point>
-              <point>14 -14</point>
-              <point>15 -14</point>
-              <point>15 -1</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>14.5 -1.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>14.5 -1.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>14.5 -2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>14.5 -2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>14.5 -3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>14.5 -3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>14.5 -4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>14.5 -4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>14.5 -5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>14.5 -5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>14.5 -6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>14.5 -6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>14.5 -7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>14.5 -7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>14.5 -8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>14.5 -8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>14.5 -9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>14.5 -9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>14.5 -10.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>14.5 -10.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>14.5 -11.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>14.5 -11.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>14.5 -12.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>14.5 -12.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>14.5 -13.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>14.5 -13.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env2wall4">
@@ -510,21 +551,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall4">
-          <geometry>
-            <polyline>
-              <point>1 -1</point>
-              <point>1 -2</point>
-              <point>14 -2</point>
-              <point>14 -1</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>1.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>1.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>2.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>2.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>3.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>3.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>4.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>4.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>5.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>5.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>6.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>6.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>7.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>7.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>8.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>8.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>9.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>9.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>10.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>10.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>11.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>11.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>12.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>12.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>13.25 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>13.75 -1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env2obs1">
@@ -541,21 +593,18 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs1">
-          <geometry>
-            <polyline>
-              <point>5 -4.5</point>
-              <point>5 -4</point>
-              <point>11 -4</point>
-              <point>11 -4.5</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>5.25 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>5.75 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>6.25 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>6.75 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>7.25 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>7.75 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>8.25 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>8.75 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>9.25 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>9.75 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>10.25 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>10.75 -4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env2obs2">
@@ -572,21 +621,18 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs2">
-          <geometry>
-            <polyline>
-              <point>5 -11.5</point>
-              <point>5 -12</point>
-              <point>11 -12</point>
-              <point>11 -11.5</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>5.25 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>5.75 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>6.25 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>6.75 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>7.25 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>7.75 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>8.25 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>8.75 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>9.25 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>9.75 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>10.25 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>10.75 -11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env2obs3">
@@ -603,21 +649,14 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs3">
-          <geometry>
-            <polyline>
-              <point>5.25 -6</point>
-              <point>4.75 -6</point>
-              <point>4.75 -10</point>
-              <point>5.25 -10</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>5 -9.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>5 -9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>5 -8.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>5 -8.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>5 -7.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>5 -7.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>5 -6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>5 -6.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env2obs4">
@@ -634,21 +673,14 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs4">
-          <geometry>
-            <polyline>
-              <point>10.75 -6</point>
-              <point>11.25 -6</point>
-              <point>11.25 -10</point>
-              <point>10.75 -10</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>11 -9.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>11 -9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>11 -8.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>11 -8.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>11 -7.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>11 -7.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>11 -6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>11 -6.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
 
@@ -667,21 +699,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall1">
-          <geometry>
-            <polyline>
-              <point>2 2</point>
-              <point>1 2</point>
-              <point>1 15</point>
-              <point>2 15</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>1.5 2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>1.5 2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>1.5 3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>1.5 3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>1.5 4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>1.5 4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>1.5 5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>1.5 5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>1.5 6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>1.5 6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>1.5 7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>1.5 7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>1.5 8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>1.5 8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>1.5 9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>1.5 9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>1.5 10.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>1.5 10.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>1.5 11.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>1.5 11.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>1.5 12.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>1.5 12.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>1.5 13.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>1.5 13.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>1.5 14.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>1.5 14.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env3wall2">
@@ -698,21 +741,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall2">
-          <geometry>
-            <polyline>
-              <point>2 14</point>
-              <point>2 15</point>
-              <point>15 15</point>
-              <point>15 14</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>2.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>2.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>3.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>3.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>4.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>4.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>5.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>5.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>6.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>6.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>7.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>7.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>8.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>8.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>9.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>9.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>10.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>10.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>11.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>11.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>12.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>12.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>13.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>13.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>14.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>14.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env3wall3">
@@ -729,21 +783,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall3">
-          <geometry>
-            <polyline>
-              <point>14 1</point>
-              <point>14 14</point>
-              <point>15 14</point>
-              <point>15 1</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>14.5 1.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>14.5 1.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>14.5 2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>14.5 2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>14.5 3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>14.5 3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>14.5 4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>14.5 4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>14.5 5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>14.5 5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>14.5 6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>14.5 6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>14.5 7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>14.5 7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>14.5 8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>14.5 8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>14.5 9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>14.5 9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>14.5 10.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>14.5 10.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>14.5 11.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>14.5 11.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>14.5 12.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>14.5 12.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>14.5 13.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>14.5 13.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env3wall4">
@@ -760,21 +825,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall4">
-          <geometry>
-            <polyline>
-              <point>1 1</point>
-              <point>1 2</point>
-              <point>14 2</point>
-              <point>14 1</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>1.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>1.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>2.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>2.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>3.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>3.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>4.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>4.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>5.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>5.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>6.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>6.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>7.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>7.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>8.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>8.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>9.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>9.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>10.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>10.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>11.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>11.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>12.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>12.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>13.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>13.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
 
@@ -793,21 +869,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall1">
-          <geometry>
-            <polyline>
-              <point>-2 2</point>
-              <point>-1 2</point>
-              <point>-1 15</point>
-              <point>-2 15</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-1.5 2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-1.5 2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-1.5 3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-1.5 3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-1.5 4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-1.5 4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-1.5 5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-1.5 5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-1.5 6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-1.5 6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-1.5 7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-1.5 7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-1.5 8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-1.5 8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-1.5 9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-1.5 9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-1.5 10.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-1.5 10.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-1.5 11.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-1.5 11.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>-1.5 12.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>-1.5 12.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>-1.5 13.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>-1.5 13.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>-1.5 14.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>-1.5 14.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env4wall2">
@@ -824,21 +911,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall2">
-          <geometry>
-            <polyline>
-              <point>-2 14</point>
-              <point>-2 15</point>
-              <point>-15 15</point>
-              <point>-15 14</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-2.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-2.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-3.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-3.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-4.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-4.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-5.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-5.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-6.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-6.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-7.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-7.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-8.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-8.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-9.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-9.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-10.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-10.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-11.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-11.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>-12.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>-12.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>-13.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>-13.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>-14.25 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>-14.75 14.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env4wall3">
@@ -855,21 +953,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall3">
-          <geometry>
-            <polyline>
-              <point>-14 1</point>
-              <point>-14 14</point>
-              <point>-15 14</point>
-              <point>-15 1</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-14.5 1.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-14.5 1.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-14.5 2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-14.5 2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-14.5 3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-14.5 3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-14.5 4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-14.5 4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-14.5 5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-14.5 5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-14.5 6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-14.5 6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-14.5 7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-14.5 7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-14.5 8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-14.5 8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-14.5 9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-14.5 9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-14.5 10.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-14.5 10.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>-14.5 11.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>-14.5 11.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>-14.5 12.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>-14.5 12.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>-14.5 13.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>-14.5 13.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env4wall4">
@@ -886,21 +995,32 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall4">
-          <geometry>
-            <polyline>
-              <point>-1 1</point>
-              <point>-1 2</point>
-              <point>-14 2</point>
-              <point>-14 1</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-1.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-1.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-2.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-2.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-3.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-3.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-4.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-4.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-5.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-5.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-6.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-6.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-7.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-7.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-8.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-8.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-9.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-9.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-10.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-10.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>-11.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>-11.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>-12.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>-12.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>-13.25 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>-13.75 1.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env4obs1">
@@ -917,21 +1037,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs1">
-          <geometry>
-            <polyline>
-              <point>-6 9</point>
-              <point>-6 9.5</point>
-              <point>-9 9.5</point>
-              <point>-9 9</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-8.75 9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-8.25 9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-7.75 9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-7.25 9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-6.75 9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-6.25 9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env4obs2">
@@ -948,21 +1059,14 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs2">
-          <geometry>
-            <polyline>
-              <point>-6 7</point>
-              <point>-6 6.5</point>
-              <point>-10 6.5</point>
-              <point>-10 7</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-9.75 6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-9.25 6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-8.75 6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-8.25 6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-7.75 6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-7.25 6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-6.75 6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-6.25 6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env4obs3">
@@ -979,21 +1083,14 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs3">
-          <geometry>
-            <polyline>
-              <point>-4 11.5</point>
-              <point>-4 12</point>
-              <point>-8 12</point>
-              <point>-8 11.5</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-7.75 11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-7.25 11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-6.75 11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-6.25 11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-5.75 11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-5.25 11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-4.75 11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-4.25 11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env4obs4">
@@ -1010,21 +1107,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs4">
-          <geometry>
-            <polyline>
-              <point>-11.5 9</point>
-              <point>-11.5 12</point>
-              <point>-12 12</point>
-              <point>-12 9</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-11.75 9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-11.75 9.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-11.75 10.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-11.75 10.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-11.75 11.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-11.75 11.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env4obs5">
@@ -1041,21 +1129,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs5">
-          <geometry>
-            <polyline>
-              <point>-3.75 4</point>
-              <point>-3.75 7</point>
-              <point>-4.25 7</point>
-              <point>-4.25 4</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>  
+        <visual name="s1"><pose>-4 4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-4 4.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-4 5.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-4 5.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-4 6.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-4 6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="env4obs6">
@@ -1072,21 +1151,14 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs6">
-          <geometry>
-            <polyline>
-              <point>-8 4</point>
-              <point>-8 4.5</point>
-              <point>-12 4.5</point>
-              <point>-12 4</point>
-              <height>1</height>
-            </polyline>
-          </geometry>
-          <material>
-            <ambient>0.4 0.4 0.4 1</ambient>
-            <diffuse>0.4 0.4 0.4 1</diffuse>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-11.75 4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-11.25 4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-10.75 4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-10.25 4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-9.75 4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-9.25 4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-8.75 4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-8.25 4.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
 
