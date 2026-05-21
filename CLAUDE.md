@@ -102,13 +102,17 @@ ros2 run rqt_image_view rqt_image_view /camera/image_raw  # raw camera before pr
 
 ## Training — Dynamic Obstacles (LiDAR)
 
+Use `training_dynamic_lidar.launch.py` — same as `training_dynamic.launch.py` but **without** the `event_camera` node. This avoids triggering ogre2 GPU rendering and works on headless servers without GPU access.
+
 ```bash
 # Terminal 1
-ros2 launch sddpg_navigation training_dynamic.launch.py headless:=true
+ros2 launch sddpg_navigation training_dynamic_lidar.launch.py headless:=true
 
 # Terminal 2
 ros2 run sddpg_navigation train_ddpg
 ```
+
+> **Note:** `training_dynamic.launch.py` (with event_camera) requires GPU because subscribing to `/camera/image_raw` activates Gazebo's camera sensor which uses ogre2. `training_dynamic_lidar.launch.py` skips the event_camera node so ogre2 never initialises.
 
 ## Evaluation — Simulation
 
@@ -241,7 +245,8 @@ Goal for DVS actor: `state[:2]` (NOT `state[-2:]`).
 | `event_camera.py` | Publishes synthetic DVS events from `/camera/image_raw` |
 | `dynamic_obstacles.py` | Moves dynamic obstacles in Gazebo |
 | `launch/training.launch.py` | Gazebo + bridge (static world) |
-| `launch/training_dynamic.launch.py` | Gazebo + bridge + event_camera + obstacle_mover |
+| `launch/training_dynamic.launch.py` | Gazebo + bridge + event_camera + obstacle_mover (requires GPU) |
+| `launch/training_dynamic_lidar.launch.py` | Gazebo + bridge + obstacle_mover, **no event_camera** — headless server safe |
 | `launch/evaluation.launch.py` | Evaluation (static world) |
 | `launch/evaluation_dynamic.launch.py` | Evaluation (dynamic world + event_camera) |
 | `launch/bridge.yaml` | ROS↔Gazebo topic/service bridge config |
@@ -259,7 +264,8 @@ Goal for DVS actor: `state[:2]` (NOT `state[-2:]`).
 src/sddpg_navigation/
 ├── launch/
 │   ├── training.launch.py
-│   ├── training_dynamic.launch.py      ← event_camera + obstacle_mover
+│   ├── training_dynamic.launch.py      ← event_camera + obstacle_mover (GPU required)
+│   ├── training_dynamic_lidar.launch.py ← obstacle_mover only, no event_camera (server-safe)
 │   ├── evaluation.launch.py
 │   ├── evaluation_dynamic.launch.py    ← event_camera + obstacle_mover
 │   └── bridge.yaml

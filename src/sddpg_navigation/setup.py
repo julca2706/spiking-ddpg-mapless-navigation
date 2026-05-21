@@ -14,6 +14,7 @@ setup(
             'launch/training.launch.py',
             'launch/evaluation.launch.py',
             'launch/training_dynamic.launch.py',
+            'launch/training_dynamic_lidar.launch.py',
             'launch/evaluation_dynamic.launch.py',
             'launch/bridge.yaml']),
         ('share/' + package_name + '/worlds', [
