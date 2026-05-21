@@ -50,6 +50,7 @@
         </visual>
       </link>
     </model>
+
     <!-- Own physics settings to speed up simulation -->
     <gravity>0 0 -9.8</gravity>
     <physics type='ode'>
@@ -57,9 +58,10 @@
       <real_time_factor>1</real_time_factor>
       <real_time_update_rate>100</real_time_update_rate>
     </physics>
+
     <model name="target">
       <link name="link">
-	<collision name="collision1">
+        <collision name="collision1">
           <geometry>
             <polyline>
               <point>0.2 0.2</point>
@@ -84,11 +86,11 @@
             <ambient>1 0 0 1</ambient>
             <diffuse>1 0 0 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
 
-    <!-- ENV 1: bottom-left quadrant -->
+    <!-- ENV 1: bottom-left quadrant (Static Walls & Obstacles) -->
     <model name="env1wall1">
       <static>true</static>
       <link name="link">
@@ -104,20 +106,20 @@
           </geometry>
         </collision>
         <visual name="wall1">
-          <pose>-1.5 -8.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>1 13 1</size></box>
+            <polyline>
+              <point>-2 -2</point>
+              <point>-1 -2</point>
+              <point>-1 -15</point>
+              <point>-2 -15</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env1wall2">
@@ -135,20 +137,20 @@
           </geometry>
         </collision>
         <visual name="wall2">
-          <pose>-8.5 -14.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>13 1 1</size></box>
+            <polyline>
+              <point>-2 -14</point>
+              <point>-2 -15</point>
+              <point>-15 -15</point>
+              <point>-15 -14</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env1wall3">
@@ -166,20 +168,20 @@
           </geometry>
         </collision>
         <visual name="wall3">
-          <pose>-14.5 -7.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>1 13 1</size></box>
+            <polyline>
+              <point>-14 -1</point>
+              <point>-14 -14</point>
+              <point>-15 -14</point>
+              <point>-15 -1</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env1wall4">
@@ -197,20 +199,20 @@
           </geometry>
         </collision>
         <visual name="wall4">
-          <pose>-7.5 -1.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>13 1 1</size></box>
+            <polyline>
+              <point>-1 -1</point>
+              <point>-1 -2</point>
+              <point>-14 -2</point>
+              <point>-14 -1</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env1obs1">
@@ -228,20 +230,20 @@
           </geometry>
         </collision>
         <visual name="obs1">
-          <pose>-8 -6.25 0.5 0 0 0</pose>
           <geometry>
-            <box><size>3 0.5 1</size></box>
+            <polyline>
+              <point>-6.5 -6.5</point>
+              <point>-6.5 -6</point>
+              <point>-9.5 -6</point>
+              <point>-9.5 -6.5</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env1obs2">
@@ -259,20 +261,20 @@
           </geometry>
         </collision>
         <visual name="obs2">
-          <pose>-8 -9.75 0.5 0 0 0</pose>
           <geometry>
-            <box><size>3 0.5 1</size></box>
+            <polyline>
+              <point>-6.5 -9.5</point>
+              <point>-6.5 -10</point>
+              <point>-9.5 -10</point>
+              <point>-9.5 -9.5</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env1obs3">
@@ -290,20 +292,20 @@
           </geometry>
         </collision>
         <visual name="obs3">
-          <pose>-5 -8 0.5 0 0 0</pose>
           <geometry>
-            <box><size>0.5 3 1</size></box>
+            <polyline>
+              <point>-5.25 -6.5</point>
+              <point>-4.75 -6.5</point>
+              <point>-4.75 -9.5</point>
+              <point>-5.25 -9.5</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env1obs4">
@@ -321,18 +323,80 @@
           </geometry>
         </collision>
         <visual name="obs4">
-          <pose>-11 -8 0.5 0 0 0</pose>
           <geometry>
-            <box><size>0.5 3 1</size></box>
+            <polyline>
+              <point>-10.75 -6.5</point>
+              <point>-11.25 -6.5</point>
+              <point>-11.25 -9.5</point>
+              <point>-10.75 -9.5</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
+          </material>
+        </visual>  
+      </link>
+    </model>
+
+    <!-- ENV 1 Dynamic Obstacles -->
+    <model name="env1_dyn1">
+      <pose>-4 -5 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="env1_dyn2">
+      <pose>-12 -5 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="env1_dyn3">
+      <pose>-8 -12 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="env1_dyn4">
+      <pose>-4 -12 0.2 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
           </material>
         </visual>
       </link>
@@ -354,20 +418,20 @@
           </geometry>
         </collision>
         <visual name="wall1">
-          <pose>1.5 -8.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>1 13 1</size></box>
+            <polyline>
+              <point>2 -2</point>
+              <point>1 -2</point>
+              <point>1 -15</point>
+              <point>2 -15</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env2wall2">
@@ -385,20 +449,20 @@
           </geometry>
         </collision>
         <visual name="wall2">
-          <pose>8.5 -14.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>13 1 1</size></box>
+            <polyline>
+              <point>2 -14</point>
+              <point>2 -15</point>
+              <point>15 -15</point>
+              <point>15 -14</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env2wall3">
@@ -416,20 +480,20 @@
           </geometry>
         </collision>
         <visual name="wall3">
-          <pose>14.5 -7.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>1 13 1</size></box>
+            <polyline>
+              <point>14 -1</point>
+              <point>14 -14</point>
+              <point>15 -14</point>
+              <point>15 -1</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env2wall4">
@@ -447,20 +511,20 @@
           </geometry>
         </collision>
         <visual name="wall4">
-          <pose>7.5 -1.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>13 1 1</size></box>
+            <polyline>
+              <point>1 -1</point>
+              <point>1 -2</point>
+              <point>14 -2</point>
+              <point>14 -1</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env2obs1">
@@ -478,20 +542,20 @@
           </geometry>
         </collision>
         <visual name="obs1">
-          <pose>8 -4.25 0.5 0 0 0</pose>
           <geometry>
-            <box><size>6 0.5 1</size></box>
+            <polyline>
+              <point>5 -4.5</point>
+              <point>5 -4</point>
+              <point>11 -4</point>
+              <point>11 -4.5</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env2obs2">
@@ -509,20 +573,20 @@
           </geometry>
         </collision>
         <visual name="obs2">
-          <pose>8 -11.75 0.5 0 0 0</pose>
           <geometry>
-            <box><size>6 0.5 1</size></box>
+            <polyline>
+              <point>5 -11.5</point>
+              <point>5 -12</point>
+              <point>11 -12</point>
+              <point>11 -11.5</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env2obs3">
@@ -540,20 +604,20 @@
           </geometry>
         </collision>
         <visual name="obs3">
-          <pose>5 -8 0.5 0 0 0</pose>
           <geometry>
-            <box><size>0.5 4 1</size></box>
+            <polyline>
+              <point>5.25 -6</point>
+              <point>4.75 -6</point>
+              <point>4.75 -10</point>
+              <point>5.25 -10</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env2obs4">
@@ -571,20 +635,20 @@
           </geometry>
         </collision>
         <visual name="obs4">
-          <pose>11 -8 0.5 0 0 0</pose>
           <geometry>
-            <box><size>0.5 4 1</size></box>
+            <polyline>
+              <point>10.75 -6</point>
+              <point>11.25 -6</point>
+              <point>11.25 -10</point>
+              <point>10.75 -10</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
 
@@ -604,20 +668,20 @@
           </geometry>
         </collision>
         <visual name="wall1">
-          <pose>1.5 8.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>1 13 1</size></box>
+            <polyline>
+              <point>2 2</point>
+              <point>1 2</point>
+              <point>1 15</point>
+              <point>2 15</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env3wall2">
@@ -635,20 +699,20 @@
           </geometry>
         </collision>
         <visual name="wall2">
-          <pose>8.5 14.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>13 1 1</size></box>
+            <polyline>
+              <point>2 14</point>
+              <point>2 15</point>
+              <point>15 15</point>
+              <point>15 14</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env3wall3">
@@ -666,20 +730,20 @@
           </geometry>
         </collision>
         <visual name="wall3">
-          <pose>14.5 7.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>1 13 1</size></box>
+            <polyline>
+              <point>14 1</point>
+              <point>14 14</point>
+              <point>15 14</point>
+              <point>15 1</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env3wall4">
@@ -697,89 +761,24 @@
           </geometry>
         </collision>
         <visual name="wall4">
-          <pose>7.5 1.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>13 1 1</size></box>
+            <polyline>
+              <point>1 1</point>
+              <point>1 2</point>
+              <point>14 2</point>
+              <point>14 1</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
 
-    <!-- ENV 1 (index 0, bottom-left) dynamic obstacles — visual "fourth" -->
-    <model name="env1_dyn1">
-      <pose>-4 -5 0.2 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
-        </collision>
-        <visual name="visual">
-          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
-          <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-
-    <model name="env1_dyn2">
-      <pose>-12 -5 0.2 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
-        </collision>
-        <visual name="visual">
-          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
-          <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-
-    <model name="env1_dyn3">
-      <pose>-8 -12 0.2 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
-        </collision>
-        <visual name="visual">
-          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
-          <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-
-    <model name="env1_dyn4">
-      <pose>-4 -12 0.2 0 0 0</pose>
-      <link name="link">
-        <collision name="collision">
-          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
-        </collision>
-        <visual name="visual">
-          <geometry><box><size>0.2 0.2 0.4</size></box></geometry>
-          <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
-
-    <!-- ENV 4: top-left quadrant -->
+    <!-- ENV 4: top-left quadrant (Static Walls & Obstacles) -->
     <model name="env4wall1">
       <static>true</static>
       <link name="link">
@@ -795,20 +794,20 @@
           </geometry>
         </collision>
         <visual name="wall1">
-          <pose>-1.5 8.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>1 13 1</size></box>
+            <polyline>
+              <point>-2 2</point>
+              <point>-1 2</point>
+              <point>-1 15</point>
+              <point>-2 15</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env4wall2">
@@ -826,20 +825,20 @@
           </geometry>
         </collision>
         <visual name="wall2">
-          <pose>-8.5 14.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>13 1 1</size></box>
+            <polyline>
+              <point>-2 14</point>
+              <point>-2 15</point>
+              <point>-15 15</point>
+              <point>-15 14</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env4wall3">
@@ -857,20 +856,20 @@
           </geometry>
         </collision>
         <visual name="wall3">
-          <pose>-14.5 7.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>1 13 1</size></box>
+            <polyline>
+              <point>-14 1</point>
+              <point>-14 14</point>
+              <point>-15 14</point>
+              <point>-15 1</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env4wall4">
@@ -888,20 +887,20 @@
           </geometry>
         </collision>
         <visual name="wall4">
-          <pose>-7.5 1.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>13 1 1</size></box>
+            <polyline>
+              <point>-1 1</point>
+              <point>-1 2</point>
+              <point>-14 2</point>
+              <point>-14 1</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env4obs1">
@@ -919,20 +918,20 @@
           </geometry>
         </collision>
         <visual name="obs1">
-          <pose>-7.5 9.25 0.5 0 0 0</pose>
           <geometry>
-            <box><size>3 0.5 1</size></box>
+            <polyline>
+              <point>-6 9</point>
+              <point>-6 9.5</point>
+              <point>-9 9.5</point>
+              <point>-9 9</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env4obs2">
@@ -950,20 +949,20 @@
           </geometry>
         </collision>
         <visual name="obs2">
-          <pose>-8 6.75 0.5 0 0 0</pose>
           <geometry>
-            <box><size>4 0.5 1</size></box>
+            <polyline>
+              <point>-6 7</point>
+              <point>-6 6.5</point>
+              <point>-10 6.5</point>
+              <point>-10 7</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env4obs3">
@@ -981,20 +980,20 @@
           </geometry>
         </collision>
         <visual name="obs3">
-          <pose>-6 11.75 0.5 0 0 0</pose>
           <geometry>
-            <box><size>4 0.5 1</size></box>
+            <polyline>
+              <point>-4 11.5</point>
+              <point>-4 12</point>
+              <point>-8 12</point>
+              <point>-8 11.5</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env4obs4">
@@ -1012,20 +1011,20 @@
           </geometry>
         </collision>
         <visual name="obs4">
-          <pose>-11.75 10.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>0.5 3 1</size></box>
+            <polyline>
+              <point>-11.5 9</point>
+              <point>-11.5 12</point>
+              <point>-12 12</point>
+              <point>-12 9</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env4obs5">
@@ -1043,20 +1042,20 @@
           </geometry>
         </collision>
         <visual name="obs5">
-          <pose>-4 5.5 0.5 0 0 0</pose>
           <geometry>
-            <box><size>0.5 3 1</size></box>
+            <polyline>
+              <point>-3.75 4</point>
+              <point>-3.75 7</point>
+              <point>-4.25 7</point>
+              <point>-4.25 4</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
-        </visual>
+        </visual>  
       </link>
     </model>
     <model name="env4obs6">
@@ -1074,24 +1073,24 @@
           </geometry>
         </collision>
         <visual name="obs6">
-          <pose>-10 4.25 0.5 0 0 0</pose>
           <geometry>
-            <box><size>4 0.5 1</size></box>
+            <polyline>
+              <point>-8 4</point>
+              <point>-8 4.5</point>
+              <point>-12 4.5</point>
+              <point>-12 4</point>
+              <height>1</height>
+            </polyline>
           </geometry>
           <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
           </material>
         </visual>
       </link>
     </model>
 
-    <!-- ENV 4 (index 3, top-left) dynamic obstacles — visual "third" -->
+    <!-- ENV 4 Dynamic Obstacles -->
     <model name="env4_dyn1">
       <pose>-3 8 0.2 0 0 0</pose>
       <link name="link">
@@ -1107,7 +1106,6 @@
         </visual>
       </link>
     </model>
-
     <model name="env4_dyn2">
       <pose>-13 8 0.2 0 0 0</pose>
       <link name="link">
@@ -1123,7 +1121,6 @@
         </visual>
       </link>
     </model>
-
     <model name="env4_dyn3">
       <pose>-8 13 0.2 0 0 0</pose>
       <link name="link">
@@ -1140,6 +1137,7 @@
       </link>
     </model>
 
+    <!-- Robot -->
     <include>
       <uri>model://turtlebot3_burger</uri>
       <name>turtlebot3_burger</name>
