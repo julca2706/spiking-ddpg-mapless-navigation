@@ -57,7 +57,7 @@ class ObstacleMoverNode(Node):
         ]
 
         self.obstacles = evaluation_obstacles if mode == 'evaluation' else training_obstacles
-        self.get_logger().info(f'ObstacleMoverNode mode: {mode} ({len(self.obstacles)} obstacles)')
+        # self.get_logger().info(f'ObstacleMoverNode mode: {mode} ({len(self.obstacles)} obstacles)')
 
         for obs in self.obstacles:
             obs['x'] = obs['x0']
@@ -69,11 +69,11 @@ class ObstacleMoverNode(Node):
         self.create_service(Empty, 'reset_obstacles', self._reset_cb)
         self.create_timer(5.0, self._on_ready, callback_group=None)
         self.create_timer(self.dt, self._update)
-        self.get_logger().info('ObstacleMoverNode ready — waiting 5s for Gazebo to load models')
+        #self.get_logger().info('ObstacleMoverNode ready — waiting 5s for Gazebo to load models')
 
     def _on_ready(self):
         self.ready = True
-        self.get_logger().info('ObstacleMoverNode: starting obstacle movement')
+        # self.get_logger().info('ObstacleMoverNode: starting obstacle movement')
 
     def _randomize_velocity(self, obs):
         angle = random.uniform(0, 2 * math.pi)
@@ -129,7 +129,7 @@ class ObstacleMoverNode(Node):
             obs['y'] = obs['y0']
             self._randomize_velocity(obs)
             self._set_pose(obs['name'], obs['x'], obs['y'])
-        self.get_logger().info('Obstacles reset')
+        #self.get_logger().info('Obstacles reset')
         return response
 
 
