@@ -88,7 +88,7 @@
       </link>
     </model>
 
-    <!-- Outer boundary walls (box visuals for PBR texture support) -->
+    <!-- Outer boundary walls -->
     <model name="wall1">
       <static>true</static>
       <link name="link">
@@ -103,21 +103,48 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall1">
-          <pose>10.5 -0.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>1 21 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>10.5 -10.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>10.5 -10.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>10.5 -9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>10.5 -9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>10.5 -8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>10.5 -8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>10.5 -7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>10.5 -7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>10.5 -6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>10.5 -6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>10.5 -5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>10.5 -5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>10.5 -4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>10.5 -4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>10.5 -3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>10.5 -3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>10.5 -2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>10.5 -2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>10.5 -1.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>10.5 -1.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>10.5 -0.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>10.5 -0.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>10.5 0.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>10.5 0.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>10.5 1.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>10.5 1.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s27"><pose>10.5 2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s28"><pose>10.5 2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s29"><pose>10.5 3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s30"><pose>10.5 3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s31"><pose>10.5 4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s32"><pose>10.5 4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s33"><pose>10.5 5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s34"><pose>10.5 5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s35"><pose>10.5 6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s36"><pose>10.5 6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s37"><pose>10.5 7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s38"><pose>10.5 7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s39"><pose>10.5 8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s40"><pose>10.5 8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s41"><pose>10.5 9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s42"><pose>10.5 9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="wall2">
@@ -134,21 +161,48 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall2">
-          <pose>-0.5 -10.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>21 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-10.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-10.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-9.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-9.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-8.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-8.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-7.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-7.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-6.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-6.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-5.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-5.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-4.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-4.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-3.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-3.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-2.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-2.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-1.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-1.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>-0.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>-0.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>0.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>0.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>1.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>1.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s27"><pose>2.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s28"><pose>2.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s29"><pose>3.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s30"><pose>3.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s31"><pose>4.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s32"><pose>4.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s33"><pose>5.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s34"><pose>5.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s35"><pose>6.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s36"><pose>6.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s37"><pose>7.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s38"><pose>7.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s39"><pose>8.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s40"><pose>8.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s41"><pose>9.25 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s42"><pose>9.75 -10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="wall3">
@@ -165,21 +219,48 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall3">
-          <pose>-10.5 0.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>1 21 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-10.5 -9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-10.5 -9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-10.5 -8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-10.5 -8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-10.5 -7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-10.5 -7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-10.5 -6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-10.5 -6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-10.5 -5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-10.5 -5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-10.5 -4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-10.5 -4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-10.5 -3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-10.5 -3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-10.5 -2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-10.5 -2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-10.5 -1.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-10.5 -1.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-10.5 -0.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-10.5 -0.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>-10.5 0.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>-10.5 0.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>-10.5 1.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>-10.5 1.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>-10.5 2.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>-10.5 2.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s27"><pose>-10.5 3.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s28"><pose>-10.5 3.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s29"><pose>-10.5 4.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s30"><pose>-10.5 4.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s31"><pose>-10.5 5.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s32"><pose>-10.5 5.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s33"><pose>-10.5 6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s34"><pose>-10.5 6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s35"><pose>-10.5 7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s36"><pose>-10.5 7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s37"><pose>-10.5 8.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s38"><pose>-10.5 8.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s39"><pose>-10.5 9.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s40"><pose>-10.5 9.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s41"><pose>-10.5 10.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s42"><pose>-10.5 10.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
     <model name="wall4">
@@ -196,25 +277,52 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="wall4">
-          <pose>0.5 10.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>21 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-9.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-9.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-8.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-8.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-7.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-7.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-6.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-6.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-5.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-5.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>-4.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>-4.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>-3.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>-3.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s15"><pose>-2.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s16"><pose>-2.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s17"><pose>-1.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s18"><pose>-1.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s19"><pose>-0.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s20"><pose>-0.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s21"><pose>0.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s22"><pose>0.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s23"><pose>1.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s24"><pose>1.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s25"><pose>2.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s26"><pose>2.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s27"><pose>3.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s28"><pose>3.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s29"><pose>4.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s30"><pose>4.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s31"><pose>5.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s32"><pose>5.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s33"><pose>6.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s34"><pose>6.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s35"><pose>7.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s36"><pose>7.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s37"><pose>8.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s38"><pose>8.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s39"><pose>9.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s40"><pose>9.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s41"><pose>10.25 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s42"><pose>10.75 10.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
 
-    <!-- Obstacles: axis-aligned rectangles use box visual; non-rectangular keep polyline visual -->
+    <!-- obs1: x[-10,-6] y[-5.5,-5], 8 stripes along X, 0.5x0.5x1 -->
     <model name="obs1">
       <static>true</static>
       <link name="link">
@@ -229,23 +337,18 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs1">
-          <pose>-8 -5.25 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>4 0.5 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-9.75 -5.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-9.25 -5.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-8.75 -5.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-8.25 -5.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-7.75 -5.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-7.25 -5.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-6.75 -5.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-6.25 -5.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs2: x[-5.5,-5] y[-10,-6], 8 stripes along Y, 0.5x0.5x1 -->
     <model name="obs2">
       <static>true</static>
       <link name="link">
@@ -260,23 +363,18 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs2">
-          <pose>-5.25 -8 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>0.5 4 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-5.25 -9.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-5.25 -9.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-5.25 -8.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-5.25 -8.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-5.25 -7.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-5.25 -7.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-5.25 -6.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-5.25 -6.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs3: x[-3,4] y[-6,-5], 14 stripes along X, 0.5x1x1 -->
     <model name="obs3">
       <static>true</static>
       <link name="link">
@@ -291,23 +389,24 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs3">
-          <pose>0.5 -5.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>7 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-2.75 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-2.25 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-1.75 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-1.25 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-0.75 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-0.25 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>0.25 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>0.75 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>1.25 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>1.75 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s11"><pose>2.25 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s12"><pose>2.75 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s13"><pose>3.25 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s14"><pose>3.75 -5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs4: x[6,10] y[-7,-6], 8 stripes along X, 0.5x1x1 -->
     <model name="obs4">
       <static>true</static>
       <link name="link">
@@ -322,23 +421,18 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs4">
-          <pose>8 -6.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>4 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>6.25 -6.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>6.75 -6.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>7.25 -6.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>7.75 -6.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>8.25 -6.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>8.75 -6.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>9.25 -6.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>9.75 -6.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs5: x[-6,-5] y[-3,-2], 2 stripes along X, 0.5x1x1 -->
     <model name="obs5">
       <static>true</static>
       <link name="link">
@@ -353,23 +447,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs5">
-          <pose>-5.5 -2.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>1 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-5.75 -2.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-5.25 -2.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs6: x[-9.25,-4] y[0,1], 10 stripes along X, 0.5x1x1 -->
     <model name="obs6">
       <static>true</static>
       <link name="link">
@@ -384,23 +467,20 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs6">
-          <pose>-6.625 0.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>5.25 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-9.0 0.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-8.5 0.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-8.0 0.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-7.5 0.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-7.0 0.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-6.5 0.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-6.0 0.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-5.5 0.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s9"><pose>-5.0 0.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s10"><pose>-4.5 0.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs7: x[-7,-5] y[3,5], 4 stripes along X, 0.5x2x1 -->
     <model name="obs7">
       <static>true</static>
       <link name="link">
@@ -415,23 +495,14 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs7">
-          <pose>-6 4 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>2 2 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-6.75 4 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-6.25 4 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-5.75 4 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-5.25 4 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs8: x[-7,-3] y[5,7], 8 stripes along X, 0.5x2x1 -->
     <model name="obs8">
       <static>true</static>
       <link name="link">
@@ -446,23 +517,18 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs8">
-          <pose>-5 6 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>4 2 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-6.75 6 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-6.25 6 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-5.75 6 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-5.25 6 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>-4.75 6 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>-4.25 6 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>-3.75 6 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s8"><pose>-3.25 6 0.5 0 0 0</pose><geometry><box><size>0.5 2 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs9: triangle — polyline unchanged -->
     <model name="obs9">
       <static>true</static>
       <link name="link">
@@ -497,6 +563,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs10: diamond — polyline unchanged -->
     <model name="obs10">
       <static>true</static>
       <link name="link">
@@ -533,6 +601,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs11: diamond — polyline unchanged -->
     <model name="obs11">
       <static>true</static>
       <link name="link">
@@ -569,6 +639,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs12: x[6.5,8] y[6.5,8], 3 stripes along X, 0.5x1.5x1 -->
     <model name="obs12">
       <static>true</static>
       <link name="link">
@@ -583,23 +655,13 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs12">
-          <pose>7.25 7.25 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>1.5 1.5 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>6.75 7.25 0.5 0 0 0</pose><geometry><box><size>0.5 1.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>7.25 7.25 0.5 0 0 0</pose><geometry><box><size>0.5 1.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>7.75 7.25 0.5 0 0 0</pose><geometry><box><size>0.5 1.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs13: x[6,7] y[5,6], 2 stripes along X, 0.5x1x1 -->
     <model name="obs13">
       <static>true</static>
       <link name="link">
@@ -614,23 +676,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs13">
-          <pose>6.5 5.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>1 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>6.25 5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>6.75 5.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs14: x[5,5.5] y[2.75,4], 2 stripes along Y, 0.5x0.5x1 -->
     <model name="obs14">
       <static>true</static>
       <link name="link">
@@ -645,23 +696,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs14">
-          <pose>5.25 3.375 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>0.5 1.25 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>5.25 3.0 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>5.25 3.5 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs15: x[5.5,9] y[3.5,4], 7 stripes along X, 0.5x0.5x1 -->
     <model name="obs15">
       <static>true</static>
       <link name="link">
@@ -676,23 +716,17 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs15">
-          <pose>7.25 3.75 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>3.5 0.5 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>5.75 3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>6.25 3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>6.75 3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>7.25 3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>7.75 3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>8.25 3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>8.75 3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs16: x[5,5.5] y[-1.5,1.5], 6 stripes along Y, 0.5x0.5x1 -->
     <model name="obs16">
       <static>true</static>
       <link name="link">
@@ -707,23 +741,16 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs16">
-          <pose>5.25 0 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>0.5 3 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>5.25 -1.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>5.25 -0.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>5.25 -0.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>5.25 0.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>5.25 0.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>5.25 1.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs17: x[5.5,8] y[-0.5,0.5], 5 stripes along X, 0.5x1x1 -->
     <model name="obs17">
       <static>true</static>
       <link name="link">
@@ -738,23 +765,15 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs17">
-          <pose>6.75 0 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>2.5 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>5.75 0 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>6.25 0 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>6.75 0 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>7.25 0 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>7.75 0 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs18: x[5,5.5] y[-4,-2.75], 2 stripes along Y, 0.5x0.5x1 -->
     <model name="obs18">
       <static>true</static>
       <link name="link">
@@ -769,23 +788,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs18">
-          <pose>5.25 -3.375 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>0.5 1.25 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>5.25 -3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>5.25 -3.25 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs19: x[5.5,9] y[-4,-3.5], 7 stripes along X, 0.5x0.5x1 -->
     <model name="obs19">
       <static>true</static>
       <link name="link">
@@ -800,23 +808,17 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs19">
-          <pose>7.25 -3.75 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>3.5 0.5 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>5.75 -3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>6.25 -3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>6.75 -3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>7.25 -3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s5"><pose>7.75 -3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s6"><pose>8.25 -3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s7"><pose>8.75 -3.75 0.5 0 0 0</pose><geometry><box><size>0.5 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs20: trapezoid — polyline unchanged -->
     <model name="obs20">
       <static>true</static>
       <link name="link">
@@ -853,6 +855,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs21: triangle — polyline unchanged -->
     <model name="obs21">
       <static>true</static>
       <link name="link">
@@ -887,6 +891,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs22: trapezoid — polyline unchanged -->
     <model name="obs22">
       <static>true</static>
       <link name="link">
@@ -923,6 +929,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs23: triangle — polyline unchanged -->
     <model name="obs23">
       <static>true</static>
       <link name="link">
@@ -957,6 +965,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs24: x[-8,-7] y[-8,-7], 2 stripes along X, 0.5x1x1 -->
     <model name="obs24">
       <static>true</static>
       <link name="link">
@@ -971,23 +981,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs24">
-          <pose>-7.5 -7.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>1 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-7.75 -7.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-7.25 -7.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs25: x[-8,-6] y[-2.75,-1.75], 4 stripes along X, 0.5x1x1 -->
     <model name="obs25">
       <static>true</static>
       <link name="link">
@@ -1002,23 +1001,14 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs25">
-          <pose>-7 -2.25 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>2 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-7.75 -2.25 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-7.25 -2.25 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-6.75 -2.25 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-6.25 -2.25 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs26: parallelogram — polyline unchanged -->
     <model name="obs26">
       <static>true</static>
       <link name="link">
@@ -1055,6 +1045,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs27: x[-5,-4] y[-5,-4], 2 stripes along X, 0.5x1x1 -->
     <model name="obs27">
       <static>true</static>
       <link name="link">
@@ -1069,23 +1061,12 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs27">
-          <pose>-4.5 -4.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>1 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-4.75 -4.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-4.25 -4.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs28: parallelogram — polyline unchanged -->
     <model name="obs28">
       <static>true</static>
       <link name="link">
@@ -1122,6 +1103,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs29: x[-10,-9] y[6,8], 4 stripes along Y, 1x0.5x1 -->
     <model name="obs29">
       <static>true</static>
       <link name="link">
@@ -1136,23 +1119,14 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs29">
-          <pose>-9.5 7 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>1 2 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-9.5 6.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-9.5 6.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-9.5 7.25 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-9.5 7.75 0.5 0 0 0</pose><geometry><box><size>1 0.5 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs30: x[-6,-4] y[9,10], 4 stripes along X, 0.5x1x1 -->
     <model name="obs30">
       <static>true</static>
       <link name="link">
@@ -1167,23 +1141,14 @@
             </polyline>
           </geometry>
         </collision>
-        <visual name="obs30">
-          <pose>-5 9.5 0.5 0 0 0</pose>
-          <geometry>
-            <box><size>2 1 1</size></box>
-          </geometry>
-          <material>
-            <diffuse>1 1 1 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
-          </material>
-        </visual>
+        <visual name="s1"><pose>-5.75 9.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s2"><pose>-5.25 9.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
+        <visual name="s3"><pose>-4.75 9.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material></visual>
+        <visual name="s4"><pose>-4.25 9.5 0.5 0 0 0</pose><geometry><box><size>0.5 1 1</size></box></geometry><material><ambient>0 0 0 1</ambient><diffuse>0 0 0 1</diffuse></material></visual>
       </link>
     </model>
+
+    <!-- obs31: triangle — polyline unchanged -->
     <model name="obs31">
       <static>true</static>
       <link name="link">
@@ -1218,6 +1183,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs32: diamond — polyline unchanged -->
     <model name="obs32">
       <static>true</static>
       <link name="link">
@@ -1254,6 +1221,8 @@
         </visual>
       </link>
     </model>
+
+    <!-- obs33: parallelogram — polyline unchanged -->
     <model name="obs33">
       <static>true</static>
       <link name="link">
