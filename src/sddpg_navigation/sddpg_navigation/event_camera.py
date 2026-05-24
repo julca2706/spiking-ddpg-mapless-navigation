@@ -6,7 +6,8 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import cv2
 
-# Match the sensor-data QoS that ros_gz_bridge uses so rqt_image_view can subscribe
+# ros_gz_bridge publishes sensor topics with BEST_EFFORT reliability.
+# Subscriber QoS must match exactly — mismatched policies silently prevent connection in ROS 2.
 _SENSOR_QOS = QoSProfile(
     reliability=ReliabilityPolicy.BEST_EFFORT,
     durability=DurabilityPolicy.VOLATILE,
@@ -14,12 +15,16 @@ _SENSOR_QOS = QoSProfile(
     depth=10,
 )
 
+
+# This node is responsible for subscribing to raw images from the robot RGB camera,
+# and producing and publishing synthetic DVS event frames.
+
 class EventCameraNode(Node):
 
     def __init__(self):
         super().__init__('event_camera_node')
         self.bridge = CvBridge()
-        self.threshold = 0.005
+        self.threshold = 0.005  # minimum normalised brightness change (0–1) to register as an event
         self.prev_frame = None
 
         self.create_subscription(Image, '/camera/image_raw', self._camera_cb, _SENSOR_QOS)
@@ -28,13 +33,14 @@ class EventCameraNode(Node):
     def _camera_cb(self, msg):
         frame = self.bridge.imgmsg_to_cv2(msg, 'mono8')
         frame = frame.astype(float) / 255.0
-        frame = cv2.medianBlur(frame.astype(np.float32), 3)
+        frame = cv2.medianBlur(frame.astype(np.float32), 3)  # median blur for noise cancellation
 
         if self.prev_frame is None:
             self.prev_frame = frame
             return
 
         difference = frame - self.prev_frame
+
         on_events  = (difference >  self.threshold).astype(np.uint8) * 255
         off_events = (difference < -self.threshold).astype(np.uint8)
         # Encode: ON=255, no-event=128, OFF=0

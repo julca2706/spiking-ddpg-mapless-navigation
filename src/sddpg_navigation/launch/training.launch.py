@@ -7,6 +7,8 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch_ros.actions import Node
 
+# Launches: Gazebo (static world, 4 environments) + ROS-Gazebo bridge.
+# For all specifications of existing launches check README.md.
 
 def generate_launch_description():
     pkg_share = get_package_share_directory('sddpg_navigation')

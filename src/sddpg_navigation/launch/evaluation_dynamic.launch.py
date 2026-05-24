@@ -7,6 +7,10 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch_ros.actions import Node
 
+# Launches: Gazebo (dynamic evaluation world, 6 moving obstacles) + ROS-Gazebo bridge
+#           + event_camera node (DVS processing, required for DVS actor evaluation)
+#           + obstacle_mover node (evaluation mode: 6 obstacles, publishes /dynamic_obstacle_positions).
+# For all specifications of existing launches check README.md.
 
 def generate_launch_description():
     pkg_share = get_package_share_directory('sddpg_navigation')

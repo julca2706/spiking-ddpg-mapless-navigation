@@ -1,4 +1,10 @@
 <?xml version="1.0" ?>
+<!--
+  Based on TurtleBot3 Burger model by ROBOTIS Co., Ltd. (Taehun Lim)
+  Source: https://github.com/ROBOTIS-GIT/turtlebot3_simulations/blob/main/turtlebot3_gazebo/models/turtlebot3_burger_cam
+  License: Apache License 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
+  Modifications: Added camera_link with camera sensor for synthetic DVS event generation.
+-->
 <sdf version="1.8">
   <model name="turtlebot3_burger">
     <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>

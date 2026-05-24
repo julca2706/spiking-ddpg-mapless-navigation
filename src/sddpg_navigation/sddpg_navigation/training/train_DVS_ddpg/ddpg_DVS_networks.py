@@ -28,7 +28,7 @@ class ActorNet(nn.Module):
         nn.init.zeros_(self.fc_events.bias)
         nn.init.zeros_(self.fc_out.bias)
 
-    def forward(self, events, goal, last_action=None, hidden=None):
+    def forward(self, events, goal, last_action=None, hidden=None, return_seq=False):
         # events: (B, T, 2, H, W),  goal: (B, T, 2),  last_action: (B, T, action_num)
         B, T = events.shape[:2]
 
@@ -45,7 +45,10 @@ class ActorNet(nn.Module):
             gru_input = torch.cat([gru_input, last_action], dim=-1)
 
         output, hidden = self.gru(gru_input, hidden)
-        out = self.sigmoid(self.fc_out(output[:, -1, :]))
+        if return_seq:
+            out = self.sigmoid(self.fc_out(output))           # (B, T, action_num)
+        else:
+            out = self.sigmoid(self.fc_out(output[:, -1, :]))  # (B, action_num)
         return out, hidden
 
 

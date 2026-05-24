@@ -29,9 +29,9 @@ class ActorNet(nn.Module):
         x = self.relu(self.fc2(x))
         x, hidden = self.gru(x, hidden)
         if return_seq:
-            out = self.sigmoid(self.fc3(x))          # (B, T, action_num)
+            out = self.sigmoid(self.fc3(x))         
         else:
-            out = self.sigmoid(self.fc3(x[:, -1, :]))  # (B, action_num)
+            out = self.sigmoid(self.fc3(x[:, -1, :])) 
         return out, hidden
 
 

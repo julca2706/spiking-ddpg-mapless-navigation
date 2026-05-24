@@ -25,9 +25,7 @@ setup(
         ('share/' + package_name + '/models/turtlebot3_burger', [
             'models/turtlebot3_burger/model.sdf',
             'models/turtlebot3_burger/model.config']),
-        ('share/' + package_name + '/models/textures', [
-            'models/textures/model.config',
-            'models/textures/vertical_stripes.png'])],
+        ],
     package_data={
         'sddpg_navigation': ['random_positions/*.p'],
     },
@@ -35,7 +33,7 @@ setup(
     zip_safe=True,
     maintainer='Julia Caluch',
     maintainer_email='j.cauch@student.maastrichtuniversity.nl',
-    description='Spiking DDPG mapless navigation - ROS 2 port',
+    description='Mapless robot navigation via reinforcement learning (TD3, DVS, Spiking DDPG) in Gazebo Harmonic — ROS 2 Jazzy',
     license='MIT',
     extras_require={
         'test': [
@@ -46,7 +44,6 @@ setup(
         'console_scripts': [
             'environment = sddpg_navigation.environment:main',
             'train_sddpg = sddpg_navigation.training.train_spiking_ddpg.train_sddpg:main',
-            'train_ddpg = sddpg_navigation.training.train_ddpg.train_ddpg:main',
             'train_td3 = sddpg_navigation.training.train_td3.train_td3:main',
             'eval_sddpg = sddpg_navigation.evaluation.eval_random_simulation.run_sddpg_eval:main',
             'eval_ddpg = sddpg_navigation.evaluation.eval_random_simulation.run_ddpg_eval:main',
@@ -55,7 +52,9 @@ setup(
             'train_dvs_ddpg = sddpg_navigation.training.train_DVS_ddpg.train_DVS_ddpg:main',
             'train_pure_ddpg = sddpg_navigation.training.train_pure_ddpg.train_ddpg:main',
             'eval_pure_ddpg = sddpg_navigation.evaluation.eval_random_simulation.run_pure_ddpg_eval:main',
-            'eval_gru_ddpg = sddpg_navigation.evaluation.eval_random_simulation.run_gru_ddpg_eval:main',
+            'eval_td3 = sddpg_navigation.evaluation.eval_random_simulation.run_td3_eval:main',
+            'eval_dvs = sddpg_navigation.evaluation.eval_random_simulation.run_dvs_eval:main',
+            'test_dynamic_collision = sddpg_navigation.test_dynamic_collision:main',
         ],
     },
 )

@@ -96,7 +96,9 @@ class AgentDVS:
         self.last_actor_loss = 0.0
         self.current_seq = []
         self.hidden_state = None
+        self.prev_hidden_state = None
         self.last_action = np.zeros(self.action_num, dtype=np.float32)
+        self.prev_last_action = np.zeros(self.action_num, dtype=np.float32)
         self.seq_start_hidden = None
         self.seq_start_last_action = np.zeros(self.action_num, dtype=np.float32)
 
@@ -111,8 +113,8 @@ class AgentDVS:
         done               : bool
         """
         if len(self.current_seq) == 0:
-            self.seq_start_hidden = self.hidden_state
-            self.seq_start_last_action = self.last_action.copy()
+            self.seq_start_hidden = self.prev_hidden_state
+            self.seq_start_last_action = self.prev_last_action.copy()
 
         # tuple indices: 0=state, 1=event_frame, 2=action, 3=reward,
         #                4=next_state, 5=next_event_frame, 6=done
@@ -145,25 +147,27 @@ class AgentDVS:
 
             # shapes: (T, 2, 64, 64), (T, 2), (T, action_num)
             seq_events      = np.stack([t[1] for t in seq], axis=0)       # (T, 2, 64, 64)
-            seq_goals       = np.stack([t[0][:2] for t in seq], axis=0)  # (T, 2) — goal_dir, goal_dis
+            seq_goals       = np.stack([t[0][:2] for t in seq], axis=0)  # (T, 2)
             seq_next_events = np.stack([t[5] for t in seq], axis=0)      # (T, 2, 64, 64)
             seq_next_goals  = np.stack([t[4][:2] for t in seq], axis=0)  # (T, 2)
             seq_last_actions = np.stack(seq_last_actions, axis=0)          # (T, action_num)
+            seq_states  = np.stack([t[0] for t in seq], axis=0)           # (T, state_num)
+            seq_nstates = np.stack([t[4] for t in seq], axis=0)           # (T, state_num)
+            seq_rewards = np.array([t[3] for t in seq], dtype=np.float32) # (T,)
+            seq_dones   = np.array([t[6] for t in seq], dtype=np.float32) # (T,)
 
             hidden_size = self.actor_net.gru.hidden_size
             if self.seq_start_hidden is not None:
-                init_hidden = self.seq_start_hidden.detach().cpu().numpy()  # (1, 1, hidden_size)
+                init_hidden = self.seq_start_hidden.detach().cpu().numpy()
             else:
                 init_hidden = np.zeros((1, 1, hidden_size), dtype=np.float32)
 
             last = self.current_seq[-1]
-            # memory entry: (seq_events, seq_goals, seq_next_events, seq_next_goals,
-            #                seq_last_actions, last_state, last_action, last_reward,
-            #                last_next_state, last_done, init_hidden)
             self.memory.append((seq_events, seq_goals, seq_next_events, seq_next_goals,
                                  seq_last_actions,
                                  last[0], last[2], last[3], last[4], last[6],
-                                 init_hidden))
+                                 init_hidden,
+                                 seq_states, seq_nstates, seq_rewards, seq_dones))
             self.current_seq = []
 
         if done:
@@ -178,17 +182,13 @@ class AgentDVS:
         state       : array (state_num,) — LiDAR state; goal extracted as state[-2:]
         """
         with torch.no_grad():
-            # (B=1, T=1, 2, 64, 64)
             events_t = torch.FloatTensor(event_frame).unsqueeze(0).unsqueeze(0).to(self.device)
-            # (B=1, T=1, 2)
             goal_t = torch.FloatTensor(np.array(state[:2], dtype=np.float32)).reshape(1, 1, 2).to(self.device)
-            # (B=1, T=1, action_num)
             last_action_t = torch.FloatTensor(self.last_action).reshape(1, 1, -1).to(self.device)
-
+            self.prev_hidden_state = self.hidden_state
             action, self.hidden_state = self.actor_net(events_t, goal_t,
                                                        last_action=last_action_t,
                                                        hidden=self.hidden_state)
-            # action: (B=1, action_num) → (action_num,)
             action = action.cpu().numpy().squeeze()
 
         if train:
@@ -201,6 +201,7 @@ class AgentDVS:
             noise = np.random.randn(self.action_num) * self.epsilon_end
             action = np.clip(noise + (1.0 - self.epsilon_end) * action, 0.0, 1.0)
 
+        self.prev_last_action = self.last_action.copy()
         self.last_action = action.astype(np.float32)
         return action.tolist()
 
@@ -208,42 +209,57 @@ class AgentDVS:
         """Experience Replay — one TD3 update step."""
         (seq_ev, seq_goal, seq_nev, seq_ngoal,
          seq_la, state_b, action_b, reward_b,
-         nstate_b, done_b, hidden_b) = self._random_minibatch()
+         nstate_b, done_b, hidden_b,
+         seq_states_b, seq_nstates_b, seq_rewards_b, seq_dones_b) = self._random_minibatch()
+        B, T = self.batch_size, self.seq_len
 
-        # ── Target Q ─────────────────────────────────────────────────────
+        # ── Target Q (all T steps) ────────────────────────────────────────
         with torch.no_grad():
-            # target actor: hidden=None (reset per sequence); gets last_action
-            naction_b, _ = self.target_actor_net(seq_nev, seq_ngoal, last_action=seq_la)
-            noise = torch.clamp(torch.randn_like(naction_b) * 0.1, -0.2, 0.2)
-            naction_b = torch.clamp(naction_b + noise, 0.0, 1.0)
-            nq1 = self.target_critic_net([nstate_b, naction_b])
-            nq2 = self.target_critic_net2([nstate_b, naction_b])
-            target_q = reward_b + self.reward_gamma * torch.min(nq1, nq2) * (1.0 - done_b)
+            next_seq_la = torch.cat([seq_la[:, 1:, :], action_b.unsqueeze(1)], dim=1)
+            _, hidden_out_b = self.target_actor_net(seq_ev, seq_goal,
+                                                    last_action=seq_la, hidden=hidden_b)
+            all_nactions, _ = self.target_actor_net(seq_nev, seq_ngoal,
+                                                     last_action=next_seq_la,
+                                                     hidden=hidden_out_b,
+                                                     return_seq=True)  # (B, T, action_num)
+            noise = torch.clamp(torch.randn_like(all_nactions) * 0.1, -0.2, 0.2)
+            all_nactions = torch.clamp(all_nactions + noise, 0.0, 1.0)
+            all_nstates_flat = seq_nstates_b.view(B * T, -1)
+            all_nactions_flat = all_nactions.view(B * T, -1)
+            tq1 = self.target_critic_net([all_nstates_flat, all_nactions_flat])
+            tq2 = self.target_critic_net2([all_nstates_flat, all_nactions_flat])
+            all_target_q = (seq_rewards_b.view(B * T, 1) +
+                            self.reward_gamma * torch.min(tq1, tq2) *
+                            (1.0 - seq_dones_b.view(B * T, 1)))
 
-        # ── Critic update ─────────────────────────────────────────────────
+        # ── Critic update (all T steps) ───────────────────────────────────
+        all_states_flat = seq_states_b.view(B * T, -1)
+        all_actions_flat = next_seq_la.view(B * T, -1)
+
         self.critic_optimizer.zero_grad()
-        q1 = self.critic_net([state_b, action_b])
-        loss1 = self.criterion(q1, target_q)
+        q1_all = self.critic_net([all_states_flat, all_actions_flat])
+        loss1 = self.criterion(q1_all, all_target_q)
         critic_loss_item = loss1.item()
         loss1.backward()
-        nn.utils.clip_grad_norm_(self.critic_net.parameters(), max_norm=1.0)
+        nn.utils.clip_grad_norm_(self.critic_net.parameters(), max_norm=0.5)
         self.critic_optimizer.step()
 
         self.critic_optimizer2.zero_grad()
-        q2 = self.critic_net2([state_b, action_b])
-        loss2 = self.criterion(q2, target_q)
+        q2_all = self.critic_net2([all_states_flat, all_actions_flat])
+        loss2 = self.criterion(q2_all, all_target_q)
         loss2.backward()
-        nn.utils.clip_grad_norm_(self.critic_net2.parameters(), max_norm=1.0)
+        nn.utils.clip_grad_norm_(self.critic_net2.parameters(), max_norm=0.5)
         self.critic_optimizer2.step()
 
-        # ── Actor update (delayed) ────────────────────────────────────────
+        # ── Actor update (delayed, all T steps) ──────────────────────────
         self.step_ita += 1
         if self.step_ita % self.policy_delay == 0:
             self.actor_optimizer.zero_grad()
-            # online actor with stored hidden state from buffer
-            cur_action, _ = self.actor_net(seq_ev, seq_goal,
-                                            last_action=seq_la, hidden=hidden_b)
-            actor_loss = -self.critic_net([state_b, cur_action]).mean()
+            cur_actions, _ = self.actor_net(seq_ev, seq_goal,
+                                             last_action=seq_la, hidden=hidden_b,
+                                             return_seq=True)  # (B, T, action_num)
+            actor_loss = -self.critic_net([all_states_flat,
+                                           cur_actions.view(B * T, -1)]).mean()
             self.last_actor_loss = actor_loss.item()
             actor_loss.backward()
             nn.utils.clip_grad_norm_(self.actor_net.parameters(), max_norm=1.0)
@@ -280,40 +296,50 @@ class AgentDVS:
         B, T = self.batch_size, self.seq_len
         hidden_size = self.actor_net.gru.hidden_size
 
-        seq_ev_arr   = np.zeros((B, T, 2, 64, 64), dtype=np.float32)
-        seq_goal_arr = np.zeros((B, T, 2),          dtype=np.float32)
-        seq_nev_arr  = np.zeros((B, T, 2, 64, 64), dtype=np.float32)
-        seq_ngoal_arr= np.zeros((B, T, 2),          dtype=np.float32)
-        seq_la_arr   = np.zeros((B, T, self.action_num), dtype=np.float32)
-        state_arr    = np.zeros((B, self.state_num), dtype=np.float32)
-        action_arr   = np.zeros((B, self.action_num), dtype=np.float32)
-        reward_arr   = np.zeros((B, 1),              dtype=np.float32)
-        nstate_arr   = np.zeros((B, self.state_num), dtype=np.float32)
-        done_arr     = np.zeros((B, 1),              dtype=np.float32)
-        hidden_arr   = np.zeros((1, B, hidden_size), dtype=np.float32)
+        seq_ev_arr      = np.zeros((B, T, 2, 64, 64), dtype=np.float32)
+        seq_goal_arr    = np.zeros((B, T, 2),          dtype=np.float32)
+        seq_nev_arr     = np.zeros((B, T, 2, 64, 64), dtype=np.float32)
+        seq_ngoal_arr   = np.zeros((B, T, 2),          dtype=np.float32)
+        seq_la_arr      = np.zeros((B, T, self.action_num), dtype=np.float32)
+        state_arr       = np.zeros((B, self.state_num), dtype=np.float32)
+        action_arr      = np.zeros((B, self.action_num), dtype=np.float32)
+        reward_arr      = np.zeros((B, 1),              dtype=np.float32)
+        nstate_arr      = np.zeros((B, self.state_num), dtype=np.float32)
+        done_arr        = np.zeros((B, 1),              dtype=np.float32)
+        hidden_arr      = np.zeros((1, B, hidden_size), dtype=np.float32)
+        seq_states_arr  = np.zeros((B, T, self.state_num), dtype=np.float32)
+        seq_nstates_arr = np.zeros((B, T, self.state_num), dtype=np.float32)
+        seq_rewards_arr = np.zeros((B, T, 1),           dtype=np.float32)
+        seq_dones_arr   = np.zeros((B, T, 1),           dtype=np.float32)
 
         for i, entry in enumerate(minibatch):
             (seq_ev, seq_goal, seq_nev, seq_ngoal,
-             seq_la, state, action, reward, nstate, done, init_hidden) = entry
+             seq_la, state, action, reward, nstate, done, init_hidden,
+             seq_states, seq_nstates, seq_rewards, seq_dones) = entry
 
-            seq_ev_arr[i]    = seq_ev        # (T, 2, 64, 64)
-            seq_goal_arr[i]  = seq_goal      # (T, 2)
-            seq_nev_arr[i]   = seq_nev       # (T, 2, 64, 64)
-            seq_ngoal_arr[i] = seq_ngoal     # (T, 2)
-            seq_la_arr[i]    = seq_la        # (T, action_num)
-            state_arr[i]     = state
-            action_arr[i]    = action
-            reward_arr[i, 0] = reward
-            nstate_arr[i]    = nstate
-            done_arr[i, 0]   = float(done)
-            hidden_arr[:, i, :] = init_hidden[:, 0, :]  # (1, hidden_size)
+            seq_ev_arr[i]         = seq_ev
+            seq_goal_arr[i]       = seq_goal
+            seq_nev_arr[i]        = seq_nev
+            seq_ngoal_arr[i]      = seq_ngoal
+            seq_la_arr[i]         = seq_la
+            state_arr[i]          = state
+            action_arr[i]         = action
+            reward_arr[i, 0]      = reward
+            nstate_arr[i]         = nstate
+            done_arr[i, 0]        = float(done)
+            hidden_arr[:, i, :]   = init_hidden[:, 0, :]
+            seq_states_arr[i]     = seq_states
+            seq_nstates_arr[i]    = seq_nstates
+            seq_rewards_arr[i, :, 0] = seq_rewards
+            seq_dones_arr[i, :, 0]   = seq_dones
 
         def t(arr):
             return torch.from_numpy(arr).to(self.device)
 
         return (t(seq_ev_arr), t(seq_goal_arr), t(seq_nev_arr), t(seq_ngoal_arr),
                 t(seq_la_arr), t(state_arr), t(action_arr), t(reward_arr),
-                t(nstate_arr), t(done_arr), t(hidden_arr))
+                t(nstate_arr), t(done_arr), t(hidden_arr),
+                t(seq_states_arr), t(seq_nstates_arr), t(seq_rewards_arr), t(seq_dones_arr))
 
     def _hard_update(self, target, source):
         with torch.no_grad():

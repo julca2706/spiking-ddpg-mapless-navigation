@@ -65,10 +65,10 @@ Terminal 2 (after Gazebo is up):
 
 ```bash
 source /opt/ros/jazzy/setup.bash && source install/setup.bash
-ros2 run sddpg_navigation train_ddpg
+ros2 run sddpg_navigation train_td3
 
 # Start from a specific environment (0=env1, 1=env2, 2=env3, 3=env4)
-ros2 run sddpg_navigation train_ddpg --start_env 1
+ros2 run sddpg_navigation train_td3 --start_env 1
 ```
 
 ## Training — DVS (Event Camera)
@@ -102,12 +102,14 @@ ros2 run rqt_image_view rqt_image_view /camera/image_raw  # raw camera before pr
 
 ## Training — Dynamic Obstacles (LiDAR)
 
+Uses `training_dynamic_lidar.launch.py` — dynamic world + obstacle mover, no event_camera node.
+
 ```bash
 # Terminal 1
-ros2 launch sddpg_navigation training_dynamic.launch.py headless:=true
+ros2 launch sddpg_navigation training_dynamic_lidar.launch.py headless:=true
 
 # Terminal 2
-ros2 run sddpg_navigation train_ddpg
+ros2 run sddpg_navigation train_td3
 ```
 
 ## Evaluation — Simulation
@@ -124,16 +126,26 @@ Terminal 2:
 ```bash
 source /opt/ros/jazzy/setup.bash && source install/setup.bash
 
-# TD3 LiDAR (GRU actor)
+# TD3 LiDAR (GRU actor) — loads from save_td3_weights/ by default
+ros2 run sddpg_navigation eval_td3 --model_name <run_name>
+
+# Legacy GRU DDPG (without TD3 improvements) — loads from evaluation/saved_model/ by default
 ros2 run sddpg_navigation eval_ddpg
 
-# Pure DDPG baseline (FC actor)
-ros2 run sddpg_navigation eval_pure_ddpg \
-  --model_name DDPG_R1_actor_network_s1 \
-  --save_dir src/sddpg_navigation/sddpg_navigation/save_pure_ddpg_weights/
+# DVS (CNN+GRU actor) — loads from save_dvs_weights/ by default
+# Requires evaluation_dynamic.launch.py (event_camera node must be running)
+ros2 run sddpg_navigation eval_dvs --model_name <run_name> --checkpoint <step>
 
-# Spiking DDPG
+# Pure DDPG baseline (FC actor) — loads from save_pure_ddpg_weights/ by default
+ros2 run sddpg_navigation eval_pure_ddpg --model_name <run_name>
+
+# Spiking DDPG — loads from evaluation/saved_model/ by default (legacy format)
 ros2 run sddpg_navigation eval_sddpg
+# Or load from a training checkpoint:
+ros2 run sddpg_navigation eval_sddpg \
+  --save_dir src/sddpg_navigation/sddpg_navigation/save_sddpg_weights/ \
+  --model_name <run_name> \
+  --checkpoint <episode_number>
 ```
 
 ## Evaluation — Dynamic Obstacles
@@ -143,7 +155,7 @@ ros2 run sddpg_navigation eval_sddpg
 ros2 launch sddpg_navigation evaluation_dynamic.launch.py headless:=true
 
 # Terminal 2
-ros2 run sddpg_navigation eval_ddpg
+ros2 run sddpg_navigation eval_td3 --model_name <run_name>
 ```
 
 ## Evaluation — Real World
@@ -232,16 +244,20 @@ Goal for DVS actor: `state[:2]` (NOT `state[-2:]`).
 | `training/train_pure_ddpg/ddpg_agent.py` | Pure DDPG agent — standard replay buffer |
 | `training/train_pure_ddpg/ddpg_networks.py` | `ActorNet` (4×FC) + `CriticNet` |
 | `evaluation/eval_random_simulation/run_pure_ddpg_eval.py` | Pure DDPG evaluation |
-| `training/train_ddpg/train_ddpg.py` | TD3 LiDAR training loop |
-| `training/train_ddpg/ddpg_agent.py` | TD3 agent — sequential buffer, hidden state, last_action |
-| `training/train_ddpg/ddpg_networks.py` | `ActorNet` (FC+GRU) + `CriticNet` |
+| `training/train_td3/train_td3.py` | TD3 LiDAR training loop |
+| `training/train_td3/td3_agent.py` | TD3 agent — sequential buffer, hidden state, last_action |
+| `training/train_td3/td3_networks.py` | `ActorNet` (FC+GRU) + `CriticNet` |
+| `evaluation/eval_random_simulation/run_td3_eval.py` | TD3 LiDAR evaluation |
+| `evaluation/eval_random_simulation/run_dvs_eval.py` | DVS evaluation — requires event_camera node |
+| `evaluation/eval_random_simulation/run_ddpg_eval.py` | Legacy GRU DDPG evaluation (no TD3 improvements) |
 | `training/train_DVS_ddpg/train_DVS_ddpg.py` | DVS training loop — `EventSubscriber` node |
 | `training/train_DVS_ddpg/ddpg_DVS_agent.py` | DVS agent — events buffer, goal=state[:2] |
 | `training/train_DVS_ddpg/ddpg_DVS_networks.py` | `ActorNet` (CNN+GRU) + `CriticNet` |
 | `event_camera.py` | Publishes synthetic DVS events from `/camera/image_raw` |
 | `dynamic_obstacles.py` | Moves dynamic obstacles in Gazebo |
 | `launch/training.launch.py` | Gazebo + bridge (static world) |
-| `launch/training_dynamic.launch.py` | Gazebo + bridge + event_camera + obstacle_mover |
+| `launch/training_dynamic.launch.py` | Gazebo + bridge + event_camera + obstacle_mover (DVS only) |
+| `launch/training_dynamic_lidar.launch.py` | Gazebo + bridge + obstacle_mover (LiDAR dynamic training) |
 | `launch/evaluation.launch.py` | Evaluation (static world) |
 | `launch/evaluation_dynamic.launch.py` | Evaluation (dynamic world + event_camera) |
 | `launch/bridge.yaml` | ROS↔Gazebo topic/service bridge config |
@@ -250,7 +266,6 @@ Goal for DVS actor: `state[:2]` (NOT `state[-2:]`).
 | `worlds/evaluation_world.world` | Static evaluation environment |
 | `worlds/evaluation_dynamic_world.world` | Evaluation + 6 dynamic obstacles |
 | `models/turtlebot3_burger/` | Robot SDF (LiDAR + camera sensor) |
-| `models/textures/` | `vertical_stripes.png` used by dynamic world walls |
 | `random_positions/` | Pre-generated start/goal positions (pickle) |
 
 ## Package Structure
@@ -259,13 +274,13 @@ Goal for DVS actor: `state[:2]` (NOT `state[-2:]`).
 src/sddpg_navigation/
 ├── launch/
 │   ├── training.launch.py
-│   ├── training_dynamic.launch.py      ← event_camera + obstacle_mover
+│   ├── training_dynamic.launch.py          ← event_camera + obstacle_mover (DVS only)
+│   ├── training_dynamic_lidar.launch.py    ← obstacle_mover only (LiDAR dynamic)
 │   ├── evaluation.launch.py
-│   ├── evaluation_dynamic.launch.py    ← event_camera + obstacle_mover
+│   ├── evaluation_dynamic.launch.py        ← event_camera + obstacle_mover
 │   └── bridge.yaml
 ├── models/
-│   ├── turtlebot3_burger/
-│   └── textures/                       ← vertical_stripes.png, model.config
+│   └── turtlebot3_burger/
 ├── worlds/
 │   ├── training_worlds.world
 │   ├── training_dynamic_world.world
@@ -277,10 +292,10 @@ src/sddpg_navigation/
     ├── event_camera.py
     ├── dynamic_obstacles.py
     ├── training/
-    │   ├── train_pure_ddpg/            ← Pure DDPG baseline
-    │   ├── train_ddpg/                 ← TD3 LiDAR (GRU)
-    │   ├── train_DVS_ddpg/             ← TD3 DVS
-    │   └── train_spiking_ddpg/         ← SDDPG (legacy)
+    │   ├── train_pure_ddpg/            ← Pure DDPG baseline (FC actor)
+    │   ├── train_td3/                  ← TD3 LiDAR (GRU actor)
+    │   ├── train_DVS_ddpg/             ← TD3 DVS (CNN+GRU actor)
+    │   └── train_spiking_ddpg/         ← SDDPG (legacy, Loihi)
     ├── evaluation/
     │   ├── eval_random_simulation/
     │   ├── eval_real_world/

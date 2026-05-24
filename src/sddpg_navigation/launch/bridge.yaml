@@ -1,4 +1,5 @@
-# Service bridges (ROS -> Gazebo)
+# This file is a bridge between ROS2 topics and Gazebo naming.
+
 - service_name: "/world/default/control"
   ros_type_name: "ros_gz_interfaces/srv/ControlWorld"
   gz_req_type_name: "gz.msgs.WorldControl"
@@ -9,7 +10,6 @@
   gz_req_type_name: "gz.msgs.Pose"
   gz_rep_type_name: "gz.msgs.Boolean"
 
-# Topic bridges
 - ros_topic_name: "/scan"
   gz_topic_name: "/scan"
   ros_type_name: "sensor_msgs/msg/LaserScan"

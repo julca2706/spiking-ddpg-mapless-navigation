@@ -554,11 +554,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -592,11 +587,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -630,11 +620,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -846,11 +831,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -882,11 +862,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -920,11 +895,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -956,11 +926,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -1036,11 +1001,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -1094,11 +1054,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -1174,11 +1129,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -1212,11 +1162,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -1250,11 +1195,6 @@
           <material>
             <diffuse>1 1 1 1</diffuse>
             <specular>0.1 0.1 0.1 1</specular>
-            <pbr>
-              <metal>
-                <albedo_map>model://textures/vertical_stripes.png</albedo_map>
-              </metal>
-            </pbr>
           </material>
         </visual>
       </link>
@@ -1267,6 +1207,7 @@
     </include>
 
     <model name="eval_dyn1">
+      <static>true</static>
       <pose>-7 7 0.2 0 0 0</pose>
       <link name="link">
         <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
@@ -1278,6 +1219,7 @@
     </model>
 
     <model name="eval_dyn2">
+      <static>true</static>
       <pose>7 7 0.2 0 0 0</pose>
       <link name="link">
         <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
@@ -1289,6 +1231,7 @@
     </model>
 
     <model name="eval_dyn3">
+      <static>true</static>
       <pose>-3 0 0.2 0 0 0</pose>
       <link name="link">
         <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
@@ -1300,6 +1243,7 @@
     </model>
 
     <model name="eval_dyn4">
+      <static>true</static>
       <pose>3 0 0.2 0 0 0</pose>
       <link name="link">
         <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
@@ -1311,6 +1255,7 @@
     </model>
 
     <model name="eval_dyn5">
+      <static>true</static>
       <pose>-7 -7 0.2 0 0 0</pose>
       <link name="link">
         <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>
@@ -1322,6 +1267,7 @@
     </model>
 
     <model name="eval_dyn6">
+      <static>true</static>
       <pose>7 -7 0.2 0 0 0</pose>
       <link name="link">
         <collision name="collision"><geometry><box><size>0.2 0.2 0.4</size></box></geometry></collision>

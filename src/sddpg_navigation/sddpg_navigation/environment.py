@@ -13,6 +13,7 @@ import gz.transport13 as gz_transport
 from sensor_msgs.msg import LaserScan
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
+from std_msgs.msg import Float32MultiArray
 from ros_gz_interfaces.srv import SetEntityPose, ControlWorld
 
 
@@ -81,6 +82,9 @@ class GazeboEnvironment(Node):
         self.robot_scan_init = False
         self.robot_world_pose_init = False
 
+        # Dynamic obstacle positions
+        self.dynamic_obstacle_positions = []
+
         # Goal Position
         self.goal_position = [0., 0.]
         self.goal_dis_dir_pre = [0., 0.]  # Last step goal distance and direction
@@ -89,6 +93,8 @@ class GazeboEnvironment(Node):
         # Subscriber
         self.create_subscription(Odometry, '/odom', self._robot_state_cb, 10)
         self.create_subscription(LaserScan, '/scan', self._robot_scan_cb, 10)
+        self.create_subscription(Float32MultiArray, '/dynamic_obstacle_positions',
+                                 self._dynamic_obs_cb, 10)
 
         # Direct gz-transport subscriber for world-frame pose
         self._gz_node = gz_transport.Node()
@@ -322,8 +328,6 @@ class GazeboEnvironment(Node):
         '''
         tmp_laser_scan = self.laser_scan_scale * (self.laser_scan_min_dis / state[2])
         tmp_laser_scan = np.clip(tmp_laser_scan, 0, self.laser_scan_scale)
-        # chunk 0 = angle_min ≈ -π (behind), chunk scan_dir_num//2 = forward.
-        # Select front hemisphere centred at scan_center, left-to-right order.
         scan_center = self.scan_dir_num // 2
         for num in range(self.laser_scan_half_num):
             ita = scan_center + self.laser_scan_half_num - num - 1
@@ -357,6 +361,11 @@ class GazeboEnvironment(Node):
             if tmp_dis < self.obs_near_th:
                 near_obstacle = True
                 break
+        if not near_obstacle:
+            for (ox, oy) in self.dynamic_obstacle_positions:
+                if robot_point.distance(Point(ox, oy)) < self.obs_near_th:
+                    near_obstacle = True
+                    break
         '''
         Assign Rewards
         '''
@@ -386,6 +395,12 @@ class GazeboEnvironment(Node):
             np.median(ranges[i * chunk:(i + 1) * chunk])
             for i in range(self.scan_dir_num)
         ])
+
+    def _dynamic_obs_cb(self, msg):
+        data = msg.data
+        self.dynamic_obstacle_positions = [
+            (data[i], data[i + 1]) for i in range(0, len(data), 2)
+        ]
 
     def _robot_world_pose_cb(self, msg):
         for pose in msg.pose:

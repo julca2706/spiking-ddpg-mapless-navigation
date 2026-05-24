@@ -8,6 +8,7 @@ import torch
 import numpy as np
 from shapely.geometry import Point
 from sensor_msgs.msg import LaserScan
+from std_msgs.msg import Float32MultiArray
 import sys
 sys.path.insert(0, '/opt/ros/jazzy/opt/gz_msgs_vendor/lib/python')
 from gz.msgs10.pose_v_pb2 import Pose_V
@@ -106,9 +107,14 @@ class RandEvalGpu(Node):
         self.robot_scan = np.zeros(2 * scan_half_num)
         self.robot_world_pose_init = False
 
+        # Dynamic obstacle positions (published by dynamic_obstacles.py)
+        self.dynamic_obstacle_positions = []
+
         # Subscriber
         self.create_subscription(Odometry, '/odom', self._robot_state_cb, 10)
         self.create_subscription(LaserScan, '/scan', self._robot_scan_cb, 10)
+        self.create_subscription(Float32MultiArray, '/dynamic_obstacle_positions',
+                                 self._dynamic_obs_cb, 10)
 
         # Direct gz-transport subscriber for world-frame pose
         self._gz_node = gz_transport.Node()
@@ -312,7 +318,7 @@ class RandEvalGpu(Node):
 
     def _near_obstacle(self, pos):
         """
-        Test if robot is near obstacle
+        Test if robot is near obstacle (static or dynamic).
         :param pos: robot position
         :return: done
         """
@@ -323,7 +329,19 @@ class RandEvalGpu(Node):
             if tmp_dis < self.obs_near_th:
                 done = True
                 break
+        
+        if not done:
+            for (ox, oy) in self.dynamic_obstacle_positions:
+                if robot_point.distance(Point(ox, oy)) < 0.25:
+                    done = True
+                    break
         return done
+
+    def _dynamic_obs_cb(self, msg):
+        data = msg.data
+        self.dynamic_obstacle_positions = [
+            (data[i], data[i + 1]) for i in range(0, len(data), 2)
+        ]
 
     def _set_new_target(self, ita):
         """

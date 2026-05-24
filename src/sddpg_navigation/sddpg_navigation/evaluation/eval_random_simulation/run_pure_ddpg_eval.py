@@ -20,7 +20,7 @@ def load_pure_ddpg_actor(net_dir, state_num=22, action_num=2, dim=(256, 256, 256
 
 
 def evaluate_pure_ddpg(pos_start=0, pos_end=199, model_name='pure_ddpg',
-                       save_dir=os.path.join(_DIR, '..', 'saved_model') + os.sep,
+                       save_dir=os.path.join(_DIR, '..', '..', 'save_pure_ddpg_weights') + os.sep,
                        state_num=22, is_scale=True, is_save_result=False, use_cuda=True):
     poly_list, raw_poly_list = gen_test_env_poly_list_env()
     eval_pos_path = os.path.join(_DIR, 'eval_positions.p')
@@ -48,7 +48,7 @@ def main(args=None):
     parser.add_argument('--cuda', type=int, default=1)
     parser.add_argument('--model_name', type=str, default='pure_ddpg')
     parser.add_argument('--save_dir', type=str,
-                        default=os.path.join(_DIR, '..', 'saved_model') + os.sep)
+                        default=os.path.join(_DIR, '..', '..', 'save_pure_ddpg_weights') + os.sep)
     args = parser.parse_args()
 
     USE_CUDA = True

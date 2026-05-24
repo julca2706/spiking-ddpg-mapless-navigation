@@ -121,6 +121,11 @@ def train_dvs_ddpg(run_name="DVS_R1", exp_name="Rand_R1",
         # Get initial event frame after reset
         rclpy.spin_once(event_sub, timeout_sec=0.05)
         event_frame = event_sub.get_decoded()
+        agent.current_seq = []
+        agent.hidden_state = None
+        agent.prev_hidden_state = None
+        agent.last_action = np.zeros(agent.action_num, dtype=np.float32)
+        agent.prev_last_action = np.zeros(agent.action_num, dtype=np.float32)
         episode_reward = 0
 
         for ita in range(ita_per_episode):

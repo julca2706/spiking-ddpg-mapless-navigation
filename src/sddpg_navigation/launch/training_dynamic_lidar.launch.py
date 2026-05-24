@@ -7,6 +7,10 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch_ros.actions import Node
 
+# Launches: Gazebo (dynamic world, env1 + env4 with moving obstacles) + ROS-Gazebo bridge
+#           + obstacle_mover node (moves obstacles, publishes /dynamic_obstacle_positions).
+# No event_camera — use this instead of training_dynamic.launch.py for LiDAR-based training.
+# For all specifications of existing launches check README.md.
 
 def generate_launch_description():
     pkg_share = get_package_share_directory('sddpg_navigation')

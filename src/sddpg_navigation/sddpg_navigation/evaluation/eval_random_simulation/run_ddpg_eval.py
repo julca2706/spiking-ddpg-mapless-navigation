@@ -48,6 +48,9 @@ def main(args=None):
     parser.add_argument('--save', type=int, default=0)
     parser.add_argument('--cuda', type=int, default=1)
     parser.add_argument('--poisson', type=int, default=0)
+    parser.add_argument('--model_name', type=str, default=None)
+    parser.add_argument('--save_dir', type=str,
+                        default=os.path.join(_DIR, '..', 'saved_model') + os.sep)
     args = parser.parse_args()
 
     USE_CUDA = True
@@ -60,12 +63,15 @@ def main(args=None):
         IS_POISSON = True
         STATE_NUM = 24
         MODEL_NAME = 'ddpg_poisson'
+    # --model_name overrides the default (including poisson default)
+    if args.model_name is not None:
+        MODEL_NAME = args.model_name
     SAVE_RESULT = False
     if args.save == 1:
         SAVE_RESULT = True
     evaluate_ddpg(use_cuda=USE_CUDA, state_num=STATE_NUM,
                   is_poisson=IS_POISSON, model_name=MODEL_NAME,
-                  is_save_result=SAVE_RESULT)
+                  save_dir=args.save_dir, is_save_result=SAVE_RESULT)
     rclpy.shutdown()
 
 if __name__ == '__main__':
