@@ -153,13 +153,13 @@ def train_td3(run_name="TD3_R1", exp_name="Rand_R1", episode_num=(100, 200, 300,
             # Train network with replay
             if len(agent.memory) > batch_size:
                 actor_loss_value, critic_loss_value = agent.replay()
-                tb_writer.add_scalar('DDPG/actor_loss', actor_loss_value, overall_steps)
-                tb_writer.add_scalar('DDPG/critic_loss', critic_loss_value, overall_steps)
+                tb_writer.add_scalar('TD3/actor_loss', actor_loss_value, overall_steps)
+                tb_writer.add_scalar('TD3/critic_loss', critic_loss_value, overall_steps)
             ita_time_end = time.time()
-            tb_writer.add_scalar('DDPG/ita_time', ita_time_end - ita_time_start, overall_steps)
-            tb_writer.add_scalar('DDPG/action_epsilon', agent.epsilon, overall_steps)
-            tb_writer.add_scalar('DDPG/raw_left_wheel_output', raw_action[0], overall_steps)
-            tb_writer.add_scalar('DDPG/raw_right_wheel_output', raw_action[1], overall_steps)
+            tb_writer.add_scalar('TD3/ita_time', ita_time_end - ita_time_start, overall_steps)
+            tb_writer.add_scalar('TD3/action_epsilon', agent.epsilon, overall_steps)
+            tb_writer.add_scalar('TD3/raw_left_wheel_output', raw_action[0], overall_steps)
+            tb_writer.add_scalar('TD3/raw_right_wheel_output', raw_action[1], overall_steps)
 
             # Save Model
             if overall_steps % save_steps == 0:
@@ -169,7 +169,7 @@ def train_td3(run_name="TD3_R1", exp_name="Rand_R1", episode_num=(100, 200, 300,
             if done or ita == ita_per_episode - 1:
                 print("Episode: {}/{}, Avg Reward: {}, Steps: {}"
                       .format(overall_episode, episode_num, episode_reward / (ita + 1), ita + 1))
-                tb_writer.add_scalar('DDPG/avg_reward', episode_reward / (ita + 1), overall_steps)
+                tb_writer.add_scalar('TD3/avg_reward', episode_reward / (ita + 1), overall_steps)
                 break
         if ita_per_episode < iteration_num_max[env_ita]:
             ita_per_episode += iteration_num_step[env_ita]
