@@ -216,9 +216,14 @@ class GazeboEnvironment(Node):
         future = self.set_model_target.call_async(request)
         rclpy.spin_until_future_complete(self, future)
 
-        deadline = time.time() + 0.5
+        expected_x = float(robot_init_pose[0])
+        expected_y = float(robot_init_pose[1])
+        deadline = time.time() + 2.0
         while time.time() < deadline:
             rclpy.spin_once(self, timeout_sec=0.01)
+            if (abs(self.robot_pose[0] - expected_x) < 0.15 and
+                    abs(self.robot_pose[1] - expected_y) < 0.15):
+                break
         '''
         Transfer the initial robot state to the state for the DDPG Agent
         '''
