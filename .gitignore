@@ -1,1 +1,18 @@
+# ROS 2 build artifacts
+build/
+install/
+log/
+
+# TensorBoard runs
 runs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code
+.vscode/
+
+# ROS logs
+ros_logs/

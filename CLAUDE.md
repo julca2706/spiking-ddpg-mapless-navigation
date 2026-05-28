@@ -158,14 +158,6 @@ ros2 launch sddpg_navigation evaluation_dynamic.launch.py headless:=true
 ros2 run sddpg_navigation eval_td3 --model_name <run_name>
 ```
 
-## Evaluation — Real World
-
-```bash
-source /opt/ros/jazzy/setup.bash && source install/setup.bash
-python3 src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_ddpg_eval_rw.py
-python3 src/sddpg_navigation/sddpg_navigation/evaluation/eval_real_world/run_sddpg_loihi_eval_rw.py
-```
-
 ## Architecture
 
 ### TD3 LiDAR Agent

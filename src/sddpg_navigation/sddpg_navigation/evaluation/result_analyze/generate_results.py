@@ -6,10 +6,10 @@ sys.path.append('../../')
 from evaluation.result_analyze.utility import analyze_run, plot_robot_paths
 from evaluation.eval_random_simulation.utility import gen_test_env_poly_list_env
 
-MODEL_NAME = 'TD3_GRU'
+MODEL_NAME = 'SDDPG_PORT'
 # MODEL_NAME = 'ddpg'
 # MODEL_NAME = 'ddpg_poisson'
-FILE_NAME = MODEL_NAME + '_0_199.p'
+FILE_NAME = MODEL_NAME + '_DYNAMIC.p'
 
 run_data = pickle.load(open('../record_data/' + FILE_NAME, 'rb'))
 s_list, p_dis, p_time, p_spd = analyze_run(run_data)

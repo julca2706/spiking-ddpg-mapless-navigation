@@ -1,0 +1,33 @@
+# System
+# Ubuntu 24.04 LTS (Noble) — required by ROS 2 Jazzy
+# Python 3.12.3
+# pip 24.0
+# CUDA (optional, for GPU training) — install from https://developer.nvidia.com/cuda-downloads
+
+# Python packages (pip install -r requirements.txt)
+torch>=2.0
+numpy>=1.24
+shapely>=2.0
+opencv-python>=4.6
+matplotlib>=3.6
+tensorboard>=2.13
+spikingjelly==0.0.0.0.14
+
+# ROS 2 / Gazebo / TurtleBot3 (apt, NOT pip)
+# sudo apt install ros-jazzy-desktop
+# sudo apt install ros-jazzy-ros-gz-bridge
+# sudo apt install ros-jazzy-ros-gz-interfaces
+# sudo apt install ros-jazzy-ros-gz-sim
+# sudo apt install ros-jazzy-cv-bridge
+# sudo apt install ros-jazzy-turtlebot3
+# sudo apt install ros-jazzy-turtlebot3-gazebo
+# sudo apt install gz-harmonic
+# sudo apt install python3-gz-msgs10
+# sudo apt install python3-gz-transport13
+
+# Build tools (apt, NOT pip)
+# sudo apt install python3-colcon-common-extensions
+
+# Docker (legacy code only)
+# Docker Engine >= 29.0  — https://docs.docker.com/engine/install/ubuntu/
+# Docker Compose >= v2   — sudo apt install docker-compose-plugin

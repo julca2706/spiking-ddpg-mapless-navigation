@@ -11,7 +11,7 @@ class AgentDVS:
     """
     TD3 Agent with DVS actor (CNN+GRU) and LiDAR twin critics.
 
-    Actor input : event frames np.float32 (2, 64, 64) already decoded + goal = state[-2:]
+    Actor input : event frames np.float32 (2, 64, 64) already decoded + goal = state[:2]
     Critic input: LiDAR state (state_num dim)
     """
     def __init__(self,
@@ -23,7 +23,7 @@ class AgentDVS:
                  target_tau=0.01,
                  target_update_steps=5,
                  reward_gamma=0.99,
-                 critic_lr=2e-4,
+                 critic_lr=1e-4,
                  actor_lr=1e-4,
                  epsilon_start=0.9,
                  epsilon_end=0.01,
@@ -106,7 +106,7 @@ class AgentDVS:
         """
         Accumulate transitions and store sequences of length seq_len.
 
-        state / next_state : array (state_num,) — LiDAR state; goal = state[-2:]
+        state / next_state : array (state_num,) — LiDAR state; goal = state[:2]
         event_frame        : np.float32 (2, 64, 64) — decoded ON/OFF event channels
         action             : array (action_num,)
         reward             : float
@@ -179,7 +179,7 @@ class AgentDVS:
         Generate action from event frame and state.
 
         event_frame : np.float32 (2, 64, 64) — decoded ON/OFF event channels
-        state       : array (state_num,) — LiDAR state; goal extracted as state[-2:]
+        state       : array (state_num,) — LiDAR state; goal extracted as state[:2]
         """
         with torch.no_grad():
             events_t = torch.FloatTensor(event_frame).unsqueeze(0).unsqueeze(0).to(self.device)
