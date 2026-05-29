@@ -87,8 +87,8 @@ class DVSRandEvalGpu(RandEvalGpu):
             # (1, 1, 2, 64, 64) — batch=1, seq_len=1
             events_t = torch.FloatTensor(self._event_frame).unsqueeze(0).unsqueeze(0).to(self.device)
             goal_t = torch.FloatTensor(
-                np.array([np.sin(state[0]), np.cos(state[0]), state[1]], dtype=np.float32)
-            ).reshape(1, 1, 3).to(self.device)
+                np.array(state[:2], dtype=np.float32)
+            ).reshape(1, 1, 2).to(self.device)
             last_action_t = torch.FloatTensor(
                 self._last_action
             ).reshape(1, 1, -1).to(self.device)
