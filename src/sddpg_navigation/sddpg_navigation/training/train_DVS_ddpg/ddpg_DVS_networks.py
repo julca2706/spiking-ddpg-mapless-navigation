@@ -13,8 +13,8 @@ class ActorNet(nn.Module):
         self.pool2 = nn.MaxPool2d(2, 2)
         self.fc_events = nn.Linear(8192, 256)
 
-        # GRU + output  (2 goal + 2 last_action) — CNN branch disabled for test
-        self.gru = nn.GRU(4, 256, batch_first=True)
+        # GRU + output  (256 events + 2 goal + 2 last_action)
+        self.gru = nn.GRU(260, 256, batch_first=True)
         self.fc_out = nn.Linear(256, action_num)
 
         self.elu = nn.ELU()
@@ -29,14 +29,13 @@ class ActorNet(nn.Module):
         # events: (B, T, 2, H, W),  goal: (B, T, 2),  last_action: (B, T, action_num)
         B, T = events.shape[:2]
 
-        # CNN branch disabled for goal-only test
-        # x = events.view(B * T, *events.shape[2:])
-        # x = self.elu(self.pool1(self.elu(self.conv1(x))))
-        # x = self.elu(self.pool2(self.elu(self.conv2(x))))
-        # x = self.elu(self.fc_events(torch.flatten(x, start_dim=1)))
-        # x = x.view(B, T, -1)
+        x = events.view(B * T, *events.shape[2:])
+        x = self.elu(self.pool1(self.elu(self.conv1(x))))
+        x = self.elu(self.pool2(self.elu(self.conv2(x))))
+        x = self.elu(self.fc_events(torch.flatten(x, start_dim=1)))
+        x = x.view(B, T, -1)
 
-        gru_input = goal
+        gru_input = torch.cat([x, goal], dim=-1)
         if last_action is not None:
             gru_input = torch.cat([gru_input, last_action], dim=-1)
 
