@@ -13,8 +13,8 @@ class ActorNet(nn.Module):
         self.pool2 = nn.MaxPool2d(2, 2)
         self.fc_events = nn.Linear(8192, 256)
 
-        # Goal branch: (B, T, 2) -> (B, T, 64)
-        self.fc_goal = nn.Linear(2, 64)
+        # Goal branch: (B, T, 3) -> (B, T, 64)  [sin(dir), cos(dir), dis]
+        self.fc_goal = nn.Linear(3, 64)
 
         # GRU + output  (64 goal + 2 last_action) — CNN branch disabled for test
         self.gru = nn.GRU(66, 256, batch_first=True)
