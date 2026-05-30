@@ -13,9 +13,9 @@ class ActorNet(nn.Module):
         self.pool2 = nn.MaxPool2d(2, 2)
         self.fc_events = nn.Linear(8192, 256)
 
-        # GRU + output  (256 events + 2 goal + 2 last_action)
-        self.gru = nn.GRU(260, 256, batch_first=True)
-        self.fc_out = nn.Linear(256, action_num)
+        # GRU processes events + last_action; goal concatenated after
+        self.gru = nn.GRU(258, 256, batch_first=True)
+        self.fc_out = nn.Linear(258, action_num)
 
         self.elu = nn.ELU()
         self.relu = nn.ReLU()
@@ -35,15 +35,15 @@ class ActorNet(nn.Module):
         x = self.elu(self.fc_events(torch.flatten(x, start_dim=1)))
         x = x.view(B, T, -1)
 
-        gru_input = torch.cat([x, goal], dim=-1)
+        gru_input = x
         if last_action is not None:
             gru_input = torch.cat([gru_input, last_action], dim=-1)
 
         output, hidden = self.gru(gru_input, hidden)
         if return_seq:
-            out = self.sigmoid(self.fc_out(output))           # (B, T, action_num)
+            out = self.sigmoid(self.fc_out(torch.cat([output, goal], dim=-1)))
         else:
-            out = self.sigmoid(self.fc_out(output[:, -1, :]))  # (B, action_num)
+            out = self.sigmoid(self.fc_out(torch.cat([output[:, -1, :], goal[:, -1, :]], dim=-1)))
         return out, hidden
 
 
