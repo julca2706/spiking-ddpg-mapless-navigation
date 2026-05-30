@@ -9,7 +9,7 @@ from cv_bridge import CvBridge
 from sddpg_navigation.evaluation.eval_random_simulation.rand_eval_gpu import RandEvalGpu
 from sddpg_navigation.evaluation.eval_random_simulation.utility import gen_test_env_poly_list_env
 from sddpg_navigation.training.train_DVS_ddpg.ddpg_DVS_networks import ActorNet
-from sddpg_navigation.utility import wheeled_network_2_robot_action_decoder
+from sddpg_navigation.utility import wheeled_network_2_robot_action_decoder, ddpg_state_rescale
 import argparse
 
 _DIR = os.path.dirname(os.path.abspath(__file__))
@@ -86,8 +86,9 @@ class DVSRandEvalGpu(RandEvalGpu):
         with torch.no_grad():
             # (1, 1, 2, 64, 64) — batch=1, seq_len=1
             events_t = torch.FloatTensor(self._event_frame).unsqueeze(0).unsqueeze(0).to(self.device)
+            rescale = ddpg_state_rescale(state, len(state))
             goal_t = torch.FloatTensor(
-                np.array(state[:2], dtype=np.float32)
+                np.array(rescale[:2], dtype=np.float32)
             ).reshape(1, 1, 2).to(self.device)
             last_action_t = torch.FloatTensor(
                 self._last_action

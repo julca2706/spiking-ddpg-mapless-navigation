@@ -103,27 +103,31 @@ class AgentDVS:
         self.seq_start_hidden = None
         self.seq_start_last_action = np.zeros(self.action_num, dtype=np.float32)
 
-    def remember_seq(self, state, event_frame, action, reward, next_state, next_event_frame, done):
+    def remember_seq(self, state, rescale_state, event_frame, action, reward,
+                     next_state, rescale_next_state, next_event_frame, done):
         """
         Accumulate transitions and store sequences of length seq_len.
 
-        state / next_state : array (state_num,) — LiDAR state; goal = state[:2]
-        event_frame        : np.float32 (2, 64, 64) — decoded ON/OFF event channels
-        action             : array (action_num,)
-        reward             : float
-        done               : bool
+        state / next_state               : array (state_num,) — raw LiDAR state for critic
+        rescale_state / rescale_next_state: array (state_num,) — rescaled state; goal = [:2]
+        event_frame / next_event_frame   : np.float32 (2, 64, 64)
+        action                           : array (action_num,)
+        reward                           : float
+        done                             : bool
         """
         if len(self.current_seq) == 0:
             self.seq_start_hidden = self.prev_hidden_state
             self.seq_start_last_action = self.prev_last_action.copy()
 
-        # tuple indices: 0=state, 1=event_frame, 2=action, 3=reward,
-        #                4=next_state, 5=next_event_frame, 6=done
+        # tuple: 0=state, 1=rescale_state, 2=event_frame, 3=action, 4=reward,
+        #        5=next_state, 6=rescale_next_state, 7=next_event_frame, 8=done
         self.current_seq.append((np.array(state, dtype=np.float32),
+                                  np.array(rescale_state, dtype=np.float32),
                                   np.array(event_frame, dtype=np.float32),
                                   np.array(action, dtype=np.float32),
                                   float(reward),
                                   np.array(next_state, dtype=np.float32),
+                                  np.array(rescale_next_state, dtype=np.float32),
                                   np.array(next_event_frame, dtype=np.float32),
                                   bool(done)))
 
@@ -131,31 +135,30 @@ class AgentDVS:
             seq = self.current_seq
             pad_len = self.seq_len - len(seq)
 
-            actions_in_seq = [t[2] for t in seq]
+            actions_in_seq = [t[3] for t in seq]
             seq_last_actions_real = [self.seq_start_last_action] + actions_in_seq[:-1]
 
             if pad_len > 0:
                 zero_ev    = np.zeros((2, 64, 64), dtype=np.float32)
                 zero_state = np.zeros(self.state_num, dtype=np.float32)
                 zero_act   = np.zeros(self.action_num, dtype=np.float32)
-                padding = [(zero_state, zero_ev, zero_act, 0.0,
-                            zero_state, zero_ev, False)] * pad_len
+                padding = [(zero_state, zero_state, zero_ev, zero_act, 0.0,
+                            zero_state, zero_state, zero_ev, False)] * pad_len
                 seq = padding + seq
                 seq_last_actions = ([np.zeros(self.action_num, dtype=np.float32)] * pad_len
                                     + seq_last_actions_real)
             else:
                 seq_last_actions = seq_last_actions_real
 
-            # shapes: (T, 2, 64, 64), (T, 2), (T, action_num)
-            seq_events      = np.stack([t[1] for t in seq], axis=0)              # (T, 2, 64, 64)
-            seq_goals       = np.stack([t[0][:2] for t in seq], axis=0)  # (T, 2)
-            seq_next_events = np.stack([t[5] for t in seq], axis=0)    # (T, 2, 64, 64)
-            seq_next_goals  = np.stack([t[4][:2] for t in seq], axis=0)  # (T, 2)
-            seq_last_actions = np.stack(seq_last_actions, axis=0)          # (T, action_num)
-            seq_states  = np.stack([t[0] for t in seq], axis=0)           # (T, state_num)
-            seq_nstates = np.stack([t[4] for t in seq], axis=0)           # (T, state_num)
-            seq_rewards = np.array([t[3] for t in seq], dtype=np.float32) # (T,)
-            seq_dones   = np.array([t[6] for t in seq], dtype=np.float32) # (T,)
+            seq_events      = np.stack([t[2] for t in seq], axis=0)       # (T, 2, 64, 64)
+            seq_goals       = np.stack([t[1][:2] for t in seq], axis=0)   # (T, 2) rescaled
+            seq_next_events = np.stack([t[7] for t in seq], axis=0)       # (T, 2, 64, 64)
+            seq_next_goals  = np.stack([t[6][:2] for t in seq], axis=0)   # (T, 2) rescaled
+            seq_last_actions = np.stack(seq_last_actions, axis=0)         # (T, action_num)
+            seq_states  = np.stack([t[0] for t in seq], axis=0)           # (T, state_num) raw
+            seq_nstates = np.stack([t[5] for t in seq], axis=0)           # (T, state_num) raw
+            seq_rewards = np.array([t[4] for t in seq], dtype=np.float32) # (T,)
+            seq_dones   = np.array([t[8] for t in seq], dtype=np.float32) # (T,)
 
             hidden_size = self.actor_net.gru.hidden_size
             if self.seq_start_hidden is not None:
@@ -166,7 +169,7 @@ class AgentDVS:
             last = self.current_seq[-1]
             self.memory.append((seq_events, seq_goals, seq_next_events, seq_next_goals,
                                  seq_last_actions,
-                                 last[0], last[2], last[3], last[4], last[6],
+                                 last[0], last[3], last[4], last[5], last[8],
                                  init_hidden,
                                  seq_states, seq_nstates, seq_rewards, seq_dones))
             self.current_seq = []
@@ -180,7 +183,7 @@ class AgentDVS:
         Generate action from event frame and state.
 
         event_frame : np.float32 (2, 64, 64) — decoded ON/OFF event channels
-        state       : array (state_num,) — LiDAR state; goal extracted as state[:2]
+        state       : array (state_num,) — rescaled state; goal extracted as state[:2]
         """
         with torch.no_grad():
             events_t = torch.FloatTensor(event_frame).unsqueeze(0).unsqueeze(0).to(self.device)

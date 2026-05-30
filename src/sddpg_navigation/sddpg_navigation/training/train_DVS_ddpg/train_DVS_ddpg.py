@@ -118,6 +118,7 @@ def train_dvs_ddpg(run_name="DVS_R1", exp_name="Rand_R1",
     start_time = time.time()
     while True:
         state = env.reset(env_episode)
+        rescale_state = ddpg_state_rescale(state, state_num)
         # Get initial event frame after reset
         rclpy.spin_once(event_sub, timeout_sec=0.05)
         event_frame = event_sub.get_decoded()
@@ -132,21 +133,23 @@ def train_dvs_ddpg(run_name="DVS_R1", exp_name="Rand_R1",
             ita_time_start = time.time()
             overall_steps += 1
 
-            raw_action = agent.act(event_frame, state)
+            raw_action = agent.act(event_frame, rescale_state)
             decode_action = wheeled_network_2_robot_action_decoder(
                 raw_action, linear_spd_max, linear_spd_min
             )
 
             next_state, reward, done = env.step(decode_action)
+            next_rescale_state = ddpg_state_rescale(next_state, state_num)
 
             # Get new event frame after step
             rclpy.spin_once(event_sub, timeout_sec=0.05)
             next_event_frame = event_sub.get_decoded()
 
             episode_reward += reward
-            agent.remember_seq(state, event_frame, raw_action, reward,
-                                next_state, next_event_frame, done)
+            agent.remember_seq(state, rescale_state, event_frame, raw_action, reward,
+                                next_state, next_rescale_state, next_event_frame, done)
             state = next_state
+            rescale_state = next_rescale_state
             event_frame = next_event_frame
 
             if len(agent.memory) > batch_size:
