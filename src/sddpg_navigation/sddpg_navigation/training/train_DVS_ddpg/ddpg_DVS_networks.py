@@ -14,8 +14,8 @@ class ActorNet(nn.Module):
         self.fc_events = nn.Linear(8192, 256)
 
         # GRU + output  (2 goal + 2 last_action) — CNN disabled for ablation
-        self.gru = nn.GRU(4, 256, batch_first=True)
-        self.fc_out = nn.Linear(256, action_num)
+        self.gru = nn.GRU(4, 32, batch_first=True)
+        self.fc_out = nn.Linear(32, action_num)
 
         self.elu = nn.ELU()
         self.relu = nn.ReLU()
