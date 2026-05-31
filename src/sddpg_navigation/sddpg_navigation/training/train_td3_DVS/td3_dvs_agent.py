@@ -6,7 +6,7 @@ import torch.nn as nn
 import os
 from sddpg_navigation.training.train_td3_DVS.td3_dvs_networks import ActorNet, CriticNet
 
-GOAL_NUM = 4  # goal_dir, goal_dis, odom_linear, odom_angular from rescale_state[:4]
+STATE_NUM = 4  # goal_dir, goal_dis, odom_linear, odom_angular from rescale_state[:4]
 
 
 class Agent:
@@ -58,15 +58,11 @@ class Agent:
 
         self.memory = deque(maxlen=self.memory_size)
 
-        # Actor uses CNN + goal[:2], critic uses full LiDAR state
-        self.actor_net = ActorNet(GOAL_NUM, self.action_num,
-                                  hidden1=actor_net_dim[0],
-                                  hidden2=actor_net_dim[1],
+        # Actor: state[:4] (no LiDAR) + CNN events; critic: full LiDAR state
+        self.actor_net = ActorNet(STATE_NUM, self.action_num,
                                   hidden3=actor_net_dim[2],
                                   last_action_num=self.action_num)
-        self.target_actor_net = ActorNet(GOAL_NUM, self.action_num,
-                                         hidden1=actor_net_dim[0],
-                                         hidden2=actor_net_dim[1],
+        self.target_actor_net = ActorNet(STATE_NUM, self.action_num,
                                          hidden3=actor_net_dim[2],
                                          last_action_num=self.action_num)
         self.critic_net = CriticNet(self.state_num, self.action_num,
@@ -168,10 +164,10 @@ class Agent:
     def act(self, state, event_frame, explore=True, train=True):
         with torch.no_grad():
             events_t = torch.FloatTensor(event_frame).unsqueeze(0).unsqueeze(0).to(self.device)  # (1,1,2,64,64)
-            goal_t = torch.FloatTensor(np.array(state[:GOAL_NUM], dtype=np.float32)).reshape(1, 1, GOAL_NUM).to(self.device)
+            state_t = torch.FloatTensor(np.array(state[:STATE_NUM], dtype=np.float32)).reshape(1, 1, STATE_NUM).to(self.device)
             last_action_t = torch.FloatTensor(self.last_action.reshape(1, 1, -1)).to(self.device)
             self.prev_hidden_state = self.hidden_state
-            action, self.hidden_state = self.actor_net(events_t, goal_t,
+            action, self.hidden_state = self.actor_net(events_t, state_t,
                                                        last_action=last_action_t,
                                                        hidden=self.hidden_state)
             action = action.to('cpu').numpy().squeeze()
@@ -199,19 +195,19 @@ class Agent:
          seq_ev_batch, seq_nev_batch) = self._random_minibatch()
         B, T = self.batch_size, self.seq_len
 
-        # goal slices: (B, T, GOAL_NUM)
-        seq_goal_batch = seq_rstate_batch[:, :, :GOAL_NUM]
-        seq_ngoal_batch = seq_rnstate_batch[:, :, :GOAL_NUM]
+        # goal slices: (B, T, STATE_NUM)
+        seq_state_batch = seq_rstate_batch[:, :, :STATE_NUM]
+        seq_nstate_batch = seq_rnstate_batch[:, :, :STATE_NUM]
 
         with torch.no_grad():
             next_seq_last_actions = torch.cat([
                 seq_last_action_batch[:, 1:, :],
                 action_batch.unsqueeze(1)
             ], dim=1)
-            _, hidden_out_batch = self.target_actor_net(seq_ev_batch, seq_goal_batch,
+            _, hidden_out_batch = self.target_actor_net(seq_ev_batch, seq_state_batch,
                                                         last_action=seq_last_action_batch,
                                                         hidden=hidden_batch)
-            all_nactions, _ = self.target_actor_net(seq_nev_batch, seq_ngoal_batch,
+            all_nactions, _ = self.target_actor_net(seq_nev_batch, seq_nstate_batch,
                                                     last_action=next_seq_last_actions,
                                                     hidden=hidden_out_batch,
                                                     return_seq=True)  # (B, T, action_num)
@@ -246,7 +242,7 @@ class Agent:
         self.step_ita += 1
         if self.step_ita % self.policy_delay == 0:
             self.actor_optimizer.zero_grad()
-            current_actions, _ = self.actor_net(seq_ev_batch, seq_goal_batch,
+            current_actions, _ = self.actor_net(seq_ev_batch, seq_state_batch,
                                                  last_action=seq_last_action_batch,
                                                  hidden=hidden_batch,
                                                  return_seq=True)  # (B, T, action_num)
