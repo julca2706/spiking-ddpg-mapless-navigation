@@ -151,9 +151,9 @@ class AgentDVS:
                 seq_last_actions = seq_last_actions_real
 
             seq_events      = np.stack([t[2] for t in seq], axis=0)       # (T, 2, 64, 64)
-            seq_goals       = np.stack([t[1][:2] for t in seq], axis=0)   # (T, 2) rescaled
+            seq_goals       = np.stack([t[1][:4] for t in seq], axis=0)   # (T, 4) rescaled
             seq_next_events = np.stack([t[7] for t in seq], axis=0)       # (T, 2, 64, 64)
-            seq_next_goals  = np.stack([t[6][:2] for t in seq], axis=0)   # (T, 2) rescaled
+            seq_next_goals  = np.stack([t[6][:4] for t in seq], axis=0)   # (T, 4) rescaled
             seq_last_actions = np.stack(seq_last_actions, axis=0)         # (T, action_num)
             seq_states  = np.stack([t[0] for t in seq], axis=0)           # (T, state_num) raw
             seq_nstates = np.stack([t[5] for t in seq], axis=0)           # (T, state_num) raw
@@ -187,7 +187,7 @@ class AgentDVS:
         """
         with torch.no_grad():
             events_t = torch.FloatTensor(event_frame).unsqueeze(0).unsqueeze(0).to(self.device)
-            goal_t = torch.FloatTensor(np.array(state[:2], dtype=np.float32)).reshape(1, 1, 2).to(self.device)
+            goal_t = torch.FloatTensor(np.array(state[:4], dtype=np.float32)).reshape(1, 1, 4).to(self.device)
             last_action_t = torch.FloatTensor(self.last_action).reshape(1, 1, -1).to(self.device)
             self.prev_hidden_state = self.hidden_state
             action, self.hidden_state = self.actor_net(events_t, goal_t,
@@ -301,9 +301,9 @@ class AgentDVS:
         hidden_size = self.actor_net.gru.hidden_size
 
         seq_ev_arr      = np.zeros((B, T, 2, 64, 64), dtype=np.float32)
-        seq_goal_arr    = np.zeros((B, T, 2),          dtype=np.float32)
+        seq_goal_arr    = np.zeros((B, T, 4),          dtype=np.float32)
         seq_nev_arr     = np.zeros((B, T, 2, 64, 64), dtype=np.float32)
-        seq_ngoal_arr   = np.zeros((B, T, 2),          dtype=np.float32)
+        seq_ngoal_arr   = np.zeros((B, T, 4),          dtype=np.float32)
         seq_la_arr      = np.zeros((B, T, self.action_num), dtype=np.float32)
         state_arr       = np.zeros((B, self.state_num), dtype=np.float32)
         action_arr      = np.zeros((B, self.action_num), dtype=np.float32)

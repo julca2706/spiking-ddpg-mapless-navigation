@@ -88,8 +88,8 @@ class DVSRandEvalGpu(RandEvalGpu):
             events_t = torch.FloatTensor(self._event_frame).unsqueeze(0).unsqueeze(0).to(self.device)
             rescale = ddpg_state_rescale(state, len(state))
             goal_t = torch.FloatTensor(
-                np.array(rescale[:2], dtype=np.float32)
-            ).reshape(1, 1, 2).to(self.device)
+                np.array(rescale[:4], dtype=np.float32)
+            ).reshape(1, 1, 4).to(self.device)
             last_action_t = torch.FloatTensor(
                 self._last_action
             ).reshape(1, 1, -1).to(self.device)

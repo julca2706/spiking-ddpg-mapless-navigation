@@ -13,9 +13,9 @@ class ActorNet(nn.Module):
         self.pool2 = nn.MaxPool2d(2, 2)
         self.fc_events = nn.Linear(8192, 256)
 
-        # GRU + output  (2 goal + 2 last_action) — CNN disabled for ablation
-        self.gru = nn.GRU(4, 32, batch_first=True)
-        self.fc_out = nn.Linear(32, action_num)
+        # GRU + output  (4: goal_dir + goal_dis + odom_lin + odom_ang) + 2 last_action — CNN disabled
+        self.gru = nn.GRU(6, 256, batch_first=True)
+        self.fc_out = nn.Linear(256, action_num)
 
         self.elu = nn.ELU()
         self.relu = nn.ReLU()
