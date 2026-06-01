@@ -1,37 +1,38 @@
-# Mapless Robot Navigation with Reinforcement Learning
+# Extending SDDPG Towards Dynamic Mapless Navigation with Temporal Memory and Event-Based Vision
 
-This package implements reinforcement learning agents for mapless autonomous navigation using a TurtleBot3 Burger in Gazebo Harmonic (ROS 2 Jazzy).
-The robot must reach goal positions while avoiding static and dynamic obstacles, without access to a pre-built map.
+This project was prepared in partial fulfillment of the requirements for the Degree of Bachelor of Computer Science, Maastricht University. It is an extension of the original SDDPG framework by Tang et al. ([IROS 2020](https://ieeexplore.ieee.org/abstract/document/9340948)).
 
-Three agent variants are implemented and compared:
+The baseline is built on top of the original SDDPG codebase, modernized to ROS 2 Jazzy and Gazebo Harmonic, with additional agent variants, launchable worlds, and helper nodes. One significant difference is the use of TurtleBot3 Burger with an RGB camera andLiDAR sensor. The robot configuration was sourced from the official TurtleBot3 simulation repository ([link](https://github.com/ROBOTIS-GIT/turtlebot3_simulations)).
 
-* **TD3 with LiDAR** — Twin Delayed DDPG with GRU actor and sequential experience replay. Primary training target.
-* **DVS with Event Camera** — TD3 with CNN+GRU actor using synthetic event camera input. LiDAR critic retained.
-* **Spiking DDPG (SDDPG)** — Legacy LIF-neuron actor trained with STBP for Intel Loihi deployment.
+## Agent Variants
 
-This work extends the original SDDPG framework by Tang et al. ([IROS 2020](https://ieeexplore.ieee.org/abstract/document/9340948)) to ROS 2 / Gazebo Harmonic and adds the TD3 and DVS variants.
+- **DDPG** — Deep Deterministic Policy Gradient; original package, ported and evaluated.
+- **SDDPG** — Spiking DDPG with LIF-neuron actor; original package, ported and evaluated.
+- **TD3+GRU** — Twin Delayed DDPG with GRU actor and sequential replay buffer; fully trained and evaluated.
+- **DVS (proposed)** — TD3 with CNN+GRU actor using synthetic event frames; LiDAR critic retained. Infrastructure implemented, training not stabilized.
 
-## Citation
+## World Variants
 
-```bibtex
-@inproceedings{tang2020reinforcement,
-  author    = {Tang, Guangzhi and Kumar, Neelesh and Michmizos, Konstantinos P.},
-  booktitle = {2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
-  title     = {Reinforcement co-Learning of Deep and Spiking Neural Networks for Energy-Efficient Mapless Navigation with Neuromorphic Hardware},
-  year      = {2020},
-  pages     = {6090--6097},
-  doi       = {10.1109/IROS45743.2020.9340948}
-}
-```
+- **Static Training** — Original training arenas with curriculum learning.
+- **Static Evaluation** — Original evaluation arena.
+- **Dynamic Training** — Extension of static training; dynamic obstacles move in random directions, changing every 5 seconds. Obstacles feature black-and-white striped textures to provide contrast for the event camera.
+- **Dynamic Evaluation** — Extension of static evaluation; dynamic obstacles move randomly within designated sub-areas. Most obstacles also feature striped textures.
+
+## Helper Nodes
+
+- **Event Camera Node** — Generates and publishes synthetic event frames from RGB camera input using frame differencing. Threshold is adjustable.
+- **Obstacle Mover Node** — Moves dynamic obstacles in random directions within the training or evaluation arena, changing direction at fixed intervals. Passes through static obstacles; triggers collision with the robot.
 
 ## Software Installation
 
 #### 1. System Requirements
 
+All requirements are in a sepatare file requirements.txt.
+
 * Ubuntu 24.04 LTS
 * Python 3.12
 * ROS 2 Jazzy + Gazebo Harmonic
-* PyTorch >= 2.0 (CUDA optional but recommended for training)
+* PyTorch >= 2.0
 
 #### 2. ROS 2 and Gazebo
 
@@ -57,110 +58,26 @@ colcon build --symlink-install
 source install/setup.bash
 ```
 
-Add both `source` lines to `~/.bashrc` to avoid repeating them in every terminal.
-
-After any code change, rebuild with `colcon build --symlink-install` — Python files in `build/` are copies, not symlinks.
-
-## State and Action Spaces
-
-The LiDAR state vector is 22-dimensional:
-
-```
-state[0]     goal_dir      — angle to goal relative to robot heading
-state[1]     goal_dis      — normalised distance to goal
-state[2]     odom_linear   — linear velocity
-state[3]     odom_angular  — angular velocity
-state[4:22]  lidar × 18    — front hemisphere, left to right
+Add both `source` lines to `~/.bashrc` to avoid repeating them in every terminal. If not, every newly open terminal needs:
+```bash
+source /opt/ros/jazzy/setup.bash && source install/setup.bash
 ```
 
-The DVS actor receives `state[:2]` (goal direction and distance) together with the event frame and previous action.
-
-The action space is 2-dimensional (left-wheel and right-wheel speeds in `[0, 1]`), decoded to m/s at execution time.
-
-## Network Architectures
-
-**TD3 Actor (GRU)**
-```
-state (22) + last_action (2)  ──► FC(256) → ReLU → FC(256) → ReLU → GRU(256) → FC(2) → Sigmoid ──► action (2)
-```
-
-**TD3 Critic (×2)**
-```
-state (22) ──► FC(512) → ReLU ──┐
-                                 ├──► FC(512) → ReLU → FC(512) → ReLU → FC(1) ──► Q
-action (2)  ─────────────────────┘
-```
-
-**DVS Actor (CNN + GRU)**
-```
-events (2,64,64) ──► Conv(16)→Pool→Conv(32)→Pool→FC(8192→256) ──┐
-goal (2)         ──► FC(64) ──────────────────────────────────────┼──► GRU(322→256) ──► FC(2) → Sigmoid ──► action (2)
-last_action (2)  ────────────────────────────────────────────────┘
-```
-
-TD3 improvements applied to all non-legacy agents: twin critics (min-Q), delayed policy update (`policy_delay=2`), target policy smoothing, gradient clipping.
-Experience is stored and replayed as sequences of length 10 to train the recurrent actor coherently.
+After any code change, rebuild with `colcon build --symlink-install`.
 
 ## Training
 
-Each training run requires two terminals. Start Gazebo first, then the agent.
+Each training run requires two terminals. Start Gazebo first, 
+then the agent. The `headless:=true` flag is optional — omit it 
+to launch with the Gazebo GUI.
 
-#### 1. TD3 LiDAR — static world
+---
 
-```bash
-# Terminal 1
-ros2 launch sddpg_navigation training.launch.py headless:=true
-
-# Terminal 2
-ros2 run sddpg_navigation train_td3
-
-# Start from a specific environment (0–3)
-ros2 run sddpg_navigation train_td3 --start_env 1
-```
-
-Weights saved to `save_td3_weights/`.
-
-#### 2. TD3 LiDAR — dynamic obstacles
+#### 1. DDPG
 
 ```bash
 # Terminal 1
-ros2 launch sddpg_navigation training_dynamic_lidar.launch.py headless:=true
-
-# Terminal 2
-ros2 run sddpg_navigation train_td3
-```
-
-#### 3. DVS Event Camera
-
-The DVS launch file also starts the `event_camera` node and the obstacle mover.
-
-```bash
-# Terminal 1
-ros2 launch sddpg_navigation training_dynamic.launch.py headless:=true
-
-# Terminal 2
-ros2 run sddpg_navigation train_dvs_ddpg
-
-# Start from a specific environment (0–3)
-ros2 run sddpg_navigation train_dvs_ddpg --start_env 1
-```
-
-Weights saved to `save_dvs_weights/` as `{run_name}_dvs_actor_s{step}.pt`.
-
-To inspect event camera output while training (optional, separate terminal):
-
-```bash
-ros2 run rqt_image_view rqt_image_view /camera/events    # ON=white, OFF=black, neutral=grey
-ros2 run rqt_image_view rqt_image_view /camera/image_raw # raw RGB frame
-```
-
-#### 4. Pure DDPG Baseline
-
-Simple DDPG without TD3 improvements — FC actor (no GRU), single critic, standard replay buffer.
-
-```bash
-# Terminal 1
-ros2 launch sddpg_navigation training.launch.py headless:=true
+ros2 launch sddpg_navigation training.launch.py
 
 # Terminal 2
 ros2 run sddpg_navigation train_pure_ddpg
@@ -168,57 +85,149 @@ ros2 run sddpg_navigation train_pure_ddpg
 
 Weights saved to `save_pure_ddpg_weights/`.
 
-## Evaluation
+---
 
-Evaluation runs 200 fixed start/goal pairs from `evaluation/eval_random_simulation/eval_positions.p`.
-
-#### 1. Static Environment
+#### 2. SDDPG
 
 ```bash
 # Terminal 1
-ros2 launch sddpg_navigation evaluation.launch.py headless:=true
+ros2 launch sddpg_navigation training.launch.py
 
-# Terminal 2 — TD3 LiDAR
-ros2 run sddpg_navigation eval_td3 --model_name <run_name>
+# Terminal 2
+ros2 run sddpg_navigation train_sddpg
+```
 
-# Terminal 2 — Pure DDPG baseline
-ros2 run sddpg_navigation eval_pure_ddpg --model_name <run_name>
+Weights saved to `save_sddpg_weights/`.
 
-# Terminal 2 — Legacy GRU DDPG (loads from evaluation/saved_model/)
+---
+
+#### 3. TD3+GRU — static
+
+```bash
+# Terminal 1
+ros2 launch sddpg_navigation training.launch.py
+
+# Terminal 2
+ros2 run sddpg_navigation train_td3
+
+# Optional: start from a specific environment (0–3)
+ros2 run sddpg_navigation train_td3 --start_env 1
+```
+
+Weights saved to `save_td3_weights/`.
+
+---
+
+#### 4. TD3+GRU — dynamic obstacles
+
+```bash
+# Terminal 1
+ros2 launch sddpg_navigation training_dynamic_lidar.launch.py
+
+# Terminal 2
+ros2 run sddpg_navigation train_td3
+```
+Weights saved to `save_td3_weights/`.
+
+---
+
+#### 5. DVS Event Camera
+
+The DVS launch file also starts the `event_camera` node and 
+the obstacle mover.
+
+```bash
+# Terminal 1
+ros2 launch sddpg_navigation training_dynamic.launch.py
+
+# Terminal 2
+ros2 run sddpg_navigation train_dvs_ddpg
+
+# Optional: start from a specific environment (0–3)
+ros2 run sddpg_navigation train_dvs_ddpg --start_env 1
+```
+
+Weights saved to `save_dvs_weights/` as `{run_name}_dvs_actor_s{step}.pt`.
+
+To inspect event camera output (optional, separate terminal):
+
+```bash
+ros2 run rqt_image_view rqt_image_view
+```
+
+## Evaluation
+
+Evaluation runs 200 fixed start/goal pairs from 
+`evaluation/eval_random_simulation/eval_positions.p`.
+
+The `headless:=true` flag is optional.
+
+---
+
+#### 1. DDPG
+
+```bash
+# Terminal 1
+ros2 launch sddpg_navigation evaluation.launch.py
+
+# Terminal 2
 ros2 run sddpg_navigation eval_ddpg
+```
 
-# Terminal 2 — Spiking DDPG (legacy)
+---
+
+#### 2. SDDPG
+
+```bash
+# Terminal 1
+ros2 launch sddpg_navigation evaluation.launch.py
+
+# Terminal 2
 ros2 run sddpg_navigation eval_sddpg
+# Or 
 ros2 run sddpg_navigation eval_sddpg \
   --save_dir src/sddpg_navigation/sddpg_navigation/save_sddpg_weights/ \
   --model_name <run_name> --checkpoint <episode>
 ```
 
-#### 2. Dynamic Obstacle Environment
+---
 
-The DVS evaluation requires `evaluation_dynamic.launch.py` because the `event_camera` node must be running.
+#### 3. TD3+GRU — static
 
 ```bash
 # Terminal 1
-ros2 launch sddpg_navigation evaluation_dynamic.launch.py headless:=true
+ros2 launch sddpg_navigation evaluation.launch.py
 
-# Terminal 2 — TD3 LiDAR
+# Terminal 2
 ros2 run sddpg_navigation eval_td3 --model_name <run_name>
-
-# Terminal 2 — DVS
-ros2 run sddpg_navigation eval_dvs --model_name <run_name> --checkpoint <step>
 ```
 
-#### 3. Monitoring Dynamic Obstacle Distances
+---
 
-To verify that dynamic obstacle collision detection is active during a live run:
+#### 4. TD3+GRU — dynamic
 
 ```bash
-ros2 run sddpg_navigation test_dynamic_collision
+# Terminal 1
+ros2 launch sddpg_navigation evaluation_dynamic.launch.py
+
+# Terminal 2
+ros2 run sddpg_navigation eval_td3 --model_name <run_name>
 ```
 
-Prints robot-to-obstacle distance for each obstacle at 5 Hz.
-Distances below 0.35 m (training threshold) and 0.25 m (evaluation threshold) are flagged in the output.
+---
+
+#### 5. DVS Event Camera — dynamic
+
+The DVS evaluation requires `evaluation_dynamic.launch.py` 
+because the `event_camera` node must be running.
+
+```bash
+# Terminal 1
+ros2 launch sddpg_navigation evaluation_dynamic.launch.py
+
+# Terminal 2
+ros2 run sddpg_navigation eval_dvs --model_name <run_name>
+```
 
 ## Package Structure
 
