@@ -24,7 +24,7 @@ class EventCameraNode(Node):
     def __init__(self):
         super().__init__('event_camera_node')
         self.bridge = CvBridge()
-        self.threshold = 0.005  # minimum normalised brightness change (0–1) to register as an event
+        self.threshold = 0.001  # minimum normalised brightness change (0–1) to register as an event
         self.prev_frame = None
 
         self.create_subscription(Image, '/camera/image_raw', self._camera_cb, _SENSOR_QOS)
@@ -33,7 +33,7 @@ class EventCameraNode(Node):
     def _camera_cb(self, msg):
         frame = self.bridge.imgmsg_to_cv2(msg, 'mono8')
         frame = frame.astype(float) / 255.0
-        frame = cv2.medianBlur(frame.astype(np.float32), 3)  # median blur for noise cancellation
+        #frame = cv2.medianBlur(frame.astype(np.float32), 3)  # median blur for noise cancellation
 
         if self.prev_frame is None:
             self.prev_frame = frame

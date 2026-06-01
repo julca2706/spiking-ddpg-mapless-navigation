@@ -94,8 +94,7 @@ def train_td3(run_name="TD3_R1", exp_name="Rand_R1", episode_num=(100, 200, 300,
     if is_pos_neg:
         rescale_state_num = state_num + 2
     else:
-        # rescale_state_num = state_num  # full LiDAR state
-        rescale_state_num = 4  # ablation: goal_dir, goal_dis, odom_lin, odom_ang only
+        rescale_state_num = state_num
     agent = Agent(state_num, action_num, rescale_state_num, poisson_window=poisson_win, use_poisson=is_poisson,
                   memory_size=memory_size, batch_size=batch_size, epsilon_end=epsilon_end,
                   epsilon_rand_decay_start=rand_start, epsilon_decay=rand_decay, epsilon_rand_decay_step=rand_step,
@@ -125,7 +124,7 @@ def train_td3(run_name="TD3_R1", exp_name="Rand_R1", episode_num=(100, 200, 300,
         if is_pos_neg:
             rescale_state = ddpg_state_2_spike_value_state(state, rescale_state_num)
         else:
-            rescale_state = ddpg_state_rescale(state, state_num)[:4]  # ablation; change to rescale_state_num when restoring
+            rescale_state = ddpg_state_rescale(state, rescale_state_num)
         agent.current_seq = []
         agent.hidden_state = None
         agent.prev_hidden_state = None
@@ -143,7 +142,7 @@ def train_td3(run_name="TD3_R1", exp_name="Rand_R1", episode_num=(100, 200, 300,
             if is_pos_neg:
                 rescale_next_state = ddpg_state_2_spike_value_state(next_state, rescale_state_num)
             else:
-                rescale_next_state = ddpg_state_rescale(next_state, state_num)[:4]  # ablation; change to rescale_state_num when restoring
+                rescale_next_state = ddpg_state_rescale(next_state, rescale_state_num)
 
             # Add a last step negative reward
             episode_reward += reward

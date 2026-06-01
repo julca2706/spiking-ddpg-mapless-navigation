@@ -6,8 +6,7 @@ class ActorNet(nn.Module):
     """ Actor Network — CNN event encoder + separate state branch + GRU, no LiDAR.
         events → CNN(256) ──┐
         state[:4] → FC(64) ─┼──► GRU(322→256) → FC → action
-        last_action(2) ─────┘
-        CNN commented out for ablation — uncomment to enable. """
+        last_action(2) ─────┘ """
     def __init__(self, state_num, action_num, hidden3=256, last_action_num=0):
         super(ActorNet, self).__init__()
 
@@ -22,8 +21,7 @@ class ActorNet(nn.Module):
         self.fc_state = nn.Linear(state_num, 64)
 
         # GRU input: CNN(256) + state_feat(64) + last_action(2) = 322
-        # Ablation (CNN off): state_feat(64) + last_action(2) = 66
-        gru_in = 64 + last_action_num  # CNN disabled — change to 256 + 64 + last_action_num when enabled
+        gru_in = 256 + 64 + last_action_num
         self.gru = nn.GRU(gru_in, hidden3, batch_first=True)
         self.fc_out = nn.Linear(hidden3, action_num)
         self.elu = nn.ELU()
@@ -34,16 +32,14 @@ class ActorNet(nn.Module):
         # events: (B, T, 2, H, W),  state: (B, T, state_num),  last_action: (B, T, action_num)
         B, T = state.shape[:2]
 
-        # CNN branch — disabled for ablation
-        # cnn = events.view(B * T, *events.shape[2:])
-        # cnn = self.elu(self.pool1(self.elu(self.conv1(cnn))))
-        # cnn = self.elu(self.pool2(self.elu(self.conv2(cnn))))
-        # cnn_feat = self.elu(self.fc_events(cnn.flatten(1))).view(B, T, -1)  # (B, T, 256)
+        cnn = events.view(B * T, *events.shape[2:])
+        cnn = self.elu(self.pool1(self.elu(self.conv1(cnn))))
+        cnn = self.elu(self.pool2(self.elu(self.conv2(cnn))))
+        cnn_feat = self.elu(self.fc_events(cnn.flatten(1))).view(B, T, -1)  # (B, T, 256)
 
         state_feat = self.relu(self.fc_state(state))  # (B, T, 64)
 
-        parts = [state_feat]
-        # parts = [cnn_feat, state_feat]  # uncomment when CNN enabled
+        parts = [cnn_feat, state_feat]
         if last_action is not None:
             parts.append(last_action)
         x = torch.cat(parts, dim=-1)
