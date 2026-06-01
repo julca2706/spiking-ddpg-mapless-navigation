@@ -71,6 +71,17 @@ Each training run requires two terminals. Start Gazebo first,
 then the agent. The `headless:=true` flag is optional — omit it 
 to launch with the Gazebo GUI.
 
+Training progress is logged to TensorBoard. To monitor:
+
+```bash
+tensorboard --logdir runs/
+```
+
+The `run_name` used during training (e.g. `TD3_R1`) becomes the 
+prefix for all saved weight files. Pass the full filename minus 
+`.pt` as `--model_name` during evaluation 
+(e.g. `--model_name TD3_R1_actor_network_s10`).
+
 ---
 
 #### 1. DDPG
@@ -83,7 +94,7 @@ ros2 launch sddpg_navigation training.launch.py
 ros2 run sddpg_navigation train_pure_ddpg
 ```
 
-Weights saved to `save_pure_ddpg_weights/`.
+Weights saved to `save_pure_ddpg_weights/{run_name}_actor_network_s{checkpoint}.pt`.
 
 ---
 
@@ -97,7 +108,7 @@ ros2 launch sddpg_navigation training.launch.py
 ros2 run sddpg_navigation train_sddpg
 ```
 
-Weights saved to `save_sddpg_weights/`.
+Weights saved to `save_sddpg_weights/{run_name}_snn_weights_s{checkpoint}.p` and `_snn_bias_s{checkpoint}.p`.
 
 ---
 
@@ -114,7 +125,7 @@ ros2 run sddpg_navigation train_td3
 ros2 run sddpg_navigation train_td3 --start_env 1
 ```
 
-Weights saved to `save_td3_weights/`.
+Weights saved to `save_td3_weights/{run_name}_actor_network_s{checkpoint}.pt`.
 
 ---
 
@@ -127,7 +138,7 @@ ros2 launch sddpg_navigation training_dynamic_lidar.launch.py
 # Terminal 2
 ros2 run sddpg_navigation train_td3
 ```
-Weights saved to `save_td3_weights/`.
+Weights saved to `save_td3_weights/{run_name}_actor_network_s{checkpoint}.pt`.
 
 ---
 
@@ -160,7 +171,9 @@ ros2 run rqt_image_view rqt_image_view
 Evaluation runs 200 fixed start/goal pairs from 
 `evaluation/eval_random_simulation/eval_positions.p`.
 
-The `headless:=true` flag is optional.
+The `headless:=true` flag is optional and it should be applied next to launching command in the first environment.
+
+Add `--save 1` to any evaluation command to save results to `evaluation/record_data/` as a pickle file and it should be applied in the second terminal.
 
 ---
 
@@ -229,6 +242,50 @@ ros2 launch sddpg_navigation evaluation_dynamic.launch.py
 ros2 run sddpg_navigation eval_dvs --model_name <run_name>
 ```
 
+## Result Analysis
+
+After saving an evaluation run with `--save 1`, results can be 
+analyzed using `generate_results.py`.
+
+#### 1. Edit the model name
+
+Open `evaluation/result_analyze/generate_results.py` and set 
+`MODEL_NAME` and `FILE_NAME` to match the saved pickle file in 
+`evaluation/record_data/`:
+
+```python
+MODEL_NAME = 'TD3_GRU'
+FILE_NAME = MODEL_NAME + '_STATIC.p'
+```
+
+#### 2. Run the script
+
+```bash
+cd src/sddpg_navigation/sddpg_navigation/evaluation/result_analyze
+python3 generate_results.py
+```
+
+#### 3. Reading the output
+
+The script prints summary statistics:
+
+```
+Success:  198  Collision:  2  Overtime:  0
+Average Path Distance of Success Routes:  19.655481067311012  m
+Average Path Time of Success Routes:  113.90989030611635  s
+```
+
+It also opens a two-panel path map:
+
+- **Left panel — Success routes:** each path shown in blue; blue dot = start, red dot = goal reached.
+- **Right panel — Failure routes:** red × = collision, green dot = timeout; red dot = unreached goal, dashed red line = remaining distance.
+
+
+## Legacy Code
+
+The `original_code_docker/` directory contains the original Docker-based setup from the legacy ROS 1 / Gazebo 7 implementation. It is preserved for reference and is not required for running the current codebase.
+
+
 ## Package Structure
 
 ```
@@ -237,7 +294,7 @@ src/sddpg_navigation/
 │   ├── training.launch.py                  — static world
 │   ├── training_dynamic.launch.py          — dynamic world + event_camera + obstacle_mover
 │   ├── training_dynamic_lidar.launch.py    — dynamic world + obstacle_mover
-│   ├── evaluation.launch.py
+│   ├── evaluation.launch.py                 
 │   ├── evaluation_dynamic.launch.py        — dynamic world + event_camera
 │   └── bridge.yaml                         — ROS ↔ Gazebo topic bridge
 ├── models/turtlebot3_burger/               — robot SDF (LiDAR + camera sensor)
@@ -247,18 +304,16 @@ src/sddpg_navigation/
     ├── utility.py                          — env generation, action decoding
     ├── event_camera.py                     — synthetic DVS event publisher
     ├── dynamic_obstacles.py                — obstacle mover node (20 Hz)
-    ├── test_dynamic_collision.py           — live collision distance monitor
     ├── training/
     │   ├── train_pure_ddpg/                — DDPG baseline (FC actor)
     │   ├── train_td3/                      — TD3 LiDAR (GRU actor)
-    │   ├── train_DVS_ddpg/                 — TD3 DVS (CNN+GRU actor)
-    │   └── train_spiking_ddpg/             — SDDPG (legacy, Loihi)
+    │   ├── train_td3_DVS/                  — TD3 DVS (CNN+GRU actor)
+    │   └── train_spiking_ddpg/             — SDDPG (legacy)
     ├── evaluation/
-    │   ├── eval_random_simulation/         — simulation evaluation scripts
+    │   ├── eval_random_simulation/         — evaluation scripts
+    │   ├── record_data/                    — stored evaluation results
+    │   ├── saved_model/                    — pre-trained model weights
     │   └── result_analyze/                 — result processing utilities
     └── random_positions/                   — pre-generated start/goal pairs (pickle)
 ```
 
-## Legacy Code
-
-The `original_code_docker/` directory contains the original Docker-based setup from the legacy ROS 1 / Gazebo 7 implementation. It is preserved for reference and is not required for running the current codebase.
