@@ -2,7 +2,7 @@
 
 This project was prepared in partial fulfillment of the requirements for the Degree of Bachelor of Computer Science, Maastricht University. It is an extension of the original SDDPG framework by Tang et al. ([IROS 2020](https://ieeexplore.ieee.org/abstract/document/9340948)).
 
-The baseline is built on top of the original SDDPG codebase, modernized to ROS 2 Jazzy and Gazebo Harmonic, with additional agent variants, launchable worlds, and helper nodes. One significant difference is the use of TurtleBot3 Burger with an RGB camera andLiDAR sensor. The robot configuration was sourced from the official TurtleBot3 simulation repository ([link](https://github.com/ROBOTIS-GIT/turtlebot3_simulations)).
+The baseline is built on top of the original SDDPG codebase, modernized to ROS 2 Jazzy and Gazebo Harmonic, with additional agent variants, launchable worlds, and helper nodes. One significant difference is the use of TurtleBot3 Burger with an RGB camera and LiDAR sensor. The robot configuration was sourced from the official TurtleBot3 simulation repository ([link](https://github.com/ROBOTIS-GIT/turtlebot3_simulations)).
 
 ## Agent Variants
 
@@ -27,7 +27,7 @@ The baseline is built on top of the original SDDPG codebase, modernized to ROS 2
 
 #### 1. System Requirements
 
-All requirements are in a sepatare file requirements.txt.
+All requirements are in a separate file requirements.txt.
 
 * Ubuntu 24.04 LTS
 * Python 3.12
@@ -171,9 +171,11 @@ ros2 run rqt_image_view rqt_image_view
 Evaluation runs 200 fixed start/goal pairs from 
 `evaluation/eval_random_simulation/eval_positions.p`.
 
-The `headless:=true` flag is optional and it should be applied next to launching command in the first environment.
+The `headless:=true` flag is optional — append it to the Terminal 1 launch command.
 
-Add `--save 1` to any evaluation command to save results to `evaluation/record_data/` as a pickle file and it should be applied in the second terminal.
+Add `--save 1` to the Terminal 2 command to save results to `evaluation/record_data/` as a pickle file.
+
+Models are not tied to their training world — a model trained on static environments can be evaluated on dynamic ones and vice versa. Simply use the corresponding launch file in Terminal 1.
 
 ---
 
