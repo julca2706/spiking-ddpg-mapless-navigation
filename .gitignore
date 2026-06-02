@@ -16,3 +16,6 @@ __pycache__/
 
 # ROS logs
 ros_logs/
+
+# DVS training weights (not yet trained)
+save_td3_dvs_weights/
