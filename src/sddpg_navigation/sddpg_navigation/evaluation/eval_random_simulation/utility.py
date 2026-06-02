@@ -5,7 +5,7 @@ import random
 import pickle
 import math
 from shapely.geometry import Point, Polygon
-from sddpg_navigation.training.train_td3.td3_networks import ActorNet
+from sddpg_navigation.training.train_pure_ddpg.ddpg_networks import ActorNet
 from sddpg_navigation.training.train_spiking_ddpg.sddpg_networks import ActorNetSpiking
 
 

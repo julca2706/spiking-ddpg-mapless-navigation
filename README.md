@@ -33,6 +33,7 @@ All requirements are in a separate file requirements.txt.
 * Python 3.12
 * ROS 2 Jazzy + Gazebo Harmonic
 * PyTorch >= 2.0
+* NumPy < 2.0 (cv_bridge is compiled against NumPy 1.x)
 
 #### 2. ROS 2 and Gazebo
 
@@ -41,13 +42,21 @@ sudo apt install ros-jazzy-desktop ros-jazzy-ros-gz-bridge ros-jazzy-ros-gz-inte
                  ros-jazzy-ros-gz-sim ros-jazzy-cv-bridge \
                  ros-jazzy-turtlebot3 ros-jazzy-turtlebot3-gazebo \
                  gz-harmonic python3-gz-msgs10 python3-gz-transport13 \
-                 python3-colcon-common-extensions
+                 python3-colcon-common-extensions \
+                 ros-jazzy-rmw-cyclonedds-cpp
+```
+
+`ros-gz-interfaces` has a runtime ABI mismatch with the default FastRTPS middleware — nodes crash with a symbol lookup error. CycloneDDS bypasses FastRTPS entirely and must be set before running anything:
+
+```bash
+echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> ~/.bashrc
+source ~/.bashrc
 ```
 
 #### 3. Python Packages
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt --break-system-packages
 ```
 
 #### 4. Build the Workspace
@@ -152,13 +161,13 @@ the obstacle mover.
 ros2 launch sddpg_navigation training_dynamic.launch.py
 
 # Terminal 2
-ros2 run sddpg_navigation train_dvs_ddpg
+ros2 run sddpg_navigation train_td3_dvs
 
 # Optional: start from a specific environment (0–3)
-ros2 run sddpg_navigation train_dvs_ddpg --start_env 1
+ros2 run sddpg_navigation train_td3_dvs --start_env 1
 ```
 
-Weights saved to `save_dvs_weights/` as `{run_name}_dvs_actor_s{step}.pt`.
+Weights saved to `save_td3_dvs_weights/{run_name}_actor_network_s{checkpoint}.pt`.
 
 To inspect event camera output (optional, separate terminal):
 
@@ -241,7 +250,8 @@ because the `event_camera` node must be running.
 ros2 launch sddpg_navigation evaluation_dynamic.launch.py
 
 # Terminal 2
-ros2 run sddpg_navigation eval_dvs --model_name <run_name>
+ros2 run sddpg_navigation eval_dvs --model_name <run_name> \
+  --save_dir save_td3_dvs_weights/ --checkpoint <checkpoint>
 ```
 
 ## Result Analysis

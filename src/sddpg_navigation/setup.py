@@ -49,13 +49,11 @@ setup(
             'eval_ddpg = sddpg_navigation.evaluation.eval_random_simulation.run_ddpg_eval:main',
             'obstacle_mover_node = sddpg_navigation.dynamic_obstacles:main',
             'event_camera = sddpg_navigation.event_camera:main',
-            'train_dvs_ddpg = sddpg_navigation.training.train_DVS_ddpg.train_DVS_ddpg:main',
             'train_td3_dvs = sddpg_navigation.training.train_td3_DVS.train_td3_dvs:main',
             'train_pure_ddpg = sddpg_navigation.training.train_pure_ddpg.train_ddpg:main',
             'eval_pure_ddpg = sddpg_navigation.evaluation.eval_random_simulation.run_pure_ddpg_eval:main',
             'eval_td3 = sddpg_navigation.evaluation.eval_random_simulation.run_td3_eval:main',
             'eval_dvs = sddpg_navigation.evaluation.eval_random_simulation.run_dvs_eval:main',
-            'test_dynamic_collision = sddpg_navigation.test_dynamic_collision:main',
         ],
     },
 )

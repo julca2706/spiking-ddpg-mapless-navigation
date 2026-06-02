@@ -8,7 +8,7 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 from sddpg_navigation.evaluation.eval_random_simulation.rand_eval_gpu import RandEvalGpu
 from sddpg_navigation.evaluation.eval_random_simulation.utility import gen_test_env_poly_list_env
-from sddpg_navigation.training.train_DVS_ddpg.ddpg_DVS_networks import ActorNet
+from sddpg_navigation.training.train_td3_DVS.td3_dvs_networks import ActorNet
 from sddpg_navigation.utility import wheeled_network_2_robot_action_decoder, ddpg_state_rescale
 import argparse
 
@@ -25,7 +25,7 @@ _SENSOR_QOS = QoSProfile(
 
 def load_dvs_actor(net_dir, action_num=2):
     """Load DVS ActorNet (CNN+GRU) from a .pt checkpoint file."""
-    actor_net = ActorNet(action_num)
+    actor_net = ActorNet(4, action_num, last_action_num=action_num)
     actor_net.load_state_dict(torch.load(net_dir, map_location='cpu'))
     actor_net.eval()
     return actor_net
